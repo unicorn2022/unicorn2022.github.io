@@ -357,7 +357,7 @@
 <meta property="og:image" content="http://example.com/images/AssetMarkdown/image-20230406220402457.png">
 <meta property="og:image" content="http://example.com/images/AssetMarkdown/image-20230406220645857.png">
 <meta property="article:published_time" content="2023-02-26T10:18:00.000Z">
-<meta property="article:modified_time" content="2023-07-13T13:21:38.036Z">
+<meta property="article:modified_time" content="2023-07-13T13:29:20.903Z">
 <meta property="article:author" content="华丰夏">
 <meta property="article:tag" content="GAMES系列课程">
 <meta name="twitter:card" content="summary">
@@ -557,7 +557,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-07-13 21:21:38" itemprop="dateModified" datetime="2023-07-13T21:21:38+08:00">2023-07-13</time>
+                <time title="修改时间：2023-07-13 21:29:20" itemprop="dateModified" datetime="2023-07-13T21:29:20+08:00">2023-07-13</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1341,38 +1341,42 @@ n &amp; 0 &amp; 0   &amp; 0 \\
 \end{matrix}\]</span>
 <p>) $$</p>
 <h4 id="对于不在近远平面上的点">4.3.3.3 对于不在近/远平面上的点</h4>
-$$ (
-<span class="math display">\[\begin{matrix}
+<p><span class="math display">\[
+\left(
+\begin{matrix}
 n &amp; 0 &amp; 0   &amp; 0 \\
 0 &amp; n &amp; 0   &amp; 0 \\
 0 &amp; 0 &amp; n+f &amp; -nf \\
 0 &amp; 0 &amp; 1   &amp; 0 \\
-\end{matrix}\]</span>
-<p>)</p>
-(
-<span class="math display">\[\begin{matrix}
+\end{matrix}
+\right)
+\left(
+\begin{matrix}
 x \\
 y \\
 z \\
 1 \\
-\end{matrix}\]</span>
-<h1 id="section">)</h1>
-(
-<span class="math display">\[\begin{matrix}
+\end{matrix}
+\right)
+=
+\left(
+\begin{matrix}
 nx \\
 ny \\
 (n+f)z-nf \\
 z \\
-\end{matrix}\]</span>
-<p>)</p>
-==&gt; (
-<span class="math display">\[\begin{matrix}
+\end{matrix}
+\right)
+==&gt;
+\left(
+\begin{matrix}
 \frac{n}{z}x \\
 \frac{n}{z}y \\
 (n+f)-\frac{nf}{z} \\
 1 \\
-\end{matrix}\]</span>
-<p>) $$</p>
+\end{matrix}
+\right)
+\]</span></p>
 <ol type="1">
 <li>近平面上的点<span class="math inline">\((z=n)\)</span>
 <ol type="1">
@@ -3752,7 +3756,7 @@ coordinates齐次坐标</span></a><ol class="nav-child"><li class="nav-item nav-
 Transformation仿射变换 &#x3D; 线性变换 + 平移变换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#d-transformation"><span class="nav-text">3.2.4 2D Transformation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#inverse-transform%E9%80%86%E5%8F%98%E6%8D%A2"><span class="nav-text">3.2.5 Inverse Transform逆变换</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#composing-transforms%E5%8F%98%E6%8D%A2%E7%9A%84%E7%BB%84%E5%90%88"><span class="nav-text">3.3 Composing
 Transforms变换的组合</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BE%E4%BE%8B"><span class="nav-text">3.3.1 举例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%9A%E4%B8%AA%E5%8F%98%E6%8D%A2"><span class="nav-text">3.3.2 多个变换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%98%E6%8D%A2%E7%9A%84%E5%88%86%E8%A7%A3"><span class="nav-text">3.3.3 变换的分解</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC4%E8%AF%BE-%E5%8F%98%E6%8D%A22%E4%B8%89%E7%BB%B4%E5%8F%98%E6%8D%A2"><span class="nav-text">第4课 变换2：三维变换</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%89%E5%85%B3%E6%97%8B%E8%BD%AC%E7%9A%84%E8%A1%A5%E5%85%85"><span class="nav-text">4.0 有关旋转的补充</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#d-transformations"><span class="nav-text">4.1 3D Transformations</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%BD%90%E6%AC%A1%E5%9D%90%E6%A0%87-1"><span class="nav-text">4.4.1 齐次坐标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%BF%E5%B0%84%E5%8F%98%E6%8D%A2"><span class="nav-text">4.4.2 仿射变换</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BC%A9%E6%94%BE"><span class="nav-text">4.4.2.1 缩放</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B9%B3%E7%A7%BB"><span class="nav-text">4.4.2.2 平移</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%97%8B%E8%BD%AC"><span class="nav-text">4.4.2.3 旋转</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%BB%95%E5%9D%90%E6%A0%87%E8%BD%B4%E6%97%8B%E8%BD%AC"><span class="nav-text">4.4.2.3.1 绕坐标轴旋转</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%BB%95%E4%BB%BB%E6%84%8F%E8%BF%87%E5%8E%9F%E7%82%B9%E7%9A%84%E8%BD%B4%E6%97%8B%E8%BD%AC"><span class="nav-text">4.4.2.3.2 绕任意过原点的轴旋转</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%BB%95%E8%BF%87%E4%BB%BB%E6%84%8F%E7%82%B9%E7%9A%84%E4%BB%BB%E6%84%8F%E8%BD%B4%E6%97%8B%E8%BD%AC"><span class="nav-text">4.4.2.3.2 绕过任意点的任意轴旋转</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#model-view-transformation"><span class="nav-text">4.2 Model &amp; View
 Transformation</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E8%A7%86%E5%9B%BE%E5%8F%98%E6%8D%A2"><span class="nav-text">4.2.1 什么是视图变换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89camera"><span class="nav-text">4.2.2 定义Camera</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B3%E9%94%AE%E7%82%B9%E7%9B%B8%E6%9C%BA%E4%B8%8E%E7%89%A9%E4%BD%93%E7%9A%84%E7%9B%B8%E5%AF%B9%E4%BD%8D%E7%BD%AE%E5%86%B3%E5%AE%9A%E7%9C%8B%E5%88%B0%E7%9A%84%E5%9B%BE%E5%83%8F"><span class="nav-text">4.2.3
-关键点：相机与物体的相对位置决定看到的图像</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B0%86%E7%9B%B8%E6%9C%BA%E7%A7%BB%E5%8A%A8%E5%88%B0%E6%A0%87%E5%87%86%E4%BD%8D%E7%BD%AE"><span class="nav-text">4.2.4 将相机移动到标准位置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-text">4.2.5 总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#projection-transformation"><span class="nav-text">4.3 Projection Transformation</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AD%A3%E4%BA%A4%E6%8A%95%E5%BD%B1"><span class="nav-text">4.3.1 正交投影</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%8F%E8%A7%86%E6%8A%95%E5%BD%B1"><span class="nav-text">4.3.2 透视投影</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E8%BF%9B%E8%A1%8C%E9%80%8F%E8%A7%86%E6%8A%95%E5%BD%B1"><span class="nav-text">4.3.2.1 如何进行透视投影</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E7%9F%A9%E9%98%B5m_persp-ortho"><span class="nav-text">4.3.2.2 计算矩阵\(M_{persp-&gt;ortho}\)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AF%B9%E4%BA%8E%E4%B8%8D%E5%9C%A8%E8%BF%91%E8%BF%9C%E5%B9%B3%E9%9D%A2%E4%B8%8A%E7%9A%84%E7%82%B9"><span class="nav-text">4.3.3.3 对于不在近&#x2F;远平面上的点</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#section"><span class="nav-text">)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89%E8%A7%86%E9%94%A5"><span class="nav-text">4.3.3.4 定义视锥</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC5%E8%AF%BE-%E5%85%89%E6%A0%85%E5%8C%961%E4%B8%89%E8%A7%92%E5%BD%A2"><span class="nav-text">第5课 光栅化1：三角形</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B1%8F%E5%B9%95%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="nav-text">5.1 屏幕的定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%86%E5%8F%A3%E5%8F%98%E6%8D%A2-113-rightarrow-0width0height"><span class="nav-text">5.2 视口变换：\([-1,1]^3 \rightarrow
+关键点：相机与物体的相对位置决定看到的图像</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B0%86%E7%9B%B8%E6%9C%BA%E7%A7%BB%E5%8A%A8%E5%88%B0%E6%A0%87%E5%87%86%E4%BD%8D%E7%BD%AE"><span class="nav-text">4.2.4 将相机移动到标准位置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-text">4.2.5 总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#projection-transformation"><span class="nav-text">4.3 Projection Transformation</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AD%A3%E4%BA%A4%E6%8A%95%E5%BD%B1"><span class="nav-text">4.3.1 正交投影</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%8F%E8%A7%86%E6%8A%95%E5%BD%B1"><span class="nav-text">4.3.2 透视投影</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E8%BF%9B%E8%A1%8C%E9%80%8F%E8%A7%86%E6%8A%95%E5%BD%B1"><span class="nav-text">4.3.2.1 如何进行透视投影</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E7%9F%A9%E9%98%B5m_persp-ortho"><span class="nav-text">4.3.2.2 计算矩阵\(M_{persp-&gt;ortho}\)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AF%B9%E4%BA%8E%E4%B8%8D%E5%9C%A8%E8%BF%91%E8%BF%9C%E5%B9%B3%E9%9D%A2%E4%B8%8A%E7%9A%84%E7%82%B9"><span class="nav-text">4.3.3.3 对于不在近&#x2F;远平面上的点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89%E8%A7%86%E9%94%A5"><span class="nav-text">4.3.3.4 定义视锥</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC5%E8%AF%BE-%E5%85%89%E6%A0%85%E5%8C%961%E4%B8%89%E8%A7%92%E5%BD%A2"><span class="nav-text">第5课 光栅化1：三角形</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B1%8F%E5%B9%95%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="nav-text">5.1 屏幕的定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%86%E5%8F%A3%E5%8F%98%E6%8D%A2-113-rightarrow-0width0height"><span class="nav-text">5.2 视口变换：\([-1,1]^3 \rightarrow
 [0,width]×[0,height]\)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%8E%B0%E4%BB%A3%E6%98%BE%E7%A4%BA%E5%8E%9F%E7%90%86"><span class="nav-text">5.3 现代显示原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E8%A7%92%E5%BD%A2%E7%9A%84%E6%80%A7%E8%B4%A8"><span class="nav-text">5.4 三角形的性质</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%89%E6%A0%85%E5%8C%96%E4%B8%89%E8%A7%92%E5%BD%A2-%E5%83%8F%E7%B4%A0"><span class="nav-text">5.5 光栅化：三角形 &#x3D;&gt; 像素</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%87%87%E6%A0%B7%E6%B3%95-%E7%A1%AE%E5%AE%9A%E5%83%8F%E7%B4%A0%E9%A2%9C%E8%89%B2"><span class="nav-text">5.5.1 采样法 确定像素颜色</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E8%A7%92%E5%BD%A2%E7%9A%84%E5%8C%85%E5%9B%B4%E7%9B%92"><span class="nav-text">5.5.2 三角形的包围盒</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC6%E8%AF%BE-%E5%85%89%E6%A0%85%E5%8C%962%E5%8F%8D%E8%B5%B0%E6%A0%B7%E6%B7%B1%E5%BA%A6%E7%BC%93%E5%86%B2"><span class="nav-text">第6课
 光栅化2：反走样&amp;深度缓冲</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%8D%E8%B5%B0%E6%A0%B7%E6%96%B9%E6%B3%95%E5%9C%A8%E9%87%87%E6%A0%B7%E4%B9%8B%E5%89%8D%E8%BF%9B%E8%A1%8C%E8%BF%87%E6%BB%A4%E6%A8%A1%E7%B3%8A%E5%A4%84%E7%90%86"><span class="nav-text">6.1
 反走样方法：在采样之前进行过滤&#x2F;模糊处理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%88%E6%BB%A4%E6%B3%A2%E5%90%8E%E9%87%87%E6%A0%B7aliasing"><span class="nav-text">6.1.1 先滤波，后采样：Aliasing</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%88%E9%87%87%E6%A0%B7%E5%90%8E%E6%BB%A4%E6%B3%A2blurred-aliasing"><span class="nav-text">6.1.2 先采样，后滤波：Blurred
@@ -3898,7 +3902,7 @@ System</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共19.4k字</span>
+  <span class="post-count">博客全站共19.5k字</span>
 </div>
 
 
