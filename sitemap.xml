@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://hzoi-unicorn.top/resources/index.html</loc>
+    
+    <lastmod>2023-07-29</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://hzoi-unicorn.top/2023/04/01/GAMES104/</loc>
     
     <lastmod>2023-07-27</lastmod>
@@ -147,15 +156,6 @@
   
   <url>
     <loc>https://hzoi-unicorn.top/comment/index.html</loc>
-    
-    <lastmod>2023-07-19</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://hzoi-unicorn.top/resources/index.html</loc>
     
     <lastmod>2023-07-19</lastmod>
     
