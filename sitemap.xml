@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://hzoi-unicorn.top/tools/index.html</loc>
+    
+    <lastmod>2023-07-29</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://hzoi-unicorn.top/resources/index.html</loc>
     
     <lastmod>2023-07-29</lastmod>
@@ -104,42 +113,6 @@
     <loc>https://hzoi-unicorn.top/2023/02/27/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/</loc>
     
     <lastmod>2023-07-22</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://hzoi-unicorn.top/shuoshuo/index.html</loc>
-    
-    <lastmod>2023-07-19</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://hzoi-unicorn.top/photos/index.html</loc>
-    
-    <lastmod>2023-07-19</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://hzoi-unicorn.top/music/index.html</loc>
-    
-    <lastmod>2023-07-19</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://hzoi-unicorn.top/movies/index.html</loc>
-    
-    <lastmod>2023-07-19</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
