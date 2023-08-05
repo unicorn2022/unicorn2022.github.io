@@ -1,0 +1,383 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>GAMES101-19：相机&amp;透镜&amp;光场 | 华风夏韵</title><meta name="author" content="华丰夏"><meta name="copyright" content="华丰夏"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="GAMES101学习笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="GAMES101-19：相机&amp;透镜&amp;光场">
+<meta property="og:url" content="https://hzoi-unicorn.top/2023/02/26/GAMES101/19--%E7%9B%B8%E6%9C%BA&%E9%80%8F%E9%95%9C&%E5%85%89%E5%9C%BA/index.html">
+<meta property="og:site_name" content="华风夏韵">
+<meta property="og:description" content="GAMES101学习笔记">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://hzoi-unicorn.top/img/avatar.png">
+<meta property="article:published_time" content="2023-02-26T10:18:00.000Z">
+<meta property="article:modified_time" content="2023-08-05T07:39:32.542Z">
+<meta property="article:author" content="华丰夏">
+<meta property="article:tag" content="GAMES101学习笔记">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://hzoi-unicorn.top/img/avatar.png"><link rel="shortcut icon" href="https://raw.githubusercontent.com/unicorn2022/Pictures/main/img/favicon.png"><link rel="canonical" href="https://hzoi-unicorn.top/2023/02/26/GAMES101/19--%E7%9B%B8%E6%9C%BA&amp;%E9%80%8F%E9%95%9C&amp;%E5%85%89%E5%9C%BA/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta name="baidu-site-verification" content="codeva-PpLfvQYdq5"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: 华丰夏","link":"链接: ","source":"来源: 华风夏韵","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'GAMES101-19：相机&透镜&光场',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: true,
+  isToc: true,
+  postUpdate: '2023-08-05 15:39:32'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/background.css"><meta name="generator" content="Hexo 6.3.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">48</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">4</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-graduation-cap"></i><span> 博文</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 归档</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/resources/"><i class="fa-fw fa fa-book"></i><span> 资源</span></a></div><div class="menus_item"><a class="site-page" href="/tools/"><i class="fa-fw fas fa-list"></i><span> 在线工具</span></a></div><div class="menus_item"><a class="site-page" href="/comment/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于笔者</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/default_top_img.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="华风夏韵"><span class="site-name">华风夏韵</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-graduation-cap"></i><span> 博文</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 归档</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/resources/"><i class="fa-fw fa fa-book"></i><span> 资源</span></a></div><div class="menus_item"><a class="site-page" href="/tools/"><i class="fa-fw fas fa-list"></i><span> 在线工具</span></a></div><div class="menus_item"><a class="site-page" href="/comment/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于笔者</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">GAMES101-19：相机&amp;透镜&amp;光场</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-02-26T10:18:00.000Z" title="发表于 2023-02-26 18:18:00">2023-02-26</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-08-05T07:39:32.542Z" title="更新于 2023-08-05 15:39:32">2023-08-05</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/GAMES%E7%B3%BB%E5%88%97%E8%AF%BE%E7%A8%8B/">GAMES系列课程</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.4k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>4分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="GAMES101-19：相机&amp;透镜&amp;光场"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><script type="text/javascript"
+src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<h1 id="十九相机透镜光场">十九、相机&amp;透镜&amp;光场</h1>
+<h2 id="相机">19.1 相机</h2>
+<p>快门：控制光在某个极短时间内进入相机</p>
+<p>传感器：将光的信息记录下来，只能记录Irradiance，不能记录radiance，因此需要小孔/棱镜成像</p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230331150921690.png" alt="image-20230331150921690" style="zoom:80%;" /></p>
+<h3 id="针孔相机">19.1.1 针孔相机</h3>
+<ol type="1">
+<li>没有景深的效果，不会模糊</li>
+</ol>
+<h3 id="基础概念">19.1.2 基础概念</h3>
+<h4 id="视场-fov">19.1.2.1 视场 FOV</h4>
+<p><strong>FOV</strong>：视场</p>
+<ol type="1">
+<li>传感器高度：<strong>h</strong></li>
+<li>传感器到小孔的距离：<strong>焦距f</strong></li>
+<li>焦距越大，视场越大</li>
+<li>传感器越小，视场越小</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230331151043290.png" alt="image-20230331151043290" style="zoom:80%;" /></p>
+<blockquote>
+<p>以<strong>35mm格式</strong>的胶片为标准，通过更改<strong>焦距f</strong>，定义视场</p>
+<ol type="1">
+<li>也就是确定了传感器高度<strong>h</strong></li>
+<li>通常说的是等效到35mm格式，而不是传感器就是35mm</li>
+</ol>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230331151357618.png" alt="image-20230331151357618" style="zoom:80%;" /></p>
+<p>传感器sensor和胶片film可以不一样，但可以当作是一样的</p>
+<ol type="1">
+<li>传感器：接收到了具体信息</li>
+<li>胶片：最后呈现的效果</li>
+</ol>
+<blockquote>
+<p>小的传感器 + 小焦距，可以得到相同的视场</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230331151711271.png" alt="image-20230331151711271" style="zoom:80%;" /></p>
+<h4 id="曝光度-exposure">19.1.2.2 曝光度 Exposure</h4>
+<p><strong>Exposure = 时间(T) × Irradiance(E)</strong></p>
+<ol type="1">
+<li>时间越长、单位时间内接收到的能量越多，最后的曝光度越大</li>
+<li>曝光度记录的是energy，而不是power</li>
+<li>时间：由快门控制</li>
+<li>Irradiance：由很多因素决定，如光圈</li>
+</ol>
+<h4 id="影响曝光度的因素光圈快门iso">19.1.2.3
+影响曝光度的因素：光圈&amp;快门&amp;ISO</h4>
+<ol type="1">
+<li>光圈<strong>Aperture
+Size</strong>：用<strong><code>FN</code>或<code>F/N</code></strong>表示
+<ol type="1">
+<li>模拟人的瞳孔，通过<strong>F-stop/F-number</strong>控制开关</li>
+<li><strong>N</strong>对应光圈半径的倒数</li>
+<li><strong>光圈越大，越亮，但是远的部分越模糊</strong></li>
+<li>如果要考虑景深，光圈就应该小，图像就会暗，因此就需要更长的快门时间，从而无法考虑运动模糊的问题</li>
+</ol></li>
+<li>快门<strong>Shutter speed</strong>：用分数表示
+<ol type="1">
+<li>控制记录的时间</li>
+<li><strong>时间越长，越模糊</strong></li>
+<li>因为存在运动模糊效果：对快门时间内记录到的所有信息做了一个平均</li>
+<li>相当于在时间上采样时，做了一个模糊效果</li>
+<li><strong>Rolling
+shutter</strong>：对于高速运动的物体，可能会出现扭曲的现象</li>
+</ol></li>
+<li>感光度<strong>ISO gain</strong>：用ISOxx表示
+<ol type="1">
+<li>类似于后期处理，对接收到的光乘上某个数</li>
+<li>可以发生在硬件上，也可以发生在软件上</li>
+<li><strong>ISO越大，越亮，但是噪声也越大</strong></li>
+</ol></li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230331152235235.png" alt="image-20230331152235235" style="zoom:80%;" /></p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230331153511790.png" alt="image-20230331153511790" style="zoom:80%;" /></p>
+<h4 id="高速低速摄影">19.1.2.4 高速/低速摄影</h4>
+<p><strong>高速摄影</strong></p>
+<ol type="1">
+<li>即每秒钟要拍更多的照片</li>
+<li>快门时间变短，同时需要更大的光圈</li>
+</ol>
+<p><strong>低速摄影/延迟摄影</strong></p>
+<ol type="1">
+<li>即每秒钟要拍更少的照片</li>
+<li>快门时间变长，就是需要运动模糊</li>
+</ol>
+<h2 id="薄透镜近似">19.2 薄透镜近似</h2>
+<h3 id="理想化薄透镜">19.2.1 理想化薄透镜</h3>
+<ol type="1">
+<li>平行光可以汇聚到焦点上，过交点可以发散为平行光</li>
+<li>过中心不改变光路</li>
+<li>可以任意更改焦距：通过透镜组，动态改变焦距</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230331154506466.png" alt="image-20230331154506466" style="zoom:80%;" /></p>
+<h3 id="焦散模糊-defocus-blur">19.2.2 焦散模糊 Defocus Blur</h3>
+<p><strong>CoC</strong>：Circle of Confusion</p>
+<ol type="1">
+<li>当感光器在成像点后面时，会导致成像为一个圆</li>
+<li>光圈越大，CoC越大</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230331155356722.png" alt="image-20230331155356722" style="zoom:80%;" /></p>
+<h3 id="f-number的定义">19.2.3 F-Number的定义</h3>
+<ol type="1">
+<li>F-Number = 焦距 / 光圈直径</li>
+<li>拍的更清楚 =&gt; 使用小光圈</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230331155149689.png" alt="image-20230331155149689" style="zoom:80%;" /></p>
+<h2 id="光线追踪模拟薄透镜">19.3 光线追踪模拟薄透镜</h2>
+<h3 id="定义">19.3.1 定义</h3>
+<ol type="1">
+<li>感光器的大小</li>
+<li>焦距、光圈大小</li>
+<li>物体与棱镜的距离，即物距<strong>z<sub>o</sub></strong></li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230331155614225.png" alt="image-20230331155614225" style="zoom:80%;" /></p>
+<h3 id="渲染方式">19.3.2 渲染方式</h3>
+<ol type="1">
+<li>在感光元件上选一个点<strong>x'</strong></li>
+<li>在透镜上选另一个点<strong>x''</strong></li>
+<li>连接<strong>x'</strong>和<strong>x''</strong>，可以得到通过该透镜后的光线<strong>x''→x'''</strong></li>
+<li>考虑<strong>x''→x'''</strong>的Radiance，记录到<strong>x'</strong>上即可</li>
+</ol>
+<h2 id="景深-depth-of-fielddf-dn">19.4 景深 Depth of
+Field：D<sub>F</sub> ~ D<sub>N</sub></h2>
+<ol type="1">
+<li>用不同的光圈，会影响模糊的范围</li>
+<li>在<strong>实际场景</strong>中有<strong>一段深度(景深)</strong>，这段通过透镜，会在成像区域附近形成一个区域，我们认为这个区域内的CoC都是足够小的</li>
+<li>这段深度内的像素，认为均是锐利的，即不模糊的</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230331160147996.png" alt="image-20230331160147996" style="zoom:80%;" /></p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230331161005848.png" alt="image-20230331161005848" style="zoom:80%;" /></p>
+<h2 id="光场-light-field-lumigraph">19.5 光场 Light Field /
+Lumigraph</h2>
+<h3 id="全光函数-plenoptic-function">19.5.1 全光函数 Plenoptic
+Function</h3>
+<h4 id="grayscale-snapshotpθ-φ">19.5.1.1 Grayscale snapshot：P(θ,
+Φ)</h4>
+<ol type="1">
+<li>定义了在一个固定地方，向任意一个<strong>方向(θ,
+Φ)</strong>看，能够看到的亮度值</li>
+</ol>
+<h4 id="color-snapshotpθ-φ-λ">19.5.1.2 Color snapshot：P(θ, Φ, λ)</h4>
+<ol type="1">
+<li>定义了在一个固定地方，向任意一个<strong>方向(θ,
+Φ)</strong>看，能够看到的<strong>波长为λ</strong>的亮度值</li>
+</ol>
+<h4 id="moviepθ-φ-λ-t">19.5.1.3 Movie：P(θ, Φ, λ, t)</h4>
+<ol type="1">
+<li>定义了在一个固定地方，在某个<strong>时间t</strong>，向任意一个<strong>方向(θ,
+Φ)</strong>看，能够看到的<strong>波长为λ</strong>的亮度值</li>
+<li>即电影</li>
+</ol>
+<h4 id="holographic-moviepθ-φ-λ-t-vx-vy-vz">19.5.1.4 Holographic
+Movie：P(θ, Φ, λ, t, V<sub>X</sub>, V<sub>Y</sub>, V<sub>Z</sub>)</h4>
+<ol type="1">
+<li>定义了在某个<strong>位置(V<sub>X</sub>, V<sub>Y</sub>,
+V<sub>Z</sub>)</strong>，在某个<strong>时间t</strong>，向任意一个<strong>方向(θ,
+Φ)</strong>看，能够看到的<strong>波长为λ</strong>的亮度值</li>
+<li>即全息电影</li>
+</ol>
+<h4 id="plenoptic-functionpθ-φ-λ-t-vx-vy-vz">19.5.1.5 Plenoptic
+Function：P(θ, Φ, λ, t, V<sub>X</sub>, V<sub>Y</sub>,
+V<sub>Z</sub>)</h4>
+<ol type="1">
+<li>在任何<strong>时间t</strong>、任何<strong>地点V</strong>、向任何<strong>方向(θ,
+Φ)</strong>看，所能看到的所有的<strong>光λ</strong></li>
+<li>是一个七维函数</li>
+</ol>
+<h3 id="光线的定义">19.5.2 光线的定义</h3>
+<p>5个维度：<strong>P(θ, Φ, V<sub>X</sub>, V<sub>Y</sub>,
+V<sub>Z</sub>)</strong></p>
+<ol type="1">
+<li>3个维度的坐标</li>
+<li>2个维度的方向</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230331162624696.png" alt="image-20230331162624696" style="zoom:80%;" /></p>
+<p>4个维度：</p>
+<ol type="1">
+<li>2维的位置：<strong>(u, v)</strong></li>
+<li>2维的方向：<strong>(θ, Φ)</strong></li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230331162633863.png" alt="image-20230331162633863" style="zoom:80%;" /></p>
+<h3 id="全光表面-plenoptic-surface">19.5.3 全光表面 Plenoptic
+Surface</h3>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230331162812295.png" alt="image-20230331162812295" style="zoom:80%;" /></p>
+<p>光场：任何一个位置，往任何一个方向去的光的强度</p>
+<ol type="1">
+<li>在表面的位置：<strong>(u, v)</strong></li>
+<li>方向：<strong>(θ, Φ)</strong></li>
+<li>从任意一个位置，往任意一个方向看，都看到该光场的强度</li>
+</ol>
+<h3 id="光场">19.5.4 光场</h3>
+<p>不需要直到物体具体是什么，只需要直到<strong>包围盒外</strong>的光场信息</p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230331163303962.png" alt="image-20230331163303962" style="zoom:80%;" /></p>
+<h3 id="lumigraph-organization">19.5.5 Lumigraph-Organization</h3>
+<p>取一个平面，只需要直到该平面上任何一个位置，往任何一个方向去的光的强度</p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230331163416657.png" alt="image-20230331163416657" style="zoom:80%;" /></p>
+<p>也可以定义两个平面<strong>(u,v) &amp; (s,t)</strong>，定义该光线</p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230331163525401.png" alt="image-20230331163525401" style="zoom:80%;" /></p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230331164408327.png" alt="image-20230331164408327" style="zoom:80%;" /></p>
+<blockquote>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230331164514848.png" alt="image-20230331164514848" style="zoom:80%;" /></p>
+</blockquote>
+<h3 id="光场摄像机">19.5.6 光场摄像机</h3>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="unicorn2022.github.io">华丰夏</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://hzoi-unicorn.top/2023/02/26/GAMES101/19--%E7%9B%B8%E6%9C%BA&amp;%E9%80%8F%E9%95%9C&amp;%E5%85%89%E5%9C%BA/">https://hzoi-unicorn.top/2023/02/26/GAMES101/19--相机&amp;透镜&amp;光场/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://hzoi-unicorn.top" target="_blank">华风夏韵</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/GAMES101%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">GAMES101学习笔记</a></div><div class="post_share"><div class="social-share" data-image="/img/avatar.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/02/26/GAMES101/12--%E5%87%A0%E4%BD%953%EF%BC%9A%E7%BD%91%E6%A0%BC%E4%BD%93/" title="GAMES101-12：几何3：网格体"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">GAMES101-12：几何3：网格体</div></div></a></div><div class="next-post pull-right"><a href="/2023/02/26/GAMES101/21--%E5%8A%A8%E7%94%BB/" title="GAMES101-21：动画/模拟/仿真"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">GAMES101-21：动画/模拟/仿真</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2023/02/26/GAMES101/1--%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6%E6%A6%82%E8%A7%88/" title="GAMES101-01：计算机图形学概览"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-02-26</div><div class="title">GAMES101-01：计算机图形学概览</div></div></a></div><div><a href="/2023/02/26/GAMES101/2--%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E5%A4%8D%E4%B9%A0/" title="GAMES101-02：线性代数复习"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-02-26</div><div class="title">GAMES101-02：线性代数复习</div></div></a></div><div><a href="/2023/02/26/GAMES101/3--%E5%8F%98%E6%8D%A21%EF%BC%9A%E4%BA%8C%E7%BB%B4%E5%8F%98%E6%8D%A2/" title="GAMES101-03：变换1：2维变换"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-02-26</div><div class="title">GAMES101-03：变换1：2维变换</div></div></a></div><div><a href="/2023/02/26/GAMES101/0--%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" title="GAMES101-00：环境配置"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-02-26</div><div class="title">GAMES101-00：环境配置</div></div></a></div><div><a href="/2023/02/26/GAMES101/8--%E7%9D%80%E8%89%B22%EF%BC%9A%E7%9D%80%E8%89%B2%E9%A2%91%E7%8E%87&%E5%AE%9E%E6%97%B6%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF/" title="GAMES101-08：着色2：着色频率&amp;实时渲染管线"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-02-26</div><div class="title">GAMES101-08：着色2：着色频率&amp;实时渲染管线</div></div></a></div><div><a href="/2023/02/26/GAMES101/4--%E5%8F%98%E6%8D%A22%EF%BC%9A%E4%B8%89%E7%BB%B4%E5%8F%98%E6%8D%A2/" title="GAMES101-04：变换2：三维变换"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-02-26</div><div class="title">GAMES101-04：变换2：三维变换</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">华丰夏</div><div class="author-info__description">一切都是上天最好的安排</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">48</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">4</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/unicorn2022"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/unicorn2022" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:496300118@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">愿你前行的道路有群星闪耀。愿你留下的足迹有百花绽放。你即是上帝的馈赠，世界因你而瑰丽。</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8D%81%E4%B9%9D%E7%9B%B8%E6%9C%BA%E9%80%8F%E9%95%9C%E5%85%89%E5%9C%BA"><span class="toc-text">十九、相机&amp;透镜&amp;光场</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%B8%E6%9C%BA"><span class="toc-text">19.1 相机</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%92%88%E5%AD%94%E7%9B%B8%E6%9C%BA"><span class="toc-text">19.1.1 针孔相机</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5"><span class="toc-text">19.1.2 基础概念</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%A7%86%E5%9C%BA-fov"><span class="toc-text">19.1.2.1 视场 FOV</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9B%9D%E5%85%89%E5%BA%A6-exposure"><span class="toc-text">19.1.2.2 曝光度 Exposure</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BD%B1%E5%93%8D%E6%9B%9D%E5%85%89%E5%BA%A6%E7%9A%84%E5%9B%A0%E7%B4%A0%E5%85%89%E5%9C%88%E5%BF%AB%E9%97%A8iso"><span class="toc-text">19.1.2.3
+影响曝光度的因素：光圈&amp;快门&amp;ISO</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%AB%98%E9%80%9F%E4%BD%8E%E9%80%9F%E6%91%84%E5%BD%B1"><span class="toc-text">19.1.2.4 高速&#x2F;低速摄影</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%96%84%E9%80%8F%E9%95%9C%E8%BF%91%E4%BC%BC"><span class="toc-text">19.2 薄透镜近似</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%90%86%E6%83%B3%E5%8C%96%E8%96%84%E9%80%8F%E9%95%9C"><span class="toc-text">19.2.1 理想化薄透镜</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%84%A6%E6%95%A3%E6%A8%A1%E7%B3%8A-defocus-blur"><span class="toc-text">19.2.2 焦散模糊 Defocus Blur</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#f-number%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="toc-text">19.2.3 F-Number的定义</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%89%E7%BA%BF%E8%BF%BD%E8%B8%AA%E6%A8%A1%E6%8B%9F%E8%96%84%E9%80%8F%E9%95%9C"><span class="toc-text">19.3 光线追踪模拟薄透镜</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89"><span class="toc-text">19.3.1 定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B8%B2%E6%9F%93%E6%96%B9%E5%BC%8F"><span class="toc-text">19.3.2 渲染方式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%99%AF%E6%B7%B1-depth-of-fielddf-dn"><span class="toc-text">19.4 景深 Depth of
+Field：DF ~ DN</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%89%E5%9C%BA-light-field-lumigraph"><span class="toc-text">19.5 光场 Light Field &#x2F;
+Lumigraph</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%A8%E5%85%89%E5%87%BD%E6%95%B0-plenoptic-function"><span class="toc-text">19.5.1 全光函数 Plenoptic
+Function</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#grayscale-snapshotp%CE%B8-%CF%86"><span class="toc-text">19.5.1.1 Grayscale snapshot：P(θ,
+Φ)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#color-snapshotp%CE%B8-%CF%86-%CE%BB"><span class="toc-text">19.5.1.2 Color snapshot：P(θ, Φ, λ)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#moviep%CE%B8-%CF%86-%CE%BB-t"><span class="toc-text">19.5.1.3 Movie：P(θ, Φ, λ, t)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#holographic-moviep%CE%B8-%CF%86-%CE%BB-t-vx-vy-vz"><span class="toc-text">19.5.1.4 Holographic
+Movie：P(θ, Φ, λ, t, VX, VY, VZ)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#plenoptic-functionp%CE%B8-%CF%86-%CE%BB-t-vx-vy-vz"><span class="toc-text">19.5.1.5 Plenoptic
+Function：P(θ, Φ, λ, t, VX, VY,
+VZ)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%89%E7%BA%BF%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="toc-text">19.5.2 光线的定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%A8%E5%85%89%E8%A1%A8%E9%9D%A2-plenoptic-surface"><span class="toc-text">19.5.3 全光表面 Plenoptic
+Surface</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%89%E5%9C%BA"><span class="toc-text">19.5.4 光场</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#lumigraph-organization"><span class="toc-text">19.5.5 Lumigraph-Organization</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%89%E5%9C%BA%E6%91%84%E5%83%8F%E6%9C%BA"><span class="toc-text">19.5.6 光场摄像机</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/07/19/%E6%8C%87%E4%BB%A4%E5%90%88%E9%9B%86/cmake%E6%8C%87%E4%BB%A4%E5%90%88%E9%9B%86/" title="cmake指令合集">cmake指令合集</a><time datetime="2023-07-19T12:19:11.000Z" title="发表于 2023-07-19 20:19:11">2023-07-19</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/07/15/%E6%8C%87%E4%BB%A4%E5%90%88%E9%9B%86/cmake%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="cmake学习笔记">cmake学习笔记</a><time datetime="2023-07-15T10:00:00.000Z" title="发表于 2023-07-15 18:00:00">2023-07-15</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/07/13/%E6%8C%87%E4%BB%A4%E5%90%88%E9%9B%86/hexo%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4/" title="hexo常用指令">hexo常用指令</a><time datetime="2023-07-13T13:11:11.000Z" title="发表于 2023-07-13 21:11:11">2023-07-13</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/04/01/GAMES104/02--%E6%80%BB%E8%A7%88%EF%BC%9A%E5%BC%95%E6%93%8E%E6%9E%B6%E6%9E%84%E5%88%86%E5%B1%82%E4%B8%8E%E6%95%B4%E4%BD%93pipeline/" title="GAMES104-02：总览：引擎架构分层与整体pipeline">GAMES104-02：总览：引擎架构分层与整体pipeline</a><time datetime="2023-04-01T04:49:00.000Z" title="发表于 2023-04-01 12:49:00">2023-04-01</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/04/01/GAMES104/03--%E6%80%BB%E8%A7%88%EF%BC%9A%E5%A6%82%E4%BD%95%E6%9E%84%E5%BB%BA%E6%B8%B8%E6%88%8F%E4%B8%96%E7%95%8C/" title="GAMES104-03：总览：如何构建游戏世界">GAMES104-03：总览：如何构建游戏世界</a><time datetime="2023-04-01T04:49:00.000Z" title="发表于 2023-04-01 12:49:00">2023-04-01</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By 华丰夏</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-nest.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = true;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-heart.min.js" async="async" mobile="true"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div class="no-result" id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>

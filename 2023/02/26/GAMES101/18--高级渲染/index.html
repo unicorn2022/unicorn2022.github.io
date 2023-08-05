@@ -1,0 +1,341 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>GAMES101-18：高级渲染 | 华风夏韵</title><meta name="author" content="华丰夏"><meta name="copyright" content="华丰夏"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="GAMES101学习笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="GAMES101-18：高级渲染">
+<meta property="og:url" content="https://hzoi-unicorn.top/2023/02/26/GAMES101/18--%E9%AB%98%E7%BA%A7%E6%B8%B2%E6%9F%93/index.html">
+<meta property="og:site_name" content="华风夏韵">
+<meta property="og:description" content="GAMES101学习笔记">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://hzoi-unicorn.top/img/avatar.png">
+<meta property="article:published_time" content="2023-02-26T10:18:00.000Z">
+<meta property="article:modified_time" content="2023-08-05T07:39:30.039Z">
+<meta property="article:author" content="华丰夏">
+<meta property="article:tag" content="GAMES101学习笔记">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://hzoi-unicorn.top/img/avatar.png"><link rel="shortcut icon" href="https://raw.githubusercontent.com/unicorn2022/Pictures/main/img/favicon.png"><link rel="canonical" href="https://hzoi-unicorn.top/2023/02/26/GAMES101/18--%E9%AB%98%E7%BA%A7%E6%B8%B2%E6%9F%93/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta name="baidu-site-verification" content="codeva-PpLfvQYdq5"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: 华丰夏","link":"链接: ","source":"来源: 华风夏韵","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'GAMES101-18：高级渲染',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: true,
+  isToc: true,
+  postUpdate: '2023-08-05 15:39:30'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/background.css"><meta name="generator" content="Hexo 6.3.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">48</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">4</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-graduation-cap"></i><span> 博文</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 归档</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/resources/"><i class="fa-fw fa fa-book"></i><span> 资源</span></a></div><div class="menus_item"><a class="site-page" href="/tools/"><i class="fa-fw fas fa-list"></i><span> 在线工具</span></a></div><div class="menus_item"><a class="site-page" href="/comment/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于笔者</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/default_top_img.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="华风夏韵"><span class="site-name">华风夏韵</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-graduation-cap"></i><span> 博文</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 归档</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/resources/"><i class="fa-fw fa fa-book"></i><span> 资源</span></a></div><div class="menus_item"><a class="site-page" href="/tools/"><i class="fa-fw fas fa-list"></i><span> 在线工具</span></a></div><div class="menus_item"><a class="site-page" href="/comment/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于笔者</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">GAMES101-18：高级渲染</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-02-26T10:18:00.000Z" title="发表于 2023-02-26 18:18:00">2023-02-26</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-08-05T07:39:30.039Z" title="更新于 2023-08-05 15:39:30">2023-08-05</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/GAMES%E7%B3%BB%E5%88%97%E8%AF%BE%E7%A8%8B/">GAMES系列课程</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.2k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>3分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="GAMES101-18：高级渲染"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><script type="text/javascript"
+src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<h1 id="十八高级渲染">十八、高级渲染</h1>
+<h2 id="高级光线传播">18.1 高级光线传播</h2>
+<h3 id="无偏-有偏-蒙特卡洛估计">18.1.1 无偏 &amp; 有偏 蒙特卡洛估计</h3>
+<ol type="1">
+<li>无偏：不论样本数是多少，估计值的期望总是正确的</li>
+<li>有偏：期望和正确值不一样；但是样本数足够多时，会收敛到正确值<strong>consistency</strong>
+<ol type="1">
+<li>有偏 = 模糊</li>
+<li>一致性 = 样本足够多时可以收敛到不模糊</li>
+</ol></li>
+</ol>
+<h3 id="双向路径追踪-bdpt">18.1.2 双向路径追踪 BDPT</h3>
+<ol type="1">
+<li>从光源、观察点开始，分别生成两个不同的半路径</li>
+<li>将半路径的端点连起来</li>
+<li>缺点：渲染速度慢</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230330220720680.png" alt="image-20230330220720680" style="zoom:80%;" /></p>
+<blockquote>
+<p>对于间接光较多的场景，双向路径追踪效果更好</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230330220814339.png" alt="image-20230330220814339" style="zoom:80%;" /></p>
+<h3 id="metropolis光线传播-mlt">18.1.3 Metropolis光线传播 MLT</h3>
+<ol type="1">
+<li>用马尔科夫链进行采样
+<ol type="1">
+<li>马尔科夫链：当前有一个样本，返回一个与之接近的样本</li>
+<li>优点：可以生成一个样本分布与与任意函数形状一致的PDF</li>
+</ol></li>
+<li>给任意一个路径，可以生成与之相似的路径：是一个局部的方法</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230330221257024.png" alt="image-20230330221257024" style="zoom:80%;" /></p>
+<blockquote>
+<p>适用于做困难的路径传播，因为可以由一条较好的路径开始，找到更多的路径</p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230330221447583.png" alt="image-20230330221447583" style="zoom:80%;" /></p>
+<p>缺点：</p>
+<ol type="1">
+<li>难以在理论上计算收敛的速度</li>
+<li>所有操作都是局部的，有的像素快，有的像素满，会很"脏"</li>
+<li>难以用于动画的渲染</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230330222050918.png" alt="image-20230330222050918" style="zoom:80%;" /></p>
+</blockquote>
+<h3 id="光子映射-photon-mapping">18.1.4 光子映射 Photon Mapping</h3>
+<ol type="1">
+<li><p>适用于渲染SDS(Specular-Diffuse-Specular)路径、生成caustics</p>
+<ol type="1">
+<li>caustics：由于光线的聚焦产生的非常强的高亮图案</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230330222033557.png" alt="image-20230330222033557" style="zoom:80%;" /></p></li>
+<li><p>分为两步：</p>
+<ol type="1">
+<li>从光源开始，辐射光子，直到光子打到diffuse表面，将结果记录下来</li>
+<li>从摄像机开始，发射半路径，直到路径打到diffuse表面上</li>
+<li>计算局部密度估计 local density estimation：
+<ol type="1">
+<li>对任何一个着色点，取最近的n个光子，计算这n个光子占据的面积，计算其密度</li>
+<li>n较少时，噪声大；n较大时，会模糊</li>
+</ol></li>
+</ol></li>
+<li><p>有偏估计：</p>
+<ol type="1">
+<li>因为dN / dA != ΔN / ΔA，只有ΔA很小时才接近dA</li>
+<li>光子越多，找n个光子占据的面积越小，就更接近正确结果</li>
+<li>不能确定ΔA，增加光子，因为ΔA永远不会接近dA</li>
+</ol></li>
+</ol>
+<h3 id="vertex-connection-and-merging">18.1.5 Vertex Connection and
+Merging</h3>
+<ol type="1">
+<li>将BDPT和光子映射结合起来</li>
+<li>使用BDPT生成两段sub-path</li>
+<li>如果有两段sub-path的终点非常接近，则使用光子映射计算其贡献</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230330223206732.png" alt="image-20230330223206732" style="zoom: 80%;" /></p>
+<h3 id="实时辐射度-instant-radiosity">18.1.6 实时辐射度 Instant
+Radiosity</h3>
+<ol type="1">
+<li>已经被照亮的地方，认为是光源，照亮别的地方
+<ol type="1">
+<li>从光源开始发射sub-path，停在某些地方，形成新的光源VPL(Virtual Point
+Light)</li>
+<li>用新的光源照亮着色点</li>
+</ol></li>
+<li>优点：快，并且效果较好</li>
+<li>缺点：
+<ol type="1">
+<li>在缝隙处会出现问题</li>
+<li>不能做glossy物体</li>
+</ol></li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230330223358225.png" alt="image-20230330223358225" style="zoom:80%;" /></p>
+<h2 id="高级外观建模">18.2 高级外观建模</h2>
+<p>外观 == 材质 == BRDF</p>
+<h3 id="非表面模型云-烟雾等">18.2.1 非表面模型：云、 烟、雾等</h3>
+<p><strong>Participating Media</strong>：参与介质</p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230330224145788.png" alt="image-20230330224145788" style="zoom:80%;" /></p>
+<p><strong>Phase Function</strong>：相位函数，规定光线如何散射</p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230330224250395.png" alt="image-20230330224250395" style="zoom:80%;" /></p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230330224330452.png" alt="image-20230330224330452" style="zoom:80%;" /></p>
+<h3 id="头发表面">18.2.2 头发表面</h3>
+<p>会有两种高光：有色、无色</p>
+<p><strong>Kajiya-Kay模型</strong>：光线打到圆柱上，会反射为圆锥</p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230330224648071.png" alt="image-20230330224648071" style="zoom:80%;" /></p>
+<p><strong>Marschner模型</strong>：光线打到圆柱上，一部分会反射为圆锥，一部分会穿进去</p>
+<ol type="1">
+<li><strong>R</strong>：直接反射</li>
+<li><strong>TT</strong>：穿进头发，然后再穿出来</li>
+<li><strong>TRT</strong>：穿进头发，发生反射，然后再穿出来</li>
+<li>定义光线和一根圆柱如何作用：R、TT、TRT</li>
+<li>根据光线传播，计算和多个头发的作用</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230330224739393.png" alt="image-20230330224739393" style="zoom:80%;" /></p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230330225204954.png" alt="image-20230330225204954" style="zoom:80%;" /></p>
+<p><strong>Double Cylinder Model</strong>：增加一个圆柱，模拟髓质</p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230330225312464.png" alt="image-20230330225312464" style="zoom:80%;" /></p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230330225323075.png" alt="image-20230330225323075" style="zoom:80%;" /></p>
+<h3 id="颗粒材质granular">18.2.3 颗粒材质：Granular</h3>
+<ol type="1">
+<li><p>由很多小石子构成的模型</p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230330225609403.png" alt="image-20230330225609403" style="zoom:80%;" /></p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230330225635165.png" alt="image-20230330225635165" style="zoom:80%;" /></p></li>
+</ol>
+<h3 id="表面模型次表面散射-bssrdf">18.2.4 表面模型：次表面散射
+BSSRDF</h3>
+<p><strong>Translucent</strong>：光线从一个点进入表面，在物体内发生了一系列散射，然后再从另一个点钻出表面</p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230330225827858.png" alt="image-20230330225827858" style="zoom:80%;" /></p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230330225950269.png" alt="image-20230330225950269" style="zoom:80%;" /></p>
+<p><strong>Dipole</strong>近似：在物体上下添加两个光源，模拟次表面反射的效果</p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230330230124438.png" alt="image-20230330230124438" style="zoom:80%;" /></p>
+<h3 id="布料">18.2.5 布料</h3>
+<p>布料的定义</p>
+<ol type="1">
+<li>纤维的集合 fiber</li>
+<li>纤维缠绕，可以得到不同的股 Ply</li>
+<li>股绕在一起，可以得到线 Yarn</li>
+<li>线织成布 cloth</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230330230502109.png" alt="image-20230330230502109" style="zoom:80%;" /></p>
+<p>将布料当作物体表面，使用<strong>BRDF</strong>渲染</p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230330230747552.png" alt="image-20230330230747552" style="zoom:80%;" /></p>
+<p>将布料划分为很小的块，作为<strong>散射介质</strong>渲染</p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230330230632698.png" alt="image-20230330230632698" style="zoom:80%;" /></p>
+<p>将布料划分为很多个线，类似<strong>头发模型</strong>渲染</p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230330230810766.png" alt="image-20230330230810766" style="zoom:80%;" /></p>
+<h2 id="通过修改微表面法线分布得到不同的效果">18.3
+通过修改微表面法线分布，得到不同的效果</h2>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230330231505492.png" alt="image-20230330231505492" style="zoom:80%;" /></p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230330231516015.png" alt="image-20230330231516015" style="zoom:80%;" /></p>
+<h3 id="对一个区域内的微表面进行积分">18.3.1
+对一个区域内的微表面进行积分</h3>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230330231534136.png" alt="image-20230330231534136" style="zoom:80%;" /></p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230330231544316.png" alt="image-20230330231544316" style="zoom:80%;" /></p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230330231601075.png" alt="image-20230330231601075" style="zoom:80%;" /></p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230330231611914.png" alt="image-20230330231611914" style="zoom:80%;" /></p>
+<h3 id="波动光学与几何光学得到的ndf">18.3.2
+波动光学与几何光学得到的NDF</h3>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230330231719561.png" alt="image-20230330231719561" style="zoom:80%;" /></p>
+<h2 id="程序化生成表面">18.4 程序化生成表面</h2>
+<ol type="1">
+<li>定义在空间中的函数，可以在使用的时候，查询空间中的某个点的值，而不是将三维纹理存储下来，<strong>噪声函数</strong></li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230330231937462.png" alt="image-20230330231937462" style="zoom:80%;" /></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="unicorn2022.github.io">华丰夏</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://hzoi-unicorn.top/2023/02/26/GAMES101/18--%E9%AB%98%E7%BA%A7%E6%B8%B2%E6%9F%93/">https://hzoi-unicorn.top/2023/02/26/GAMES101/18--高级渲染/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://hzoi-unicorn.top" target="_blank">华风夏韵</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/GAMES101%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">GAMES101学习笔记</a></div><div class="post_share"><div class="social-share" data-image="/img/avatar.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/02/26/GAMES101/17--%E6%9D%90%E8%B4%A8%E4%B8%8E%E5%A4%96%E8%A7%82/" title="GAMES101-17：材质与外观"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">GAMES101-17：材质与外观</div></div></a></div><div class="next-post pull-right"><a href="/2023/02/26/GAMES101/12--%E5%87%A0%E4%BD%953%EF%BC%9A%E7%BD%91%E6%A0%BC%E4%BD%93/" title="GAMES101-12：几何3：网格体"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">GAMES101-12：几何3：网格体</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2023/02/26/GAMES101/1--%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6%E6%A6%82%E8%A7%88/" title="GAMES101-01：计算机图形学概览"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-02-26</div><div class="title">GAMES101-01：计算机图形学概览</div></div></a></div><div><a href="/2023/02/26/GAMES101/2--%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E5%A4%8D%E4%B9%A0/" title="GAMES101-02：线性代数复习"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-02-26</div><div class="title">GAMES101-02：线性代数复习</div></div></a></div><div><a href="/2023/02/26/GAMES101/3--%E5%8F%98%E6%8D%A21%EF%BC%9A%E4%BA%8C%E7%BB%B4%E5%8F%98%E6%8D%A2/" title="GAMES101-03：变换1：2维变换"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-02-26</div><div class="title">GAMES101-03：变换1：2维变换</div></div></a></div><div><a href="/2023/02/26/GAMES101/0--%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" title="GAMES101-00：环境配置"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-02-26</div><div class="title">GAMES101-00：环境配置</div></div></a></div><div><a href="/2023/02/26/GAMES101/8--%E7%9D%80%E8%89%B22%EF%BC%9A%E7%9D%80%E8%89%B2%E9%A2%91%E7%8E%87&%E5%AE%9E%E6%97%B6%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF/" title="GAMES101-08：着色2：着色频率&amp;实时渲染管线"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-02-26</div><div class="title">GAMES101-08：着色2：着色频率&amp;实时渲染管线</div></div></a></div><div><a href="/2023/02/26/GAMES101/4--%E5%8F%98%E6%8D%A22%EF%BC%9A%E4%B8%89%E7%BB%B4%E5%8F%98%E6%8D%A2/" title="GAMES101-04：变换2：三维变换"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-02-26</div><div class="title">GAMES101-04：变换2：三维变换</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">华丰夏</div><div class="author-info__description">一切都是上天最好的安排</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">48</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">4</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/unicorn2022"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/unicorn2022" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:496300118@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">愿你前行的道路有群星闪耀。愿你留下的足迹有百花绽放。你即是上帝的馈赠，世界因你而瑰丽。</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8D%81%E5%85%AB%E9%AB%98%E7%BA%A7%E6%B8%B2%E6%9F%93"><span class="toc-text">十八、高级渲染</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%AB%98%E7%BA%A7%E5%85%89%E7%BA%BF%E4%BC%A0%E6%92%AD"><span class="toc-text">18.1 高级光线传播</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%97%A0%E5%81%8F-%E6%9C%89%E5%81%8F-%E8%92%99%E7%89%B9%E5%8D%A1%E6%B4%9B%E4%BC%B0%E8%AE%A1"><span class="toc-text">18.1.1 无偏 &amp; 有偏 蒙特卡洛估计</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%8C%E5%90%91%E8%B7%AF%E5%BE%84%E8%BF%BD%E8%B8%AA-bdpt"><span class="toc-text">18.1.2 双向路径追踪 BDPT</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#metropolis%E5%85%89%E7%BA%BF%E4%BC%A0%E6%92%AD-mlt"><span class="toc-text">18.1.3 Metropolis光线传播 MLT</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%89%E5%AD%90%E6%98%A0%E5%B0%84-photon-mapping"><span class="toc-text">18.1.4 光子映射 Photon Mapping</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#vertex-connection-and-merging"><span class="toc-text">18.1.5 Vertex Connection and
+Merging</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E6%97%B6%E8%BE%90%E5%B0%84%E5%BA%A6-instant-radiosity"><span class="toc-text">18.1.6 实时辐射度 Instant
+Radiosity</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%AB%98%E7%BA%A7%E5%A4%96%E8%A7%82%E5%BB%BA%E6%A8%A1"><span class="toc-text">18.2 高级外观建模</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9D%9E%E8%A1%A8%E9%9D%A2%E6%A8%A1%E5%9E%8B%E4%BA%91-%E7%83%9F%E9%9B%BE%E7%AD%89"><span class="toc-text">18.2.1 非表面模型：云、 烟、雾等</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%B4%E5%8F%91%E8%A1%A8%E9%9D%A2"><span class="toc-text">18.2.2 头发表面</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%97%E7%B2%92%E6%9D%90%E8%B4%A8granular"><span class="toc-text">18.2.3 颗粒材质：Granular</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A1%A8%E9%9D%A2%E6%A8%A1%E5%9E%8B%E6%AC%A1%E8%A1%A8%E9%9D%A2%E6%95%A3%E5%B0%84-bssrdf"><span class="toc-text">18.2.4 表面模型：次表面散射
+BSSRDF</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%83%E6%96%99"><span class="toc-text">18.2.5 布料</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%9A%E8%BF%87%E4%BF%AE%E6%94%B9%E5%BE%AE%E8%A1%A8%E9%9D%A2%E6%B3%95%E7%BA%BF%E5%88%86%E5%B8%83%E5%BE%97%E5%88%B0%E4%B8%8D%E5%90%8C%E7%9A%84%E6%95%88%E6%9E%9C"><span class="toc-text">18.3
+通过修改微表面法线分布，得到不同的效果</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%B9%E4%B8%80%E4%B8%AA%E5%8C%BA%E5%9F%9F%E5%86%85%E7%9A%84%E5%BE%AE%E8%A1%A8%E9%9D%A2%E8%BF%9B%E8%A1%8C%E7%A7%AF%E5%88%86"><span class="toc-text">18.3.1
+对一个区域内的微表面进行积分</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%A2%E5%8A%A8%E5%85%89%E5%AD%A6%E4%B8%8E%E5%87%A0%E4%BD%95%E5%85%89%E5%AD%A6%E5%BE%97%E5%88%B0%E7%9A%84ndf"><span class="toc-text">18.3.2
+波动光学与几何光学得到的NDF</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A8%8B%E5%BA%8F%E5%8C%96%E7%94%9F%E6%88%90%E8%A1%A8%E9%9D%A2"><span class="toc-text">18.4 程序化生成表面</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/07/19/%E6%8C%87%E4%BB%A4%E5%90%88%E9%9B%86/cmake%E6%8C%87%E4%BB%A4%E5%90%88%E9%9B%86/" title="cmake指令合集">cmake指令合集</a><time datetime="2023-07-19T12:19:11.000Z" title="发表于 2023-07-19 20:19:11">2023-07-19</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/07/15/%E6%8C%87%E4%BB%A4%E5%90%88%E9%9B%86/cmake%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="cmake学习笔记">cmake学习笔记</a><time datetime="2023-07-15T10:00:00.000Z" title="发表于 2023-07-15 18:00:00">2023-07-15</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/07/13/%E6%8C%87%E4%BB%A4%E5%90%88%E9%9B%86/hexo%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4/" title="hexo常用指令">hexo常用指令</a><time datetime="2023-07-13T13:11:11.000Z" title="发表于 2023-07-13 21:11:11">2023-07-13</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/04/01/GAMES104/02--%E6%80%BB%E8%A7%88%EF%BC%9A%E5%BC%95%E6%93%8E%E6%9E%B6%E6%9E%84%E5%88%86%E5%B1%82%E4%B8%8E%E6%95%B4%E4%BD%93pipeline/" title="GAMES104-02：总览：引擎架构分层与整体pipeline">GAMES104-02：总览：引擎架构分层与整体pipeline</a><time datetime="2023-04-01T04:49:00.000Z" title="发表于 2023-04-01 12:49:00">2023-04-01</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/04/01/GAMES104/03--%E6%80%BB%E8%A7%88%EF%BC%9A%E5%A6%82%E4%BD%95%E6%9E%84%E5%BB%BA%E6%B8%B8%E6%88%8F%E4%B8%96%E7%95%8C/" title="GAMES104-03：总览：如何构建游戏世界">GAMES104-03：总览：如何构建游戏世界</a><time datetime="2023-04-01T04:49:00.000Z" title="发表于 2023-04-01 12:49:00">2023-04-01</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By 华丰夏</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-nest.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = true;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-heart.min.js" async="async" mobile="true"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div class="no-result" id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>

@@ -1,0 +1,409 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>GAMES104-05：渲染：光和材质的数学魔法 | 华风夏韵</title><meta name="author" content="华丰夏"><meta name="copyright" content="华丰夏"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="GAMES104 学习笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="GAMES104-05：渲染：光和材质的数学魔法">
+<meta property="og:url" content="https://hzoi-unicorn.top/2023/04/01/GAMES104/05--%E6%B8%B2%E6%9F%93%EF%BC%9A%E5%85%89%E5%92%8C%E6%9D%90%E8%B4%A8%E7%9A%84%E6%95%B0%E5%AD%A6%E9%AD%94%E6%B3%95/index.html">
+<meta property="og:site_name" content="华风夏韵">
+<meta property="og:description" content="GAMES104 学习笔记">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://hzoi-unicorn.top/img/avatar.png">
+<meta property="article:published_time" content="2023-04-01T04:49:00.000Z">
+<meta property="article:modified_time" content="2023-08-05T07:32:19.546Z">
+<meta property="article:author" content="华丰夏">
+<meta property="article:tag" content="GAMES104学习笔记">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://hzoi-unicorn.top/img/avatar.png"><link rel="shortcut icon" href="https://raw.githubusercontent.com/unicorn2022/Pictures/main/img/favicon.png"><link rel="canonical" href="https://hzoi-unicorn.top/2023/04/01/GAMES104/05--%E6%B8%B2%E6%9F%93%EF%BC%9A%E5%85%89%E5%92%8C%E6%9D%90%E8%B4%A8%E7%9A%84%E6%95%B0%E5%AD%A6%E9%AD%94%E6%B3%95/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta name="baidu-site-verification" content="codeva-PpLfvQYdq5"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: 华丰夏","link":"链接: ","source":"来源: 华风夏韵","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'GAMES104-05：渲染：光和材质的数学魔法',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: true,
+  isToc: true,
+  postUpdate: '2023-08-05 15:32:19'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/background.css"><meta name="generator" content="Hexo 6.3.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">48</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">4</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-graduation-cap"></i><span> 博文</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 归档</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/resources/"><i class="fa-fw fa fa-book"></i><span> 资源</span></a></div><div class="menus_item"><a class="site-page" href="/tools/"><i class="fa-fw fas fa-list"></i><span> 在线工具</span></a></div><div class="menus_item"><a class="site-page" href="/comment/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于笔者</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/default_top_img.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="华风夏韵"><span class="site-name">华风夏韵</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-graduation-cap"></i><span> 博文</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 归档</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/resources/"><i class="fa-fw fa fa-book"></i><span> 资源</span></a></div><div class="menus_item"><a class="site-page" href="/tools/"><i class="fa-fw fas fa-list"></i><span> 在线工具</span></a></div><div class="menus_item"><a class="site-page" href="/comment/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于笔者</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">GAMES104-05：渲染：光和材质的数学魔法</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-04-01T04:49:00.000Z" title="发表于 2023-04-01 12:49:00">2023-04-01</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-08-05T07:32:19.546Z" title="更新于 2023-08-05 15:32:19">2023-08-05</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/GAMES%E7%B3%BB%E5%88%97%E8%AF%BE%E7%A8%8B/">GAMES系列课程</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.5k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>5分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="GAMES104-05：渲染：光和材质的数学魔法"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><script type="text/javascript"
+src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<h1 id="五渲染光和材质的数学魔法">五、渲染：光和材质的数学魔法</h1>
+<h2 id="渲染方程及挑战">5.1 渲染方程及挑战</h2>
+<h3 id="渲染方程">5.1.1 渲染方程</h3>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230710111512770.png" alt="image-20230710111512770" style="zoom:80%;" />
+<span class="math display">\[
+L_o(x,\omega_o)=L_e(x,\omega_o)+\int_{H^2}f_r(x,\omega_o,\omega_i)L_i(x,\omega_i)\cos\theta_id\omega_i
+\]</span>
+<strong>radiance</strong>：辐射度；光照到物体上，物体反射出去的能量</p>
+<p><strong>irradiance</strong>：入射的能量</p>
+<p><span class="math inline">\(L_o(x,\omega_o)\)</span>：观察点为<span
+class="math inline">\(x\)</span>，观察方向为<span
+class="math inline">\(\omega_o\)</span>，观察到的radiance即为<span
+class="math inline">\(L_o(x,\omega_o)\)</span></p>
+<ol type="1">
+<li><span class="math inline">\(L_e(x,\omega_o)\)</span>：观察点<span
+class="math inline">\(x\)</span>，在<span
+class="math inline">\(\omega_o\)</span>方向的自发光</li>
+<li><span
+class="math inline">\(\int_{H^2}f_r(x,\omega_o,\omega_i)L_i(x,\omega_i)\cos\theta_id\omega_i\)</span>：观察点<span
+class="math inline">\(x\)</span>接受所有方向射来的光，反射到<span
+class="math inline">\(\omega_o\)</span>方向的光
+<ol type="1">
+<li><span
+class="math inline">\(f_r(x,\omega_o,\omega_i)\)</span>：观察点<span
+class="math inline">\(x\)</span>，入射方向为<span
+class="math inline">\(\omega_i\)</span>，反射方向为<span
+class="math inline">\(\omega_o\)</span>，反射光能量占入射光能量的比例</li>
+<li><span class="math inline">\(L_i(x,\omega_i)\)</span>：观察点<span
+class="math inline">\(x\)</span>，接受到的入射方向为<span
+class="math inline">\(\omega_i\)</span>的光的能量</li>
+<li><span
+class="math inline">\(\cos\theta_i\)</span>：光线与平面的夹角</li>
+</ol></li>
+</ol>
+<h3 id="挑战1如何得到irradiance">5.1.2 挑战1：如何得到irradiance</h3>
+<p>对光源的可见性（阴影）</p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230710113016584.png" alt="image-20230710113016584" style="zoom:80%;" /></p>
+<p>光源本身的复杂性</p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230710113045374.png" alt="image-20230710113045374" style="zoom:80%;" /></p>
+<h3 id="挑战2如何快速地在球面上进行积分">5.1.4
+挑战2：如何快速地在球面上进行积分</h3>
+<p>如何计算光与表面的作用，即材质的影响</p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230710113110253.png" alt="image-20230710113110253" style="zoom:80%;" /></p>
+<h3 id="挑战3所有的物体都可能是光源">5.1.5
+挑战3：所有的物体都可能是光源</h3>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230710113218876.png" alt="image-20230710113218876" style="zoom:80%;" /></p>
+<h2 id="基础光照解决方案">5.2 基础光照解决方案</h2>
+<h3 id="简化光源main-light-ambient-light-environment-map">5.2.1
+简化光源：Main Light + Ambient Light + Environment Map</h3>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230710114440708.png" alt="image-20230710114440708" style="zoom:80%;" /></p>
+<ol type="1">
+<li><p>简化光源的种类：主光<strong>dominant light</strong></p>
+<ol type="1">
+<li>要么是点光源，要么是方向光源，要么是锥形光源</li>
+</ol></li>
+<li><p>简化光场的表示：环境光<strong>ambient light</strong></p>
+<ol type="1">
+<li>将四面八方的光，用平均值代替</li>
+</ol></li>
+<li><p>环境光贴图：<strong>Environment Map</strong></p>
+<ol type="1">
+<li>贴图是一个立方体</li>
+<li>根据顶点的法线方向，计算观察到的颜色</li>
+</ol>
+<figure class="highlight glsl"><table><tr><td class="code"><pre><span class="line"><span class="type">void</span> main()&#123;</span><br><span class="line">    <span class="type">vec3</span> N = <span class="built_in">normalize</span>(normal);</span><br><span class="line">    <span class="type">vec3</span> V = <span class="built_in">normalize</span>(camera_position - world_position);</span><br><span class="line">    <span class="type">vec3</span> R = <span class="built_in">reflect</span>(V,N);</span><br><span class="line">    FragColor = <span class="built_in">texture</span>(cube_texture, R);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="简化积分blinn-phong-材质">5.2.2 简化积分：Blinn-Phong 材质</h3>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230710115348670.png" alt="image-20230710115348670" style="zoom:80%;" /></p>
+<p>将材质分为三类：<span
+class="math inline">\(L=L_a+L_d+L_s\)</span></p>
+<ol type="1">
+<li>环境光项<strong>Ambient</strong>：<span
+class="math inline">\(L_a=k_aI_a\)</span></li>
+<li>漫反射项<strong>Diffuse</strong>：<span
+class="math inline">\(L_d=k_d\frac{I}{r^2}\max(0,\textbf{n}·\textbf{l})\)</span></li>
+<li>镜面反射项<strong>Specular</strong>：<span
+class="math inline">\(L_s=k_s\frac{I}{r^2}\max(0,\textbf{n}·\textbf{h})^p\)</span></li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230710115748614.png" alt="image-20230710115748614" style="zoom:80%;" /></p>
+<h3 id="阴影">5.2.3 阴影</h3>
+<p>目标问题：场景中看到的每个点，对于光源是否可见</p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230710115844674.png" alt="image-20230710115844674" style="zoom:80%;" /></p>
+<p>解决方法：<strong>shadow map</strong></p>
+<ol type="1">
+<li>从光的角度渲染一张深度图</li>
+<li>观察时，每个点投影回光源的视角，根据深度判断是否可见</li>
+</ol>
+<figure class="highlight glsl"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 将当前点投影到shadow map</span></span><br><span class="line"><span class="type">vec4</span> proj_pos = shadow_viewproj * pos;</span><br><span class="line"><span class="comment">// 从 homogeneous 转化为 clip space</span></span><br><span class="line"><span class="type">vec2</span> shadow_uv = proj_pos.xy / proj_pos.w;</span><br><span class="line"><span class="comment">// 从 clip space 转化为 uv space</span></span><br><span class="line">shadow_uv = shadow_ucv * <span class="number">0.5</span> + <span class="type">vec2</span>(<span class="number">0.5</span>);</span><br><span class="line"><span class="comment">// 获取当前点的深度 [-1, +1]</span></span><br><span class="line"><span class="type">float</span> real_depth = proj_pos.z / proj_pos.w;</span><br><span class="line"><span class="comment">// 标准化到[0, 1]</span></span><br><span class="line">real_depth = real_depth * <span class="number">0.5</span> + <span class="number">0.5</span>;</span><br><span class="line"><span class="comment">// 从深度缓冲中读取深度</span></span><br><span class="line"><span class="type">float</span> shadow_depth = <span class="built_in">texture</span>(shadowmap, shadow_uv).x;</span><br><span class="line"><span class="comment">// 计算是否在阴影中</span></span><br><span class="line"><span class="type">float</span> shadow_factor = <span class="number">1.0</span>;</span><br><span class="line"><span class="keyword">if</span>(shadow_depth &lt; real_depth)</span><br><span class="line">    shadow_factor = <span class="number">0.0</span>;</span><br></pre></td></tr></table></figure>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230710120120070.png" alt="image-20230710120120070" style="zoom:80%;" /></p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230710120752077.png" alt="image-20230710120752077" style="zoom:80%;" /></p>
+<h2 id="基于预计算的全局光照空间换时间">5.3
+基于预计算的全局光照（空间换时间）</h2>
+<p><strong>假设场景中90%的物体是不动的，每个场景太阳的角度是锁死的，那么就可以通过预计算，简化计算</strong></p>
+<h3 id="全局光照直接光照间接光照">5.3.1 全局光照：直接光照+间接光照</h3>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230710121655099.png" alt="image-20230710121655099" style="zoom:80%;" /></p>
+<h3 id="如何表示间接光照l_ixvecomega_i">5.3.2 如何表示间接光照<span
+class="math inline">\(L_i(x,\vec{\omega_i})\)</span></h3>
+<h4 id="傅里叶变换">5.3.2.1 傅里叶变换：</h4>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230710122010062.png" alt="image-20230710122010062" style="zoom:80%;" /></p>
+<h4 id="卷积定理">5.3.2.2 卷积定理：</h4>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230710122240919.png" alt="image-20230710122240919" style="zoom:80%;" /></p>
+<h4 id="球谐函数-spherical-harmonics">5.3.2.3 球谐函数 Spherical
+Harmonics：</h4>
+<p>球谐函数本质上是一组基于球坐标系<span
+class="math inline">\((\theta,\phi)\)</span>的基函数，基函数的计算公式为：<span
+class="math inline">\(Y_{lm}(\theta,\phi) &amp;=
+N_{lm}P_{lm}(\cos\theta)e^{Im\phi} \\\)</span></p>
+<ol type="1">
+<li>正交：任意两个基函数卷积为0</li>
+<li>二阶导永远为0：函数永远是光滑的</li>
+</ol>
+$$
+<span class="math display">\[\begin{aligned}
+Y_{0, 0}(\theta,\phi) &amp;= 1 \\ \\
+
+Y_{1,-1}(\theta,\phi) &amp;= y = \sin\theta\sin\phi \\
+Y_{1, 0}(\theta,\phi) &amp;= z = \cos\theta         \\
+Y_{1, 1}(\theta,\phi) &amp;= x = \sin\theta\cos\phi \\ \\
+
+Y_{2,-2}(\theta,\phi) &amp;= xy      = \sin^2\theta\sin\phi\cos\phi \\
+Y_{2,-1}(\theta,\phi) &amp;= yz      = \sin\theta\cos\theta\sin\phi \\
+Y_{2, 0}(\theta,\phi) &amp;= 3z^2-1  = 3\cos^2\theta-1              \\
+Y_{2, 1}(\theta,\phi) &amp;= zx      = \sin\theta\cos\theta\cos\phi \\
+Y_{2, 2}(\theta,\phi) &amp;= x^2-y^2 =
+\sin^2\theta(\cos^2\phi-\sin^2\phi) \\
+\end{aligned}\]</span>
+<p>$$</p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230710122403478.png" alt="image-20230710122403478" style="zoom:80%;" /></p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230710142506684.png" alt="image-20230710142506684" style="zoom:80%;" /></p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230710142724812.png" alt="image-20230710142724812" style="zoom:80%;" /></p>
+<p>由于环境光通常是低频的，因此只需要用二阶函数即可近似表达</p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230710143143488.png" alt="image-20230710143143488" style="zoom:80%;" /></p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230710143341600.png" alt="image-20230710143341600" style="zoom:80%;" /></p>
+<h3 id="光照贴图-lightmap">5.3.3 光照贴图 Lightmap</h3>
+<p>优点：</p>
+<ol type="1">
+<li>runtime的时候效率很高</li>
+<li>离线渲染，可以表示很多细节</li>
+</ol>
+<p>缺点：</p>
+<ol type="1">
+<li>预计算时间非常长</li>
+<li>只能处理静态物体、静态光</li>
+<li>占用存储空间，通常在几十MB~一百MB</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230710143550991.png" alt="image-20230710143550991" style="zoom:80%;" /></p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230710143647404.png" alt="image-20230710143647404" style="zoom:80%;" /></p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230710144115534.png" alt="image-20230710144115534" style="zoom:80%;" /></p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230710144140615.png" alt="image-20230710144140615" style="zoom:80%;" /></p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230710144204813.png" alt="image-20230710144204813" style="zoom:80%;" /></p>
+<h3 id="光照探针-light-probe">5.3.4 光照探针 Light Probe</h3>
+<p><strong>空间体素化</strong></p>
+<ol type="1">
+<li>在场景中添加若干探针，针对每个探针计算全局光照</li>
+<li>当需要某个点的全局光照时，对周围的探针进行插值</li>
+</ol>
+<p>优点：</p>
+<ol type="1">
+<li>runtime时效率高</li>
+<li>可以处理静态物体和动态物体，可以动态更新</li>
+<li>处理了diffuse、specular的渲染</li>
+</ol>
+<p>缺点：</p>
+<ol type="1">
+<li>无法实现类似lightmap的细节</li>
+<li>SH light probe需要预计算</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230710144730913.png" alt="image-20230710144730913" style="zoom:80%;" /></p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230710145020056.png" alt="image-20230710145020056" style="zoom:80%;" /></p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230710145217849.png" alt="image-20230710145217849" style="zoom:80%;" /></p>
+<h2 id="基于物理的材质-physical-based-material-pbr">5.4 基于物理的材质
+Physical-Based Material PBR</h2>
+<h3 id="微平面理论">5.4.1 微平面理论</h3>
+<ol type="1">
+<li>假设任意面都由很多小的微平面组成，每个微平面都是镜面反射</li>
+<li>如果微平面的法线方向集中，则是镜面反射；如果发散，则是漫反射</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230710145814669.png" alt="image-20230710145814669" style="zoom:80%;" /></p>
+<h3 id="基于微平面的brdf模型">5.4.2 基于微平面的BRDF模型</h3>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230710145923736.png" alt="image-20230710145923736" style="zoom:80%;" /></p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230710150553439.png" alt="image-20230710150553439" style="zoom:80%;" /></p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230710150927605.png" alt="image-20230710150927605" style="zoom:80%;" /></p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230710151100153.png" alt="image-20230710151100153" style="zoom:80%;" /></p>
+<h3 id="disney-principled-brdf">5.4.3 Disney Principled BRDF</h3>
+<p>五个原则</p>
+<ol type="1">
+<li>参数的含义要足够直观</li>
+<li>参数要尽可能少</li>
+<li>参数的范围要尽可能在<code>[0,1]</code>之间</li>
+<li>参数的范围也可以超过<code>[0,1]</code>，但是这必须是有意义的</li>
+<li>参数的组合不会产生非常诡异的结果，每个参数的组合都是有意义的</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230710152058624.png" alt="image-20230710152058624" style="zoom:80%;" /></p>
+<h3 id="pbr-specular-glossiness">5.4.4 PBR Specular Glossiness</h3>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230710152319575.png" alt="image-20230710152319575" style="zoom:80%;" /></p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230710152356799.png" alt="image-20230710152356799" style="zoom:80%;" /></p>
+<h3 id="pbr-metallic-roughness">5.4.5 PBR Metallic Roughness</h3>
+<p>在SG模型的基础上进行封装，不是直接给出菲涅尔项的参数，而是通过metallic属性，对base_color进行插值</p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230710152711140.png" alt="image-20230710152711140" style="zoom:80%;" /></p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230710152730662.png" alt="image-20230710152730662" style="zoom:80%;" /></p>
+<h2 id="基于图像的光照image-based-lightingibl">5.5
+基于图像的光照：Image-Based Lighting（IBL）</h2>
+<p>基础想法：对环境光照做一些预处理，从而快速计算环境光照与材质的卷积运算</p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230710153710856.png" alt="image-20230710153710856" style="zoom:80%;" /></p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230710153723495.png" alt="image-20230710153723495" style="zoom:80%;" /></p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230710153902074.png" alt="image-20230710153902074" style="zoom:80%;" /></p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230710153919760.png" alt="image-20230710153919760" style="zoom:80%;" /></p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230710153937924.png" alt="image-20230710153937924" style="zoom:80%;" /></p>
+<h2 id="经典阴影方法">5.6 经典阴影方法</h2>
+<h3 id="cascade-shadow">5.6.1 Cascade Shadow</h3>
+<ol type="1">
+<li>将环境分为不同层，离玩家越近，shadow map的精度越高</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230710154217910.png" alt="image-20230710154217910" style="zoom:80%;" /></p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230710154229321.png" alt="image-20230710154229321" style="zoom:80%;" /></p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230710154423464.png" alt="image-20230710154423464" style="zoom:80%;" /></p>
+<h3 id="pcf">5.6.2 PCF</h3>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230710154627569.png" alt="image-20230710154627569" style="zoom:80%;" /></p>
+<h3 id="pcss">5.6.3 PCSS</h3>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230710154641878.png" alt="image-20230710154641878" style="zoom:80%;" /></p>
+<h3 id="variance-soft-shadow-mapvssm">5.6.4 Variance Soft Shadow
+Map（VSSM）</h3>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230710154731623.png" alt="image-20230710154731623" style="zoom:80%;" /></p>
+<h2 id="总结">5.7 总结</h2>
+<ol type="1">
+<li>光：Lightmap + Lightporbe</li>
+<li>材质：PBR + IBL</li>
+<li>阴影：Cascade shadow + VSSM</li>
+</ol>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="unicorn2022.github.io">华丰夏</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://hzoi-unicorn.top/2023/04/01/GAMES104/05--%E6%B8%B2%E6%9F%93%EF%BC%9A%E5%85%89%E5%92%8C%E6%9D%90%E8%B4%A8%E7%9A%84%E6%95%B0%E5%AD%A6%E9%AD%94%E6%B3%95/">https://hzoi-unicorn.top/2023/04/01/GAMES104/05--渲染：光和材质的数学魔法/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://hzoi-unicorn.top" target="_blank">华风夏韵</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/GAMES104%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">GAMES104学习笔记</a></div><div class="post_share"><div class="social-share" data-image="/img/avatar.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/04/01/GAMES104/03--%E6%80%BB%E8%A7%88%EF%BC%9A%E5%A6%82%E4%BD%95%E6%9E%84%E5%BB%BA%E6%B8%B8%E6%88%8F%E4%B8%96%E7%95%8C/" title="GAMES104-03：总览：如何构建游戏世界"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">GAMES104-03：总览：如何构建游戏世界</div></div></a></div><div class="next-post pull-right"><a href="/2023/04/01/GAMES104/04--%E6%B8%B2%E6%9F%93%EF%BC%9A%E6%B8%B8%E6%88%8F%E5%BC%95%E6%93%8E%E4%B8%AD%E7%9A%84%E6%B8%B2%E6%9F%93%E5%AE%9E%E8%B7%B5/" title="GAMES104-04：渲染：游戏引擎中的渲染实践"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">GAMES104-04：渲染：游戏引擎中的渲染实践</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2023/04/01/GAMES104/02--%E6%80%BB%E8%A7%88%EF%BC%9A%E5%BC%95%E6%93%8E%E6%9E%B6%E6%9E%84%E5%88%86%E5%B1%82%E4%B8%8E%E6%95%B4%E4%BD%93pipeline/" title="GAMES104-02：总览：引擎架构分层与整体pipeline"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-04-01</div><div class="title">GAMES104-02：总览：引擎架构分层与整体pipeline</div></div></a></div><div><a href="/2023/04/01/GAMES104/03--%E6%80%BB%E8%A7%88%EF%BC%9A%E5%A6%82%E4%BD%95%E6%9E%84%E5%BB%BA%E6%B8%B8%E6%88%8F%E4%B8%96%E7%95%8C/" title="GAMES104-03：总览：如何构建游戏世界"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-04-01</div><div class="title">GAMES104-03：总览：如何构建游戏世界</div></div></a></div><div><a href="/2023/04/01/GAMES104/04--%E6%B8%B2%E6%9F%93%EF%BC%9A%E6%B8%B8%E6%88%8F%E5%BC%95%E6%93%8E%E4%B8%AD%E7%9A%84%E6%B8%B2%E6%9F%93%E5%AE%9E%E8%B7%B5/" title="GAMES104-04：渲染：游戏引擎中的渲染实践"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-04-01</div><div class="title">GAMES104-04：渲染：游戏引擎中的渲染实践</div></div></a></div><div><a href="/2023/04/01/GAMES104/06--%E6%B8%B2%E6%9F%93%EF%BC%9A%E5%9C%B0%E5%BD%A2%E3%80%81%E5%A4%A7%E6%B0%94%E3%80%81%E4%BA%91%E7%9A%84%E6%B8%B2%E6%9F%93/" title="GAMES104-06：渲染：地形、大气、云的渲染"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-04-01</div><div class="title">GAMES104-06：渲染：地形、大气、云的渲染</div></div></a></div><div><a href="/2023/04/01/GAMES104/08--%E5%8A%A8%E7%94%BB%EF%BC%9A%E5%8A%A8%E7%94%BB%E6%8A%80%E6%9C%AF%E5%9F%BA%E7%A1%80/" title="GAMES104-08：动画：动画技术基础"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-04-01</div><div class="title">GAMES104-08：动画：动画技术基础</div></div></a></div><div><a href="/2023/04/01/GAMES104/07--%E6%B8%B2%E6%9F%93%EF%BC%9A%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E3%80%81%E5%90%8E%E5%A4%84%E7%90%86%E5%92%8C%E5%85%B6%E4%BB%96%E7%9A%84%E4%B8%80%E5%88%87/" title="GAMES104-07：渲染：渲染管线、后处理和其他的一切"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-04-01</div><div class="title">GAMES104-07：渲染：渲染管线、后处理和其他的一切</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">华丰夏</div><div class="author-info__description">一切都是上天最好的安排</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">48</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">4</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/unicorn2022"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/unicorn2022" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:496300118@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">愿你前行的道路有群星闪耀。愿你留下的足迹有百花绽放。你即是上帝的馈赠，世界因你而瑰丽。</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%94%E6%B8%B2%E6%9F%93%E5%85%89%E5%92%8C%E6%9D%90%E8%B4%A8%E7%9A%84%E6%95%B0%E5%AD%A6%E9%AD%94%E6%B3%95"><span class="toc-text">五、渲染：光和材质的数学魔法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B8%B2%E6%9F%93%E6%96%B9%E7%A8%8B%E5%8F%8A%E6%8C%91%E6%88%98"><span class="toc-text">5.1 渲染方程及挑战</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B8%B2%E6%9F%93%E6%96%B9%E7%A8%8B"><span class="toc-text">5.1.1 渲染方程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8C%91%E6%88%981%E5%A6%82%E4%BD%95%E5%BE%97%E5%88%B0irradiance"><span class="toc-text">5.1.2 挑战1：如何得到irradiance</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8C%91%E6%88%982%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E5%9C%B0%E5%9C%A8%E7%90%83%E9%9D%A2%E4%B8%8A%E8%BF%9B%E8%A1%8C%E7%A7%AF%E5%88%86"><span class="toc-text">5.1.4
+挑战2：如何快速地在球面上进行积分</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8C%91%E6%88%983%E6%89%80%E6%9C%89%E7%9A%84%E7%89%A9%E4%BD%93%E9%83%BD%E5%8F%AF%E8%83%BD%E6%98%AF%E5%85%89%E6%BA%90"><span class="toc-text">5.1.5
+挑战3：所有的物体都可能是光源</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E5%85%89%E7%85%A7%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="toc-text">5.2 基础光照解决方案</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%80%E5%8C%96%E5%85%89%E6%BA%90main-light-ambient-light-environment-map"><span class="toc-text">5.2.1
+简化光源：Main Light + Ambient Light + Environment Map</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%80%E5%8C%96%E7%A7%AF%E5%88%86blinn-phong-%E6%9D%90%E8%B4%A8"><span class="toc-text">5.2.2 简化积分：Blinn-Phong 材质</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%98%B4%E5%BD%B1"><span class="toc-text">5.2.3 阴影</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8E%E9%A2%84%E8%AE%A1%E7%AE%97%E7%9A%84%E5%85%A8%E5%B1%80%E5%85%89%E7%85%A7%E7%A9%BA%E9%97%B4%E6%8D%A2%E6%97%B6%E9%97%B4"><span class="toc-text">5.3
+基于预计算的全局光照（空间换时间）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%A8%E5%B1%80%E5%85%89%E7%85%A7%E7%9B%B4%E6%8E%A5%E5%85%89%E7%85%A7%E9%97%B4%E6%8E%A5%E5%85%89%E7%85%A7"><span class="toc-text">5.3.1 全局光照：直接光照+间接光照</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E8%A1%A8%E7%A4%BA%E9%97%B4%E6%8E%A5%E5%85%89%E7%85%A7l_ixvecomega_i"><span class="toc-text">5.3.2 如何表示间接光照\(L_i(x,\vec{\omega_i})\)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2"><span class="toc-text">5.3.2.1 傅里叶变换：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8D%B7%E7%A7%AF%E5%AE%9A%E7%90%86"><span class="toc-text">5.3.2.2 卷积定理：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%90%83%E8%B0%90%E5%87%BD%E6%95%B0-spherical-harmonics"><span class="toc-text">5.3.2.3 球谐函数 Spherical
+Harmonics：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%89%E7%85%A7%E8%B4%B4%E5%9B%BE-lightmap"><span class="toc-text">5.3.3 光照贴图 Lightmap</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%89%E7%85%A7%E6%8E%A2%E9%92%88-light-probe"><span class="toc-text">5.3.4 光照探针 Light Probe</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8E%E7%89%A9%E7%90%86%E7%9A%84%E6%9D%90%E8%B4%A8-physical-based-material-pbr"><span class="toc-text">5.4 基于物理的材质
+Physical-Based Material PBR</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BE%AE%E5%B9%B3%E9%9D%A2%E7%90%86%E8%AE%BA"><span class="toc-text">5.4.1 微平面理论</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8E%E5%BE%AE%E5%B9%B3%E9%9D%A2%E7%9A%84brdf%E6%A8%A1%E5%9E%8B"><span class="toc-text">5.4.2 基于微平面的BRDF模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#disney-principled-brdf"><span class="toc-text">5.4.3 Disney Principled BRDF</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#pbr-specular-glossiness"><span class="toc-text">5.4.4 PBR Specular Glossiness</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#pbr-metallic-roughness"><span class="toc-text">5.4.5 PBR Metallic Roughness</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8E%E5%9B%BE%E5%83%8F%E7%9A%84%E5%85%89%E7%85%A7image-based-lightingibl"><span class="toc-text">5.5
+基于图像的光照：Image-Based Lighting（IBL）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%8F%E5%85%B8%E9%98%B4%E5%BD%B1%E6%96%B9%E6%B3%95"><span class="toc-text">5.6 经典阴影方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#cascade-shadow"><span class="toc-text">5.6.1 Cascade Shadow</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#pcf"><span class="toc-text">5.6.2 PCF</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#pcss"><span class="toc-text">5.6.3 PCSS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#variance-soft-shadow-mapvssm"><span class="toc-text">5.6.4 Variance Soft Shadow
+Map（VSSM）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-text">5.7 总结</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/07/19/%E6%8C%87%E4%BB%A4%E5%90%88%E9%9B%86/cmake%E6%8C%87%E4%BB%A4%E5%90%88%E9%9B%86/" title="cmake指令合集">cmake指令合集</a><time datetime="2023-07-19T12:19:11.000Z" title="发表于 2023-07-19 20:19:11">2023-07-19</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/07/15/%E6%8C%87%E4%BB%A4%E5%90%88%E9%9B%86/cmake%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="cmake学习笔记">cmake学习笔记</a><time datetime="2023-07-15T10:00:00.000Z" title="发表于 2023-07-15 18:00:00">2023-07-15</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/07/13/%E6%8C%87%E4%BB%A4%E5%90%88%E9%9B%86/hexo%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4/" title="hexo常用指令">hexo常用指令</a><time datetime="2023-07-13T13:11:11.000Z" title="发表于 2023-07-13 21:11:11">2023-07-13</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/04/01/GAMES104/02--%E6%80%BB%E8%A7%88%EF%BC%9A%E5%BC%95%E6%93%8E%E6%9E%B6%E6%9E%84%E5%88%86%E5%B1%82%E4%B8%8E%E6%95%B4%E4%BD%93pipeline/" title="GAMES104-02：总览：引擎架构分层与整体pipeline">GAMES104-02：总览：引擎架构分层与整体pipeline</a><time datetime="2023-04-01T04:49:00.000Z" title="发表于 2023-04-01 12:49:00">2023-04-01</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/04/01/GAMES104/03--%E6%80%BB%E8%A7%88%EF%BC%9A%E5%A6%82%E4%BD%95%E6%9E%84%E5%BB%BA%E6%B8%B8%E6%88%8F%E4%B8%96%E7%95%8C/" title="GAMES104-03：总览：如何构建游戏世界">GAMES104-03：总览：如何构建游戏世界</a><time datetime="2023-04-01T04:49:00.000Z" title="发表于 2023-04-01 12:49:00">2023-04-01</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By 华丰夏</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-nest.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = true;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-heart.min.js" async="async" mobile="true"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div class="no-result" id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>

@@ -1,0 +1,1801 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>自然语言处理导论 | 华风夏韵</title><meta name="author" content="华丰夏"><meta name="copyright" content="华丰夏"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="自然语言处理导论学习笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="自然语言处理导论">
+<meta property="og:url" content="https://hzoi-unicorn.top/2023/02/28/%E4%B8%93%E4%B8%9A%E8%AF%BE%E7%AC%94%E8%AE%B0/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86%E5%AF%BC%E8%AE%BA/index.html">
+<meta property="og:site_name" content="华风夏韵">
+<meta property="og:description" content="自然语言处理导论学习笔记">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://hzoi-unicorn.top/img/avatar.png">
+<meta property="article:published_time" content="2023-02-28T06:15:00.000Z">
+<meta property="article:modified_time" content="2023-07-22T11:42:29.841Z">
+<meta property="article:author" content="华丰夏">
+<meta property="article:tag" content="专业课">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://hzoi-unicorn.top/img/avatar.png"><link rel="shortcut icon" href="https://raw.githubusercontent.com/unicorn2022/Pictures/main/img/favicon.png"><link rel="canonical" href="https://hzoi-unicorn.top/2023/02/28/%E4%B8%93%E4%B8%9A%E8%AF%BE%E7%AC%94%E8%AE%B0/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86%E5%AF%BC%E8%AE%BA/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta name="baidu-site-verification" content="codeva-PpLfvQYdq5"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: 华丰夏","link":"链接: ","source":"来源: 华风夏韵","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '自然语言处理导论',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: true,
+  isToc: true,
+  postUpdate: '2023-07-22 19:42:29'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/background.css"><meta name="generator" content="Hexo 6.3.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">48</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">4</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-graduation-cap"></i><span> 博文</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 归档</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/resources/"><i class="fa-fw fa fa-book"></i><span> 资源</span></a></div><div class="menus_item"><a class="site-page" href="/tools/"><i class="fa-fw fas fa-list"></i><span> 在线工具</span></a></div><div class="menus_item"><a class="site-page" href="/comment/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于笔者</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/default_top_img.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="华风夏韵"><span class="site-name">华风夏韵</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-graduation-cap"></i><span> 博文</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 归档</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/resources/"><i class="fa-fw fa fa-book"></i><span> 资源</span></a></div><div class="menus_item"><a class="site-page" href="/tools/"><i class="fa-fw fas fa-list"></i><span> 在线工具</span></a></div><div class="menus_item"><a class="site-page" href="/comment/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于笔者</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">自然语言处理导论</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-02-28T06:15:00.000Z" title="发表于 2023-02-28 14:15:00">2023-02-28</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-07-22T11:42:29.841Z" title="更新于 2023-07-22 19:42:29">2023-07-22</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E4%B8%93%E4%B8%9A%E8%AF%BE%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">专业课学习笔记</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">9.9k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>33分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="自然语言处理导论"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><script type="text/javascript"
+src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<h1 id="一全连接前馈神经网络-fcfn">一、全连接前馈神经网络 FCFN</h1>
+<blockquote>
+<p>全连接前馈网络：<strong>Fully Connect Feedforward
+Network</strong></p>
+</blockquote>
+<h2 id="机器学习-寻找目标函数">1.1 机器学习 =&gt; 寻找目标函数</h2>
+<ol type="1">
+<li><p>给定一个函数的集合，机器学习实际上就是找到这个集合中的一个函数，能够符合预期要求</p></li>
+<li><p>训练数据：相当于一套卷子，通过做这套卷子的得分，判断哪个函数更好</p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230307133803594.png" alt="image-20230307133803594" style="zoom:80%;" /></p></li>
+<li><p>推理<strong>Testing</strong>：找到给定的函数后，对于其他的输入，期望得到目标输出，也就是<strong>泛化</strong></p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230307134010506.png" alt="image-20230307134010506" style="zoom:80%;" /></p></li>
+<li><p>机器学习的三个步骤：</p>
+<ol type="1">
+<li>定义函数集合</li>
+<li>设计评价函数(损失函数)：函数=&gt;得分</li>
+<li>找到最优函数</li>
+</ol></li>
+<li><p><strong>神经网络 Neural
+Network</strong>：即为一种定义函数集合的方式</p></li>
+</ol>
+<h2 id="神经网络定义函数集合">1.2 神经网络：定义函数集合</h2>
+<h3 id="神经元-neuron">1.2.1 神经元 Neuron</h3>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230307135519031.png" alt="image-20230307135519031" style="zoom:80%;" /></p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230307135530474.png" alt="image-20230307135530474" style="zoom:80%;" /></p>
+<ol type="1">
+<li>Sigmoid函数：用于门控，当输入大到某一个值后，输出为最大值
+<ol type="1">
+<li>是一个归一化函数，将一个比较大的值，变成一个小的值</li>
+</ol></li>
+<li>神经元函数：<span
+class="math inline">\(\sigma(z)=\sigma(a_1w_1+a_2w_2+...+a_kw_k+b)=\sigma(\vec
+a · \vec w)\)</span>
+<ol type="1">
+<li>输入<span class="math inline">\(\vec a\)</span>与权重<span
+class="math inline">\(\vec w\)</span>越接近，输出越大</li>
+<li>因此类似于一次<code>if</code>操作，只不过<code>if</code>的判断条件是学习出来的</li>
+</ol></li>
+</ol>
+<h3 id="神经网络">1.2.2 神经网络</h3>
+<p>将多个神经元相连，组成一个神经网络</p>
+<ol type="1">
+<li>神经网络的参数<code>θ</code>：即为所有神经元的全部weights和bias</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230307140434604.png" alt="image-20230307140434604" style="zoom:80%;" /></p>
+<h3 id="全连接前馈网络-fcfn">1.2.3 全连接前馈网络 FCFN</h3>
+<blockquote>
+<p><strong>Fully Connect Feedforward Network</strong></p>
+</blockquote>
+<p>前一层所有神经元的输出，会输入到后一层的所有神经元上</p>
+<ol type="1">
+<li>当参数一定时，就是一个确定函数</li>
+<li>定义了神经网络的结构，也就定义了一个函数集合</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230307140645890.png" alt="image-20230307140645890" style="zoom:80%;" /></p>
+<h3 id="深度学习">1.2.4 深度学习</h3>
+<p><strong>FCFN</strong>一般分为三个部分：输入层、隐藏层、输出层</p>
+<ol type="1">
+<li>深度学习：有多个隐藏层</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230307140756614.png" alt="image-20230307140756614" style="zoom:80%;" /></p>
+<h3 id="为什么需要深度">1.2.5 为什么需要深度</h3>
+<ol type="1">
+<li>现在的激活函数：达到阈值后，输出=输入；相当于用多条直线拟合函数图像</li>
+<li>在参数量相同时，层数越多，拟合能力越强</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230307142616233.png" alt="image-20230307142616233" style="zoom:80%;" /></p>
+<h2 id="设计评价函数">1.3 设计评价函数</h2>
+<h3 id="训练数据">1.3.1 训练数据</h3>
+<p>训练数据：</p>
+<ol type="1">
+<li>准备图像及其标签</li>
+<li>学习目标被定义在训练数据中</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230307143000140.png" alt="image-20230307143000140" style="zoom:80%;" /></p>
+<h3 id="学习目标">1.3.2 学习目标</h3>
+<ol type="1">
+<li>输入层：将训练数据转化为一维向量</li>
+<li>输出层：根据目标定义</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230307143132718.png" alt="image-20230307143132718" style="zoom:80%;" /></p>
+<h3 id="输出层">1.3.3 输出层</h3>
+<p>使用Softmax作为输出层</p>
+<ol type="1">
+<li>不用max函数，是因为max函数不可导</li>
+<li>通过Softmax层后，输入的差距会变得更大</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230307143431742.png" alt="image-20230307143431742" style="zoom:80%;" /></p>
+<h3 id="损失">1.3.4 损失</h3>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230307143624220.png" alt="image-20230307143624220" style="zoom:80%;" /></p>
+<h3 id="总损失">1.3.5 总损失</h3>
+<ol type="1">
+<li>参数确定后，神经网络确定，对于所有输入的输出就一定，总损失<code>L</code>就一定</li>
+<li>因此<code>L</code>是关于参数<code>θ</code>的函数</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230307143658423.png" alt="image-20230307143658423" style="zoom:80%;" /></p>
+<h2 id="找到最优函数">1.4 找到最优函数</h2>
+<h3 id="gradient-descent-梯度下降">1.4.1 Gradient Descent 梯度下降</h3>
+<ol type="1">
+<li><p><code>L</code>是关于<code>θ</code>的函数，因此可以得到一条<code>L-θ</code>的图像（<code>θ</code>是一个高维变量）</p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230307144109525.png" alt="image-20230307144109525" style="zoom:80%;" /></p></li>
+<li><p>任务是找到一个令<code>L</code>最小的<code>θ</code>值：求导，但是由于求导的要求过高，因此会求<span
+class="math inline">\(\frac{∂L}{∂w}\)</span></p>
+<ol type="1">
+<li>随机选择<code>w</code>的一个起始值</li>
+<li>计算<code>L</code>关于<code>w</code>的偏导</li>
+<li>将<code>w</code>的值更改为<span
+class="math inline">\(w-η\frac{∂L}{∂w}\)</span>，<strong>η</strong>称为<strong>learning
+rate</strong>，会影响神经网络的训练效率</li>
+<li>重复2、3，直到<span
+class="math inline">\(\frac{∂L}{∂w}\)</span>足够小位置</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230307144657908.png" alt="image-20230307144657908" style="zoom:80%;" /></p></li>
+</ol>
+<h3 id="局部最小值">1.4.2 局部最小值</h3>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230307144831943.png" alt="image-20230307144831943" style="zoom:80%;" /></p>
+<p>不同的初始点，会得到不同的局部最小值</p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230307145119198.png" alt="image-20230307145119198" style="zoom:80%;" /></p>
+<h3 id="backpropagation">1.4.3 Backpropagation</h3>
+<ol type="1">
+<li>用于在神经网络中计算<span
+class="math inline">\(\frac{∂L}{∂w}\)</span>，在当下一般都是自动计算</li>
+</ol>
+<h1 id="二词向量-word-embeddings">二、词向量 Word Embeddings</h1>
+<p>Embedding：高维空间的低维结构</p>
+<h2 id="词语的表示">2.1 词语的表示</h2>
+<ol type="1">
+<li>狄拉克函数</li>
+<li>独热值 one-hot representation：
+<ol type="1">
+<li>定义一个大向量，该向量对应一个词语</li>
+<li>大向量的每个位置都表示一个单词，如果该单词出现，则对应位置为1，否则为0</li>
+</ol></li>
+<li>缺点：
+<ol type="1">
+<li>字典的大小要远大于单词的个数</li>
+<li>单词与单词的独热值是正交的，无法表示同义词语</li>
+</ol></li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230307152357159.png" alt="image-20230307152357159" style="zoom:80%;" /></p>
+<h2 id="将词语降维">2.2 将词语降维</h2>
+<ol type="1">
+<li>存储词语的含义，而不是词语本身</li>
+<li>将相同意思的不同词语，映射到同一个语义上</li>
+<li>利用几个基础语义，重建词语本身</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230307152936192.png" alt="image-20230307152936192" style="zoom:80%;" /></p>
+<h2 id="词向量-word2vec">2.3 词向量 word2vec</h2>
+<ol type="1">
+<li><p>通过上下文，确定某个单词的含义</p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230307153254540.png" alt="image-20230307153254540" style="zoom:80%;" /></p></li>
+<li><p>通过学习两个W矩阵，获得词向量</p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230307154832077.png" alt="image-20230307154832077" style="zoom:80%;" /></p></li>
+<li><p>词向量：<code>input vector</code>，左边矩阵中对应输入的一行</p></li>
+</ol>
+<h2 id="训练的过程相当于是一个softmax">2.4
+训练的过程：相当于是一个Softmax</h2>
+<ol type="1">
+<li>训练的过程，相当于就是拉近输入与输出的距离</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230307155134579.png" alt="image-20230307155134579" style="zoom:80%;" /></p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230307155152048.png" alt="image-20230307155152048" style="zoom:80%;" /></p>
+<h2 id="hierarchical-softmax">2.5 Hierarchical Softmax</h2>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230307155244123.png" alt="image-20230307155244123" style="zoom:80%;" /></p>
+<h2 id="缺点">2.6 缺点</h2>
+<ol type="1">
+<li>解决了多词一义，但不能解决一词多义</li>
+<li>难以判断不同词向量的差异，如各种颜色的上下文基本相同</li>
+<li>完全忽略了词语的顺序</li>
+</ol>
+<h1 id="三卷积神经网络-cnn">三、卷积神经网络 CNN</h1>
+<blockquote>
+<p>卷积神经网络：<strong>Convolutional Neural
+Networks</strong>，常用于图形处理</p>
+</blockquote>
+<h2 id="为什么需要cnn">3.1 为什么需要CNN</h2>
+<ol type="1">
+<li><p>在图像识别中，特征点所在的位置在不同的图像中并不相同</p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230314142912562.png" alt="image-20230314142912562" style="zoom:80%;" /></p></li>
+<li><p>对图像进行下采样，并不影响我们对图像的判断</p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230314142919829.png" alt="image-20230314142919829" style="zoom:80%;" /></p></li>
+</ol>
+<h2 id="cnn的结构">3.2 CNN的结构</h2>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230314144831022.png" alt="image-20230314144831022" style="zoom:80%;" /></p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230314145022637.png" alt="image-20230314145022637" style="zoom:80%;" /></p>
+<h3 id="卷积-convolution">3.2.1 卷积 Convolution</h3>
+<blockquote>
+<p>卷积操作可以保持<strong>平移不变性</strong>：同一特征在不同位置均可检测出来</p>
+<p>不能保持<strong>翻转不变性</strong>：将特征旋转/翻转后，就需要另一个卷积核了</p>
+</blockquote>
+<ol type="1">
+<li>每一次的操作，都是两个大小相等的矩阵，逐位相乘再相加</li>
+<li>与Filter的卷积，实质上是在大图像上，寻找与Filter相似的区域
+<ol type="1">
+<li>图像的某个区域与Filter越相近，得到的值越大</li>
+</ol></li>
+<li>stride：每一次移动的长度</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230314143819063.png" alt="image-20230314143819063" style="zoom:80%;" /></p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230314143837181.png" alt="image-20230314143837181" style="zoom:80%;" /></p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230314144048313.png" alt="image-20230314144048313" style="zoom:80%;" /></p>
+<blockquote>
+<p><strong>卷积与神经网络的联系</strong>：相当于只对图像的一个小区域进行检测，而不是全连接中的整个图像</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230314144221305.png" alt="image-20230314144221305" style="zoom:80%;" /></p>
+<h3 id="最大池化-max-pooling">3.2.2 最大池化 Max Pooling</h3>
+<ol type="1">
+<li>实质上就是对图像进行一次下采样，降低计算量</li>
+<li>将卷积后的图像分为若干个不相交的区域，然后每个区域取最大值
+<ol type="1">
+<li>最大池化：检测信号的强弱</li>
+<li>平均池化：检测模式在某个区域是否比较普遍</li>
+</ol></li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230314144553443.png" alt="image-20230314144553443" style="zoom:80%;" /></p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230314144600316.png" alt="image-20230314144600316" style="zoom:80%;" /></p>
+<h3 id="扁平化-flatten">3.2.3 扁平化 Flatten</h3>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230314145209844.png" alt="image-20230314145209844" style="zoom:80%;" /></p>
+<h2 id="cnn变种">3.3 CNN变种</h2>
+<h3 id="vggnet">3.3.1 VGGNet</h3>
+<ol type="1">
+<li>在CNN的基础上，变得更深了</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230314151621521.png" alt="image-20230314151621521" style="zoom:80%;" /></p>
+<h3 id="googlenetinception">3.3.2 GoogLeNet(Inception)</h3>
+<ol type="1">
+<li><p>增加网络的宽度：每一层有多种大小的卷积核</p>
+<ol type="1">
+<li>防止由于识别得过早，导致没有识别出特征</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230314151723899.png" alt="image-20230314151723899" style="zoom:80%;" /></p></li>
+<li><p>1×1卷积核：</p>
+<ol type="1">
+<li>将卷积核得到的多张图像，按照权重加和，得到一张图像</li>
+<li>相当于进行了一次压缩</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230314151830269.png" alt="image-20230314151830269" style="zoom:80%;" /></p></li>
+</ol>
+<h3 id="resnet">3.3.3 ResNet</h3>
+<ol type="1">
+<li>添加了skip
+connection：将输入直接送到下一层，缓解了梯度消失的问题</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230314151935829.png" alt="image-20230314151935829" style="zoom:80%;" /></p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230314152222879.png" alt="image-20230314152222879" style="zoom:80%;" /></p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230314152848905.png" alt="image-20230314152848905" style="zoom:80%;" /></p>
+<h2 id="convolution">3.4 Convolution</h2>
+<h3 id="d-convolution">3.4.1 1D Convolution</h3>
+<ol type="1">
+<li>本质上在做滑动窗口</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230314153116179.png" alt="image-20230314153116179" style="zoom:80%;" /></p>
+<h3 id="d-convolution-1">3.4.2 2D Convolution</h3>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230314153331895.png" alt="image-20230314153331895" style="zoom:80%;" /></p>
+<h3 id="d-convolution-2">3.4.3 3D Convolution</h3>
+<blockquote>
+<p>将3D分为多个通道，每个通道进行2D Convolution</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230314153347937.png" alt="image-20230314153347937" style="zoom:80%;" /></p>
+<blockquote>
+<p>使用3D卷积核进行计算</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230314153452092.png" alt="image-20230314153452092" style="zoom:80%;" /></p>
+<h3 id="图卷积">3.4.4 图卷积</h3>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230314153521147.png" alt="image-20230314153521147" style="zoom:80%;" /></p>
+<h3 id="球卷积">3.4.5 球卷积</h3>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230314153653895.png" alt="image-20230314153653895" style="zoom:80%;" /></p>
+<h3 id="转置卷积逆卷积">3.4.6 转置卷积/逆卷积</h3>
+<blockquote>
+<p>把小图像变大：上采样</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230314153736364.png" alt="image-20230314153736364" style="zoom:80%;" /></p>
+<h3 id="胶囊网络">3.4.7 胶囊网络</h3>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230314154349021.png" alt="image-20230314154349021" style="zoom:80%;" /></p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230314154337181.png" alt="image-20230314154337181" style="zoom:80%;" /></p>
+<blockquote>
+<p>通过动态路由，在使用时仍要通过一定的规则，计算参数</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230314154439731.png" alt="image-20230314154439731" style="zoom:80%;" /></p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230314154511464.png" alt="image-20230314154511464" style="zoom:80%;" /></p>
+<h2 id="nlp中的cnn">3.5 NLP中的CNN</h2>
+<h3 id="bag-of-words">3.5.1 Bag of Words</h3>
+<ol type="1">
+<li>识别一个句子</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230314154923595.png" alt="image-20230314154923595" style="zoom:80%;" /></p>
+<h3 id="bag-of-n-grams">3.5.2 Bag of n-grams</h3>
+<ol type="1">
+<li>将句子的语序也考虑进去</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230314154939075.png" alt="image-20230314154939075" style="zoom:80%;" /></p>
+<h3 id="nlp中的cnn-1">3.5.3 NLP中的CNN</h3>
+<h4 id="stride">3.5.3.1 Stride</h4>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230314155250898.png" alt="image-20230314155250898" style="zoom:80%;" /></p>
+<h4 id="pooling">3.5.3.2 Pooling</h4>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230314155310389.png" alt="image-20230314155310389" style="zoom:80%;" /></p>
+<h4 id="示例">3.5.3.3 示例</h4>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230314155548957.png" alt="image-20230314155548957" style="zoom:80%;" /></p>
+<h4 id="stacked-convolution">3.5.3.4 Stacked Convolution</h4>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230314155653982.png" alt="image-20230314155653982" style="zoom:80%;" /></p>
+<h4 id="dilated-convolution-膨胀卷积">3.5.3.5 Dilated Convolution
+膨胀卷积</h4>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230314155716083.png" alt="image-20230314155716083" style="zoom:80%;" /></p>
+<h4 id="structured-convolution-结构卷积">3.5.3.6 Structured Convolution
+结构卷积</h4>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230314155803703.png" alt="image-20230314155803703" style="zoom:80%;" /></p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230314155810494.png" alt="image-20230314155810494" style="zoom:80%;" /></p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230314155831870.png" alt="image-20230314155831870" style="zoom:80%;" /></p>
+<h1 id="四循环神经网络-rnn">四、循环神经网络 RNN</h1>
+<blockquote>
+<p><strong>Recurrent Neural
+Networks</strong>，可以看作有一定记忆能力的神经网络</p>
+</blockquote>
+<h2 id="rnn">4.1 RNN</h2>
+<h3 id="rnn-1">4.1.1 RNN</h3>
+<ol type="1">
+<li>某一个时刻<code>t</code>的输出<code>y2</code>，与当前时刻的输入<code>x2</code>、上一个时刻的输入有关<code>x1</code>，需要通过一个存储<code>h1</code>保留上一时刻的信息</li>
+<li><code>f</code>即为神经网络函数</li>
+<li>在每一时刻，<code>h,x,y,</code>均变化，但<code>f</code>不变</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230321133635450.png" alt="image-20230321133635450" style="zoom:80%;" /></p>
+<h3 id="deep-rnn">4.1.2 Deep RNN</h3>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230321134021758.png" alt="image-20230321134021758" style="zoom:80%;" /></p>
+<h3 id="双向rnn">4.1.3 双向RNN</h3>
+<ol type="1">
+<li>通常用于编码阶段</li>
+<li>既需要某个词的含义，也需要某个词的上下文</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230321134156375.png" alt="image-20230321134156375" style="zoom:80%;" /></p>
+<h3 id="naive-rnn">4.1.4 Naive RNN</h3>
+<blockquote>
+<p>最基础的RNN</p>
+</blockquote>
+<p><strong>训练难</strong>：神经网络学习时</p>
+<ol type="1">
+<li>如果在<code>yn</code>处存在损失，则会将损失一步一步传回<code>h0</code>处</li>
+<li>实际中，会将RNN展开为一个很深的神经网络，只不过每个部分的参数是共享的</li>
+<li>由于深度过深，会存在<strong>梯度消失</strong>问题</li>
+<li>由于参数共享，最后的输出相当于<code>f(xn,f(...f(x2,f(x1,h0)))</code>，会产生<strong>梯度爆炸</strong>问题：
+<ol type="1">
+<li>类似于变量在指数上，输入变化一点，输出会发生巨大变化</li>
+<li>会导致<strong>梯度墙</strong>现象：在某些地方，w稍微变化一点，L会变化非常多，而在其它地方，w变化很多，L也不会变得非常大</li>
+<li>在最初训练时，L对于w的变化很小，导致learning
+rate非常大，从而非常快的撞向梯度墙，导致在上一时刻时，导数还很小，下一时刻，导数会变得非常大，从而导致训练失败</li>
+</ol></li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230321134639335.png" alt="image-20230321134639335" style="zoom:80%;" /></p>
+<h2 id="lstm">4.2 LSTM</h2>
+<blockquote>
+<p>一般说RNN指的即为LSTM</p>
+</blockquote>
+<h3 id="lstm算法">4.2.1 LSTM算法</h3>
+<p>解决<strong>遗忘问题</strong>：h的变化通常会很大，导致记忆不稳定</p>
+<ol type="1">
+<li><code>h</code>的变化是乘法，<code>c</code>的变化是加法</li>
+<li>因此，用<code>h</code>表示瞬时记忆，<code>c</code>表示长期记忆</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230321140303207.png" alt="image-20230321140303207" style="zoom:80%;" /></p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230321140539845.png" alt="image-20230321140539845" style="zoom:80%;" /></p>
+<blockquote>
+<p>peephole：可以将长期记忆c<sup>t</sup>当作输入送入网络，但是对其进行计算时，通常只会乘一个对角阵</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230321141306070.png" alt="image-20230321141306070" style="zoom:80%;" /></p>
+<blockquote>
+<p>LSTM的每个cell</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230321141011210.png" alt="image-20230321141011210" style="zoom:80%;" /></p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230321141033941.png" alt="image-20230321141033941" style="zoom:80%;" /></p>
+<h3 id="对lstm不同参数的研究">4.2.2 对LSTM不同参数的研究</h3>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230321141508217.png" alt="image-20230321141508217" style="zoom:80%;" /></p>
+<h3 id="gru">4.2.3 GRU</h3>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230321141651913.png" alt="image-20230321141651913" style="zoom:80%;" /></p>
+<h2 id="nlp中的rnn">4.3 NLP中的RNN</h2>
+<ol type="1">
+<li><p>NLP充满了序列化的数据</p>
+<ol type="1">
+<li>一篇文章中的句子、一个句子中的单词、一个单词中的字母</li>
+</ol></li>
+<li><p>RNN善于进行长距离依赖</p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230321142040687.png" alt="image-20230321142040687" style="zoom:80%;" /></p></li>
+</ol>
+<h3 id="rnn加工一个序列">4.3.1 RNN加工一个序列</h3>
+<ol type="1">
+<li>每一时刻，吃进去一个词向量，然后根据上一时刻的内容，输出label</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230321142147455.png" alt="image-20230321142147455" style="zoom:80%;" /></p>
+<h3 id="rnn既可以做编码器也可以做解码器">4.3.2
+RNN既可以做编码器，也可以做解码器</h3>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230321142555369.png" alt="image-20230321142555369" style="zoom:80%;" /></p>
+<h3 id="encoder-decoder模型">4.3.3 Encoder-decoder模型</h3>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230321142801222.png" alt="image-20230321142801222" style="zoom:80%;" /></p>
+<h2 id="attention-注意力">4.4 Attention 注意力</h2>
+<h3 id="计算注意力">4.4.1 计算注意力</h3>
+<ol type="1">
+<li>decoder的某个状态得到的输出query
+vector，与encoder中的所有状态的词向量<code>ki</code>点乘，然后再进行一次softmax，得到一个attention
+score <code>ai</code></li>
+<li>用<code>ai</code>与对应的<code>ki</code>进行数乘，然后再相加，得到一个注意力向量</li>
+<li>然后可以用这个注意力向量进行后续操作</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230321144512781.png" alt="image-20230321144512781" style="zoom:80%;" /></p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230321144519311.png" alt="image-20230321144519311" style="zoom:80%;" /></p>
+<h3 id="注意力得分函数">4.4.2 注意力得分函数</h3>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230321144917618.png" alt="image-20230321144917618" style="zoom:80%;" /></p>
+<h3 id="attention的用途">4.4.3 Attention的用途</h3>
+<ol type="1">
+<li>copy机制：直接从上下文中，将某个单词拷贝到语义库</li>
+<li>关注前置单词（输入、输出）</li>
+<li>关注多模态输入（图像、语言）</li>
+<li>关注多种输入源</li>
+</ol>
+<h3 id="hierarchical-structure">4.4.4 Hierarchical Structure</h3>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230321145315038.png" alt="image-20230321145315038" style="zoom:80%;" /></p>
+<h3 id="hard-attention">4.4.5 Hard Attention</h3>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230321145450210.png" alt="image-20230321145450210" style="zoom:80%;" /></p>
+<h2 id="pointer-network">4.5 Pointer Network</h2>
+<h3 id="使用注意力做选择问题">4.5.1 使用注意力做选择问题</h3>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230321150554682.png" alt="image-20230321150554682" style="zoom:80%;" /></p>
+<ol type="1">
+<li>输出是输入的一个子集</li>
+<li>可以使用<strong>注意力</strong>进行<strong>选择</strong>问题</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230321150649836.png" alt="image-20230321150649836" style="zoom:80%;" /></p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230321150802011.png" alt="image-20230321150802011" style="zoom:80%;" /></p>
+<h3 id="copy机制">4.5.2 Copy机制</h3>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230321150845928.png" alt="image-20230321150845928" style="zoom:80%;" /></p>
+<h2 id="attention-and-augmented-rnn">4.6 Attention and Augmented
+RNN</h2>
+<h3 id="ntmneural-turing-machines">4.6.1 NTM：Neural Turing
+Machines</h3>
+<ol type="1">
+<li><p><strong>RNN</strong>是<strong>图灵完全</strong>的，理论上可以用来模拟任何函数，当然也可以模拟任何程序的功能</p></li>
+<li><p>通过注意力，实现NTM的寻址、读写</p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230321151739061.png" alt="image-20230321151739061" style="zoom:80%;" /></p></li>
+</ol>
+<h3 id="dncdifferentiable-neural-computer">4.6.2 DNC：Differentiable
+Neural Computer</h3>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230321151849169.png" alt="image-20230321151849169" style="zoom:80%;" /></p>
+<h3 id="actadaptive-computation-time">4.6.4 ACT：Adaptive Computation
+Time</h3>
+<blockquote>
+<p>让神经网络的结构，根据具体问题而改变</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230321151954839.png" alt="image-20230321151954839" style="zoom:80%;" /></p>
+<h3 id="neural-programmer">4.6.5 Neural Programmer</h3>
+<blockquote>
+<p>让神经网络学会编程、计算</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230321152621791.png" alt="image-20230321152621791" style="zoom:80%;" /></p>
+<h1 id="五生成模型语言生成">五、生成模型、语言生成</h1>
+<h2 id="生成模型-generative-models">5.1 生成模型 Generative Models</h2>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230328142916146.png" alt="image-20230328142916146" style="zoom:80%;" /></p>
+<h3 id="高斯混合模型-gmmgaussian-mixture-models">5.1.1 高斯混合模型
+GMM：Gaussian Mixture Models</h3>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230328144039207.png" alt="image-20230328144039207" style="zoom:80%;" /></p>
+<h3 id="流形假设-manifold-assumption">5.1.2 流形假设 Manifold
+Assumption</h3>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230328144143806.png" alt="image-20230328144143806" style="zoom:80%;" /></p>
+<h3 id="auto-encoder">5.1.3 Auto-Encoder</h3>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230328144406530.png" alt="image-20230328144406530" style="zoom:80%;" /></p>
+<p>训练时：要求Decoder的输出与Encoder的输入相同</p>
+<ol type="1">
+<li>此时，可以得到两个模型：Encoder、Decoder</li>
+<li>而<strong>Decoder</strong>就可以作为<strong>Generator</strong>使用</li>
+<li><strong>code</strong>即为这个模型中的<strong>流形</strong></li>
+</ol>
+<h4 id="generator">5.1.3.1 Generator</h4>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230328144600228.png" alt="image-20230328144600228" style="zoom:80%;" /></p>
+<ol type="1">
+<li>一个神经网络，输入是一个vector，输出是一个图像</li>
+<li>期望vector中的每一维控制不同的特征</li>
+<li>但实际上vector的每一维之间是紧密耦合的，需要进行解耦操作才可以实现预期效果</li>
+</ol>
+<blockquote>
+<p>code为2维时，训练出的模型</p>
+<p>通过对code进行差值然后得到输出，可以判断模型是否学习到了某些知识，而不是仅仅通过记忆</p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230328144836779.png" alt="image-20230328144836779" style="zoom:80%;" /></p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230328144848270.png" alt="image-20230328144848270" style="zoom:80%;" /></p>
+</blockquote>
+<h3 id="variational-autoencoders">5.1.4 Variational AutoEncoders</h3>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230328145516752.png" alt="image-20230328145516752" style="zoom:80%;" /></p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230328150231245.png" alt="image-20230328150231245" style="zoom:80%;" /></p>
+<h3 id="flow-based-deep-generative-models">5.1.6 Flow-based Deep
+Generative Models</h3>
+<ol type="1">
+<li>Inverse是Flow的逆操作
+<ol type="1">
+<li>将一个图像分为两半，下半根据上半打乱</li>
+<li>然后再翻转</li>
+<li>重复12步，可以得到一个模糊后的图像</li>
+<li>通过原图、模糊后的图像、模糊的过程，可以训练出Inverse</li>
+</ol></li>
+<li>只要能够训练出来Inverse，那么任给一个高斯模糊后的图像，一定能生成其原图像</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230328150439408.png" alt="image-20230328150439408" style="zoom:80%;" /></p>
+<h3 id="pixelrnnpixelcnn">5.1.7 PixelRNN、PixelCNN</h3>
+<ol type="1">
+<li>用编码器，做解码器的工作</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230328151128895.png" alt="image-20230328151128895" style="zoom:80%;" /></p>
+<h2 id="自然语言生成-nlg">5.2 自然语言生成 NLG</h2>
+<h3 id="语言模型">5.2.1 语言模型</h3>
+<p><strong>Language Modeling</strong> 语言建模：给定历史单词<span
+class="math inline">\(y_1,...y_{t-1}\)</span>，生成下一个单词<span
+class="math inline">\(y_t\)</span></p>
+<ol type="1">
+<li>实质上是一个概率密度函数<span
+class="math inline">\(P(y_t|y_1,...,y_{t-1})\)</span>，表示<span
+class="math inline">\(y_t\)</span>可能是该词的概率</li>
+<li>生成这个概率密度函数的系统，被称为<strong>Language
+Model</strong></li>
+<li>如果这个系统是一个RNN，则称为<strong>RNN-LM</strong></li>
+</ol>
+<p><strong>Conditional Language Modeling</strong>
+传统语言建模：给定历史单词<span
+class="math inline">\(y_1,...y_{t-1}\)</span>，和一些其他输入<span
+class="math inline">\(x\)</span>，生成下一个单词<span
+class="math inline">\(y_t\)</span></p>
+<ol type="1">
+<li>概率密度函数<span
+class="math inline">\(P(y_t|y_1,...,y_{t-1}|x)\)</span></li>
+</ol>
+<h3 id="训练rnn-lm">5.2.2 训练RNN-LM</h3>
+<ol type="1">
+<li>在训练时，如果上一步生成了一个错误的结果，则需要将其抛弃掉，将正确的结果送给下一步
+<ol type="1">
+<li>称为<strong>Teacher Forcing</strong></li>
+<li>当实际数据与训练数据差距很大时，会导致模型崩溃</li>
+<li>实际上，会在训练一段时间后，再次训练时，一定的概率将生成的结果直接送到下一步</li>
+</ol></li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230328152257417.png" alt="image-20230328152257417" style="zoom:80%;" /></p>
+<h3 id="生成句子">5.2.3 生成句子</h3>
+<p>已经有了模型<span
+class="math inline">\(P(Y|X)\)</span>，如何使用这个模型生成一个句子？</p>
+<ol type="1">
+<li><strong>Sampling</strong>：根据概率密度函数，生成一个随机的句子</li>
+<li><strong>Argmax</strong>：生成一个具有最大可能性的句子</li>
+</ol>
+<p><strong>Ancestral Sampling</strong>:</p>
+<ol type="1">
+<li>一个接一个的随机生成单词</li>
+<li>只需要一个明确的对<span
+class="math inline">\(P(X)\)</span>的采样方法</li>
+</ol>
+<p><strong>Greedy Search</strong>：</p>
+<ol type="1">
+<li>一个接一个的，每次选择概率最大的单词</li>
+<li>存在的问题：
+<ol type="1">
+<li>会经常优先生成一些简单的的单词</li>
+<li>会优先生成常用的单词</li>
+</ol></li>
+</ol>
+<h4 id="基于采样的decoding">5.2.3.1 基于采样的decoding</h4>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230328154047572.png" alt="image-20230328154047572" style="zoom:80%;" /></p>
+<h4 id="beam-search">5.2.3.2 Beam Search</h4>
+<ol type="1">
+<li>同时保留几个比较好的结果，作为输出</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230328154115544.png" alt="image-20230328154115544" style="zoom:80%;" /></p>
+<blockquote>
+<p>确定一个最优的 beam size k</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230328154132426.png" alt="image-20230328154132426" style="zoom:80%;" /></p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230328154140221.png" alt="image-20230328154140221" style="zoom:80%;" /></p>
+<h4 id="softmax-temperature">5.2.3.3 Softmax Temperature</h4>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230328154204531.png" alt="image-20230328154204531" style="zoom:80%;" /></p>
+<h3 id="decoding算法总结">5.2.4 Decoding算法总结</h3>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230328154242209.png" alt="image-20230328154242209" style="zoom:80%;" /></p>
+<h2 id="评估-evaluation">5.3 评估 Evaluation</h2>
+<h3 id="human-evaluation">5.3.1 Human Evaluation</h3>
+<ol type="1">
+<li>是否重复？是否流畅？排序是多少？</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230328154535201.png" alt="image-20230328154535201" style="zoom:80%;" /></p>
+<h3 id="bleu">5.3.2 BLEU</h3>
+<ol type="1">
+<li>Reference：翻译的准确结果</li>
+<li>System：系统生成的结果</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230328155050395.png" alt="image-20230328155050395" style="zoom:80%;" /></p>
+<h3 id="meteor">5.3.3 METEOR</h3>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230328155110147.png" alt="image-20230328155110147" style="zoom:80%;" /></p>
+<h3 id="perplexity">5.3.4 Perplexity</h3>
+<ol type="1">
+<li>计算单词在不做生成的情况下的困惑程度</li>
+<li>优点：自然解决多参考问</li>
+<li>缺点：不考虑解码或实际生成输出</li>
+<li>对于有很多歧义的问题可能是合理的</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230328155327829.png" alt="image-20230328155327829" style="zoom:80%;" /></p>
+<h3 id="unconditional-generation">5.3.5 Unconditional Generation</h3>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230328155345704.png" alt="image-20230328155345704" style="zoom:80%;" /></p>
+<h1 id="六机器翻译-transformer">六、机器翻译 &amp; Transformer</h1>
+<h2 id="统计机器翻译smt">6.1 统计机器翻译SMT</h2>
+<blockquote>
+<p>Statistical Machine Translation</p>
+</blockquote>
+<ol type="1">
+<li><p>设给定中文句子<strong>x</strong>，要翻译为英文句子<strong>y</strong>，则需要找到令<strong>P(y|x)</strong>最大的<strong>y</strong></p></li>
+<li><p>利用贝叶斯公式可得：<strong>P(x,y) = P(x|y)×P(y) =
+P(y|x)×P(x)</strong></p></li>
+<li><p>由于<strong>P(x)</strong>在<strong>x</strong>给定时是定值，因此我们只需要令<strong>P(x|y)×P(y)</strong>最大即可</p></li>
+<li><p><strong>P(y)</strong>：先验，表示给定英文句子<strong>y</strong>，这是一个合法的英文句子的概率，很容易就能训练出来</p></li>
+<li><p><strong>P(x|y)</strong>：似然函数，表示给定英文句子<strong>y</strong>，翻译为中文句子<strong>x</strong>的概率</p>
+<ol type="1">
+<li><p>首先，需要大量的平行语料进行训练，即由人翻译的中文&lt;=&gt;英文</p></li>
+<li><p>添加一个隐变量<strong>a(alignment)</strong>，计算当<strong>x,y</strong>给定时，对应的<strong>P(x,a|y)</strong></p>
+<blockquote>
+<p>alignment类似与attention</p>
+<p>可以是一对多：</p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230404135949111.png" alt="image-20230404135949111" style="zoom:80%;" /></p>
+<p>可以是多对一：</p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230404135957259.png" alt="image-20230404135957259" style="zoom:80%;" /></p>
+<p>可以是多对多：</p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230404140008070.png" alt="image-20230404140008070" style="zoom:80%;" /></p>
+</blockquote></li>
+</ol></li>
+</ol>
+<h2 id="神经网络机器翻译nmt">6.2 神经网络机器翻译NMT</h2>
+<p>Sequence-To-Sequence model (NIPS 2014)</p>
+<ol type="1">
+<li>直接对<strong>P(Y|X)</strong>进行建模</li>
+<li>翻译不需要显式定义alignment</li>
+<li>缺点：所有信息包含在了内部状态之中，解释性差，长句子的翻译效果很差</li>
+</ol>
+<p>Attention Model</p>
+<ol type="1">
+<li>通过访问所有encoder的状态，降低了长句子翻译的缺点</li>
+</ol>
+<h3 id="v1encoder-decoder">6.2.1 V1：Encoder-Decoder</h3>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230404141308449.png" alt="image-20230404141308449" style="zoom:80%;" /></p>
+<h3 id="v2基于attention的encoder-decoder">6.2.2
+V2：基于Attention的Encoder-Decoder</h3>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230404141333992.png" alt="image-20230404141333992" style="zoom:80%;" /></p>
+<h3 id="v3双向encoder">6.2.3 V3：双向Encoder</h3>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230404141356209.png" alt="image-20230404141356209" style="zoom:80%;" /></p>
+<h3 id="v4深度学习">6.2.4 V4：深度学习</h3>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230404141413901.png" alt="image-20230404141413901" style="zoom:80%;" /></p>
+<h3 id="v5并行优化">6.2.5 V5：并行优化</h3>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230404141445841.png" alt="image-20230404141445841" style="zoom:80%;" /></p>
+<h3 id="v6residuals-are-the-new-hotness">6.2.6 V6：Residuals are the new
+hotness</h3>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230404141506487.png" alt="image-20230404141506487" style="zoom:80%;" /></p>
+<h2 id="nmt的近代发展">6.3 NMT的近代发展</h2>
+<h3 id="multilingual-model">6.3.1 Multilingual Model</h3>
+<ol type="1">
+<li><p>训练时，对每一个语料，添加一个标签，表示要翻译成哪种语言</p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230404141727860.png" alt="image-20230404141727860" style="zoom:80%;" /></p></li>
+<li><p>Zero-Shot翻译：</p>
+<ol type="1">
+<li>翻译时需要将日文翻译为韩文，但是训练数据并没有对应的语料</li>
+<li>有日文到英文的翻译，有英文到韩文的翻译</li>
+<li>相当于把英语作为一个桥梁</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230404141839817.png" alt="image-20230404141839817" style="zoom:80%;" /></p></li>
+</ol>
+<h3 id="code-switching">6.3.2 Code-Switching</h3>
+<blockquote>
+<p>可以将两种语言混合在一起，进行翻译</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230404142333392.png" alt="image-20230404142333392" style="zoom:80%;" /></p>
+<h3 id="big-picture">6.3.3 Big Picture</h3>
+<blockquote>
+<p>训练的结构图</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230404142449787.png" alt="image-20230404142449787" style="zoom:80%;" /></p>
+<h3 id="unsupervised-mt">6.3.4 Unsupervised MT</h3>
+<blockquote>
+<p>当平行语料比较少的时候，可以使用这种方法</p>
+</blockquote>
+<ol type="1">
+<li>用两个编码器，分别学习两种语言，对应到两种语义空间</li>
+<li>找到一些锚点，将两个语义空间拉近（如一些已经翻译好的句子对应的语义空间）</li>
+<li>最后，将两个语义空间对齐</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230404142819802.png" alt="image-20230404142819802" style="zoom:80%;" /></p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230404142857482.png" alt="image-20230404142857482" style="zoom:80%;" /></p>
+<h3 id="对偶学习-dual-learning">6.3.5 对偶学习 Dual Learning</h3>
+<blockquote>
+<p>在没有平行语料的时候，可以使用该方法</p>
+</blockquote>
+<ol type="1">
+<li>一个模型负责将X翻译成Y，另一个模型负责将Y翻译为X</li>
+<li>至少其中一个模型比较强</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230404143249529.png" alt="image-20230404143249529" style="zoom:80%;" /></p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230404143347520.png" alt="image-20230404143347520" style="zoom:80%;" /></p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230404143405023.png" alt="image-20230404143405023" style="zoom:80%;" /></p>
+<blockquote>
+<p>两个模型可以互相做评价，将损失定义为两者的差值</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230404143724216.png" alt="image-20230404143724216" style="zoom:80%;" /></p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230404143804931.png" alt="image-20230404143804931" style="zoom:80%;" /></p>
+<h2 id="transformer">6.4 Transformer</h2>
+<h3 id="sequence">6.4.1 Sequence</h3>
+<ol type="1">
+<li>RNN对于长序列较好，但是无法并行计算</li>
+<li>CNN可以并行计算，但是长序列就不行了</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230404144359912.png" alt="image-20230404144359912" style="zoom:80%;" /></p>
+<ol type="1">
+<li>将RNN的模型隐藏起来，我们需要的实际上就是给定一段输入，返回一段输出</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230404144606817.png" alt="image-20230404144606817" style="zoom:80%;" /></p>
+<h3 id="self-attention">6.4.2 Self-Attention</h3>
+<ol type="1">
+<li>注意力：用query查询key，将v返回</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230404145353403.png" alt="image-20230404145353403" style="zoom:80%;" /></p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230404145541028.png" alt="image-20230404145541028" style="zoom:80%;" /></p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230404145556039.png" alt="image-20230404145556039" style="zoom:80%;" /></p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230404145640050.png" alt="image-20230404145640050" style="zoom:80%;" /></p>
+<blockquote>
+<p>此时，我们对每一个ai，都输出了一个bi</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230404145701766.png" alt="image-20230404145701766" style="zoom:80%;" /></p>
+<blockquote>
+<p>可以并行计算了</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230404145834496.png" alt="image-20230404145834496" style="zoom:80%;" /></p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230404145905298.png" alt="image-20230404145905298" style="zoom:80%;" /></p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230404150000446.png" alt="image-20230404150000446" style="zoom:80%;" /></p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230404150010886.png" alt="image-20230404150010886" style="zoom:80%;" /></p>
+<blockquote>
+<p>整个操作过程</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230404150026185.png" alt="image-20230404150026185" style="zoom:80%;" /></p>
+<h3 id="multi-head-self-attention">6.4.3 Multi-head Self-Attention</h3>
+<p>将得到的qkv矩阵分为两个，再进行操作</p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230404150311857.png" alt="image-20230404150311857" style="zoom:80%;" /></p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230404150344686.png" alt="image-20230404150344686" style="zoom:80%;" /></p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230404150354170.png" alt="image-20230404150354170" style="zoom: 80%;" /></p>
+<h3 id="positional-encoding">6.4.4 Positional Encoding</h3>
+<ol type="1">
+<li>自注意力的缺点：没有顺序信息，ai可以任意更改顺序，只需要将bi更改对应顺序即可</li>
+<li>位置编码：在词向量ai的基础上添加位置信息ei
+<ol type="1">
+<li>既要求表示绝对位置，也要表示相对位置</li>
+</ol></li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230404150855053.png" alt="image-20230404150855053" style="zoom:80%;" /></p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230404150956742.png" alt="image-20230404150956742" style="zoom:80%;" /></p>
+<h3 id="transform">6.4.5 Transform</h3>
+<ol type="1">
+<li>Decoder只能一个词一个词吐出来，无法并行</li>
+<li>实际上只有Encoder变快了</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230404151358884.png" alt="image-20230404151358884" style="zoom:80%;" /></p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230404151812547.png" alt="image-20230404151812547" style="zoom:80%;" /></p>
+<h1 id="七预训练模型bert和它的参数">七、预训练模型：BERT和它的参数</h1>
+<p>预训练：体现在<strong>模型参数的初始值</strong>上</p>
+<ol type="1">
+<li>直接对目标任务进行训练，可能会因为数据不够而导致得不到好的效果</li>
+<li>通过对预训练任务进行训练，调整模型的参数，然后再针对目标任务的数据进行训练即可
+<ol type="1">
+<li>预训练任务与目标任务有一定的联系，但通常是两种任务</li>
+</ol></li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230411144445974.png" alt="image-20230411144445974" style="zoom:80%;" /></p>
+<h2 id="什么是预训练模型">7.1 什么是预训练模型</h2>
+<ol type="1">
+<li>词向量<strong>Word2Vec</strong>：本质是将高维向量进行低维投影，解决了一义多词的问题
+<ol type="1">
+<li>训练时，需要一个字典×词向量维度的矩阵</li>
+<li>使用时，相当于进行了一次查表操作</li>
+</ol></li>
+<li>上下文相关的词向量<strong>Contextualized Word
+Embedding</strong>：将单词与上下文联系在一起，作为输入</li>
+<li>预训练模型很多都是<strong>计算的词向量模型</strong>的变种</li>
+</ol>
+<h2 id="如何使用预训练模型fine-tune">7.2
+如何使用预训练模型：fine-tune</h2>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230411152012538.png" alt="image-20230411152012538" style="zoom:80%;" /></p>
+<h3 id="nlp的常见任务">7.2.1 NLP的常见任务</h3>
+<ol type="1">
+<li>输入：一个句子、多个句子</li>
+<li>输出：分类、每个token的分类(如专有名词的类别)、从输入中取特定的部分(概括文章主旨)、句子(对话系统、风格转化、翻译)</li>
+</ol>
+<h4 id="输入多个句子">7.2.1.1 输入：多个句子</h4>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230411152404130.png" alt="image-20230411152404130" style="zoom:80%;" /></p>
+<h4 id="输出分类">7.2.1.2 输出：分类</h4>
+<ol type="1">
+<li>输入中添加一个特定的token<code>[CLS]</code></li>
+<li><code>[CLS]</code>对应的输出，即为最后的分类信息</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230411152511409.png" alt="image-20230411152511409" style="zoom:80%;" /></p>
+<h4 id="输出每个词的分类">7.2.1.3 输出：每个词的分类</h4>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230411152859914.png" alt="image-20230411152859914" style="zoom: 80%;" /></p>
+<h4 id="输出从输入中取特定的部分">7.2.1.4
+输出：从输入中取特定的部分</h4>
+<ol type="1">
+<li>将question作为一个向量，与document中的单词计算注意力</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230411152959409.png" alt="image-20230411152959409" style="zoom:80%;" /></p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230411153153376.png" alt="image-20230411153153376" style="zoom:80%;" /></p>
+<h4 id="输出另一个序列">7.2.1.5 输出：另一个序列</h4>
+<blockquote>
+<p>方法一：</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230411153314137.png" alt="image-20230411153314137" style="zoom:80%;" /></p>
+<blockquote>
+<p>方法二：前面一部分做编码器，后面一部分做解码器，中间添加一个特殊字符<code>[SEP]</code></p>
+<p>需要有机制防止"偷看"</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230411153431207.png" alt="image-20230411153431207" style="zoom:80%;" /></p>
+<h3 id="微调预训练模型-fine-tune">7.2.2 微调预训练模型 fine-tune</h3>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230411153548436.png" alt="image-20230411153548436" style="zoom:80%;" /></p>
+<h4 id="直接对模型进行微调">7.2.2.1 直接对模型进行微调</h4>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230411153832143.png" alt="image-20230411153832143" style="zoom:80%;" /></p>
+<h4 id="在模型上面添加一个可变部分-adaptor">7.2.2.2
+在模型上面添加一个可变部分 Adaptor</h4>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230411153819676.png" alt="image-20230411153819676" style="zoom:80%;" /></p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230411153905240.png" alt="image-20230411153905240" style="zoom:80%;" /></p>
+<h4 id="调整参数的权重">7.2.2.3 调整参数的权重</h4>
+<ol type="1">
+<li>Weighted
+Features：学习一系列的权重，将每层的输出按权重组合起来，作为最后的输出
+<ol type="1">
+<li>如ELMo，它会训练出三个vector，一个是原本的vector，一个包含了之前的单词信息，一个包含了之后的单词信息。</li>
+<li>实际输出时，学习权重，将三个vector拼起来</li>
+</ol></li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230411154203818.png" alt="image-20230411154203818" style="zoom:80%;" /></p>
+<h2 id="如何得到预训练模型">7.3 如何得到预训练模型</h2>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230411154727634.png" alt="image-20230411154727634" style="zoom:80%;" /></p>
+<h3 id="通过机器翻译进行pre-training">7.3.1
+通过机器翻译进行Pre-training</h3>
+<blockquote>
+<p><strong>Context Vector：CoVe</strong></p>
+</blockquote>
+<ol type="1">
+<li>不能通过句子分类进行预训练：因为句子分类只需要句子中出现某些特定的组合即可分类，并不能用到所有的词</li>
+<li>而翻译需要句子中每个词的含义，进行一一对应</li>
+<li>问题：需要有一个Decoder，并且需要有配对的数据</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230411154930969.png" alt="image-20230411154930969" style="zoom:80%;" /></p>
+<h3 id="自监督学习-self-supervised-learning">7.3.2 自监督学习
+Self-supervised Learning</h3>
+<ol type="1">
+<li>监督 &lt;=&gt; 标签</li>
+<li>词向量的训练需要监督，但是标签是机器自己标记的，并不需要人去标记</li>
+<li><strong>自监督</strong>：从数据中拆出一部分，作为标签，监督另一部分的数据</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230411155120375.png" alt="image-20230411155120375" style="zoom:80%;" /></p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230411155454429.png" alt="image-20230411155454429" style="zoom:80%;" /></p>
+<h3 id="如何让一部分的数据作为监督信号masking-input">7.3.3
+如何让一部分的数据作为监督信号：Masking Input</h3>
+<blockquote>
+<p><strong>BERT</strong></p>
+</blockquote>
+<ol type="1">
+<li>将某个token掩盖掉，让模型还原这个词
+<ol type="1">
+<li>带还原的词就是监督信号</li>
+</ol></li>
+<li>有时不是直接mask掉某个token，而是将这个token换为另一个token</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230411155828761.png" alt="image-20230411155828761" style="zoom:80%;" /></p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230411155709403.png" alt="image-20230411155709403" style="zoom:80%;" /></p>
+<h3 id="xlnet">7.3.4 XLNet</h3>
+<blockquote>
+<p>随机将某些传递边删除</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230411160020222.png" alt="image-20230411160020222" style="zoom:80%;" /></p>
+<h3 id="预测下一个token">7.3.5 预测下一个token</h3>
+<blockquote>
+<p>用Transformer的编码器预测下一个token</p>
+<ol type="1">
+<li>因此输入的时候会将输入w1与输出w2同时送进去</li>
+<li>因此需要在模型的传递时，不让w2影响w1的输出，防止模型选择直接将w2输出</li>
+</ol>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230411160042897.png" alt="image-20230411160042897" style="zoom:80%;" /></p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230411160111851.png" alt="image-20230411160111851" style="zoom:80%;" /></p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230411160156572.png" alt="image-20230411160156572" style="zoom:80%;" /></p>
+<h3 id="用bert编码器做生成任务">7.3.6 用BERT编码器做生成任务</h3>
+<blockquote>
+<p>MASS / BART</p>
+<ol type="1">
+<li>输入的x是带噪音的</li>
+<li>要求输出正确的x</li>
+</ol>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230411160350598.png" alt="image-20230411160350598" style="zoom:80%;" /></p>
+<blockquote>
+<p>MASS：</p>
+<ol type="1">
+<li>将某个token遮盖住</li>
+</ol>
+<p>BART：5种方法破坏输入</p>
+<ol type="1">
+<li>将某个token遮盖住</li>
+<li>删除某个token</li>
+<li>permutation：将输入和输出交换</li>
+<li>rotation：将输出的某些部分放到输入里面</li>
+<li>text infilling：删除某些token并用mask替代他们</li>
+</ol>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230411160520450.png" alt="image-20230411160520450" style="zoom:80%;" /></p>
+<p>翻译时，由于结果是同时输出的，因此可能会出现"哈好"、"你喽"之类的错误输出</p>
+<ol type="1">
+<li>将第一次输出的结果，放入模型中进行评估，将错误的词进行mask，然后再放入BERT中进行生成</li>
+<li>重复这一过程，直到结果较好</li>
+</ol>
+<h3 id="unilm">7.3.7 UniLM</h3>
+<blockquote>
+<p>用一个模型将BERT、GPT、BART/MASS结合起来</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230418134357052.png" alt="image-20230418134357052" style="zoom:80%;" /></p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230418134337390.png" alt="image-20230418134337390" style="zoom:80%;" /></p>
+<h3 id="electra">7.3.8 ELECTRA</h3>
+<blockquote>
+<p><strong>Efficiently Learning an Encoder that Classifies Token
+Replacements Accurately (ELECTRA)</strong></p>
+<p>判断输入中的某个词是否被修改过</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230418134519790.png" alt="image-20230418134519790" style="zoom:80%;" /></p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230418134711495.png" alt="image-20230418134711495" style="zoom:80%;" /></p>
+<h3 id="sentence-level">7.3.9 Sentence Level</h3>
+<blockquote>
+<p>进行语句级别的预训练</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230418134942168.png" alt="image-20230418134942168" style="zoom:80%;" /></p>
+<h2 id="bert的变种">7.4 BERT的变种</h2>
+<h3 id="albert">7.4.1 ALBERT</h3>
+<p>减小BERT的参数</p>
+<blockquote>
+<p>将词向量先做降维，在用的时候再升维，存储只存储降维后的向量</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230418135231884.png" alt="image-20230418135231884" style="zoom:80%;" /></p>
+<blockquote>
+<p>不同层之间共享参数</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230418135303211.png" alt="image-20230418135303211" style="zoom:80%;" /></p>
+<blockquote>
+<p>语句级别的预训练任务：判断句子的顺序</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230418135405316.png" alt="image-20230418135405316" style="zoom:80%;" /></p>
+<h1
+id="八使用高效transformer建模长句子">八、使用高效Transformer建模长句子</h1>
+<blockquote>
+<p>文档级别的语言建模</p>
+</blockquote>
+<h2 id="transformer-xl">8.1 Transformer-XL</h2>
+<p><strong>Transformer-XL</strong> : Truncated BPTT + Transformer</p>
+<ol type="1">
+<li>将文章分解为一块一块的</li>
+<li>每一层均可以向前看一步</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230418141103223.png" alt="image-20230418141103223" style="zoom:80%;" /></p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230418141118933.png" alt="image-20230418141118933" style="zoom:80%;" /></p>
+<h2 id="优化self-attention">8.2 优化Self-attention</h2>
+<p>设句子的长度为N，则注意力计算需要进行N*N次，因为每个词均需要对所有剩下的次进行一次自注意力判断</p>
+<blockquote>
+<p>Transformer的快与慢：当显存足够时，计算是很快的；当显存不足时，需要使用很多方法模拟显存足够的情况。类似于C中的大整数乘法需要用一个数组模拟</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230418141449470.png" alt="image-20230418141449470" style="zoom:80%;" /></p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230418143730478.png" alt="image-20230418143730478" style="zoom:80%;" /></p>
+<h3 id="sparse-attention少算一部分">8.2.1 Sparse
+Attention：少算一部分</h3>
+<h4 id="heuristic启发式的设计计算方法以减少计算量">8.2.1.1
+Heuristic：启发式的，设计计算方法以减少计算量</h4>
+<ol type="1">
+<li><p>Local Attention：设置window size，每个词只能看到与它相邻的词</p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230418141804543.png" alt="image-20230418141804543" style="zoom:80%;" /></p></li>
+<li><p>Stride Attention：跳着做自注意力</p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230418142049314.png" alt="image-20230418142049314" style="zoom:80%;" /></p></li>
+<li><p>Global Attention：每个词均与Global计算自注意力</p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230418142242502.png" alt="image-20230418142242502" style="zoom:80%;" /></p></li>
+<li><p>其他方法：</p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230418142426287.png" alt="image-20230418142426287" style="zoom:80%;" /></p></li>
+<li><p>Sparse Transformers</p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230418142642949.png" alt="image-20230418142642949" style="zoom:80%;" /></p></li>
+<li><p>Compressive Transformers</p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230418142654990.png" alt="image-20230418142654990" style="zoom:80%;" /></p></li>
+<li><p>Adaptive Span Transformers</p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230418142705882.png" alt="image-20230418142705882" style="zoom:80%;" /></p></li>
+</ol>
+<h4 id="clustering聚类">8.2.1.2 Clustering：聚类</h4>
+<blockquote>
+<p>如：Reformer</p>
+</blockquote>
+<p>估计自注意力的计算结果，只考虑结果较大的部分，较小的部分直接设成0</p>
+<ol type="1">
+<li>当query和key比较像的时候，attention比较大</li>
+<li>因此可以先做聚类，分为几个类，然后在类内进行自注意力计算</li>
+<li><strong>LSH</strong>：学习一个Hash函数，让长得像的东西离得比较近</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230418143111866.png" alt="image-20230418143111866" style="zoom:80%;" /></p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230418143221160.png" alt="image-20230418143221160" style="zoom:80%;" /></p>
+<h4 id="learnable">8.2.1.3 Learnable：</h4>
+<blockquote>
+<p>如：Sinkhorn</p>
+</blockquote>
+<ol type="1">
+<li>按照query，把key按照相关性排序，排序的结果就是自注意力的结果</li>
+<li>需要学习一个排序函数，函数是一个神经网络</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230418143925108.png" alt="image-20230418143925108" style="zoom:80%;" /></p>
+<h4 id="representative-key">8.2.1.4 Representative key</h4>
+<blockquote>
+<p>如：Linformer</p>
+</blockquote>
+<ol type="1">
+<li>注意力矩阵是一个低秩的矩阵，有很多冗余信息</li>
+<li>query只和有代表性的key进行注意力计算</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230418144235584.png" alt="image-20230418144235584" style="zoom:80%;" /></p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230418144637207.png" alt="image-20230418144637207" style="zoom:80%;" /></p>
+<h3 id="attention-approximation">8.2.2 Attention Approximation</h3>
+<p>注意力的计算方法：本质上是矩阵乘法，而矩阵乘法满足结合律，可以先计算V×K<sup>T</sup></p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230418144935443.png" alt="image-20230418144935443" style="zoom:80%;" /></p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230418145135070.png" alt="image-20230418145135070" style="zoom:80%;" /></p>
+<p>但是由于中间有一步softmax，实际上是不能直接这样计算的</p>
+<ol type="1">
+<li>需要找到一个函数Φ，使得Φ(K×Q)=Φ(K)×Φ(Q)：等变函数</li>
+<li>用神经网络拟合这个函数</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230418145443421.png" alt="image-20230418145443421" style="zoom:80%;" /></p>
+<blockquote>
+<p>Low-rank Approximation</p>
+<ol type="1">
+<li>选出代表性的K和Q，计算注意力，用计算出的结果重建剩下的KQ计算结果</li>
+<li>如已知Q1 * K5，Q4 * K1，Q1 * K1，可以重建出Q4 * K5</li>
+</ol>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230418145703875.png" alt="image-20230418145703875" style="zoom:80%;" /></p>
+<h3 id="attention-free">8.2.3 Attention free</h3>
+<h4 id="synthesizer">8.2.3.1 Synthesizer</h4>
+<p>将attention score作为待学习的参数，固定下来，而不是每次重新计算</p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230418150305857.png" alt="image-20230418150305857" style="zoom:80%;" /></p>
+<h4 id="其他attention-free方法">8.2.3.2 其他Attention-free方法</h4>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230418150540689.png" alt="image-20230418150540689" style="zoom:80%;" /></p>
+<h2 id="如何评估文档模型">8.3 如何评估文档模型</h2>
+<ol type="1">
+<li>Perplexity：
+<ol type="1">
+<li>计算模型生成整个句子的概率</li>
+<li>加log之后，可以变为生成整个句子每个单词的期望，由于概率均为负数，需要加一个负号</li>
+<li>缺点：如果预测错高频词，则惩罚很大，从而会忽略掉低频词的贡献</li>
+</ol></li>
+<li>sentence scrambling
+<ol type="1">
+<li>将整个文档打乱，让模型对句子进行排序</li>
+</ol></li>
+<li>Final sentence prediction
+<ol type="1">
+<li>给定一个故事，让模型预测故事的结尾</li>
+</ol></li>
+<li>Final word prediction
+<ol type="1">
+<li>给定一个文章，让模型预测文章的主题</li>
+</ol></li>
+</ol>
+<h1
+id="九prompting-and-data-efficient-fine-tuning-for-pretrained-lms">九、Prompting
+and Data-Efficient Fine-tuning for Pretrained LMs</h1>
+<p>NLP技术发展的四个阶段</p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230425143050215.png" alt="image-20230425143050215" style="zoom:80%;" /></p>
+<p>Prompt Engineering 特点：</p>
+<ol type="1">
+<li>NLP任务完全依赖于预训练语言模型LM</li>
+<li>不对LM进行调整，而是输入不同的提示Prompt，让它执行不同的任务</li>
+<li>需要设计比较好的Prompt</li>
+</ol>
+<p>Prompt Engineering 的过程：</p>
+<ol type="1">
+<li>设计prompt template</li>
+<li>选择语言模型</li>
+<li>将输出映射到想要的结果中</li>
+<li>多Prompt映射</li>
+</ol>
+<blockquote>
+<p>示例：情感分类</p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230425143543627.png" alt="image-20230425143543627" style="zoom:80%;" /></p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230425143701236.png" alt="image-20230425143701236" style="zoom:80%;" /></p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230425143732274.png" alt="image-20230425143732274" style="zoom:80%;" /></p>
+</blockquote>
+<h2 id="选择预训练模型">9.1 选择预训练模型</h2>
+<h3 id="预训练模型的类型">9.1.1 预训练模型的类型</h3>
+<ol type="1">
+<li>生成式模型：GPT</li>
+<li>遮罩式模型：BERT，RoBERTa</li>
+<li>Prefix模型：UniLM，UniLM2</li>
+<li>Encoder-Decoder：T5，MASS，BART</li>
+</ol>
+<blockquote>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230425144129416.png" alt="image-20230425144129416" style="zoom:80%;" /></p>
+</blockquote>
+<h3 id="根据目标任务选择语言模型">9.1.2 根据目标任务选择语言模型</h3>
+<ol type="1">
+<li>遮罩式模型：目标输出非常简单，通常只有一个token</li>
+<li>Prefix LM / Encoder-Decoder：基于生成的信息抽取和问答</li>
+</ol>
+<blockquote>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230425144258348.png" alt="image-20230425144258348" style="zoom:80%;" /></p>
+</blockquote>
+<h3 id="设计合适的prompt-template">9.1.3 设计合适的prompt template</h3>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230425144357586.png" alt="image-20230425144357586" style="zoom:80%;" /></p>
+<p>根据提示的形式分类：</p>
+<ol type="1">
+<li><p>Cloze提示：在文本中间挖空</p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230425144454062.png" alt="image-20230425144454062" style="zoom:80%;" /></p></li>
+<li><p>Prefix提示：提示是答案的前缀</p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230425144508800.png" alt="image-20230425144508800" style="zoom:80%;" /></p></li>
+</ol>
+<p>根据设计者：</p>
+<ol type="1">
+<li><p>Hand-Crafted：人工设计</p></li>
+<li><p>Automated Search：自动设计</p>
+<ol type="1">
+<li><p>在离散空间内搜索：词空间</p>
+<ol type="1">
+<li><p>Prompt Mining：启发式方法生成prompt</p>
+<ol type="1">
+<li>Middle-word
+Prompts：已知两个词之间有关系，用这两个词对所有输入做过滤，他们之间出现的所有句子，可能会表示这两个词之间的联系，如[姚明]<code>出生在</code>[上海]</li>
+<li>Dependency-based Prompts：在语法树上找这两个词之间的关系</li>
+</ol></li>
+<li><p>Prompt Paraphrasing</p></li>
+<li><p>Gradient-based
+Search：基于梯度的搜索。给定输入x和预期输出y，随机填进prompt，如果没有得到y，则将梯度回传，根据梯度修改prompt</p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230425145250183.png" alt="image-20230425145250183" style="zoom:80%;" /></p></li>
+</ol></li>
+<li><p>在连续空间内搜索：向量空间</p></li>
+</ol></li>
+</ol>
+<h3 id="将lm的输出映射到目标任务的输出上">9.1.4
+将LM的输出映射到目标任务的输出上</h3>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230425145822062.png" alt="image-20230425145822062" style="zoom:80%;" /></p>
+<p>人工设计：</p>
+<ol type="1">
+<li>Unconstrained Space：不对词典进行约束</li>
+<li>Constrained Space：只保留某些词对答案有贡献</li>
+</ol>
+<p>自动搜索：(离散空间)</p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230425150118652.png" alt="image-20230425150118652" style="zoom:80%;" /></p>
+<h3 id="多提示学习">9.1.5 多提示学习</h3>
+<blockquote>
+<p>Prompt Ensembling：设计多个类似的提示，将结果集成起来</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230425150350065.png" alt="image-20230425150350065" style="zoom:80%;" /></p>
+<blockquote>
+<p>Prompt Augmentation：提示增强，先给几个成功的例子，然后再提问</p>
+<ol type="1">
+<li>核心步骤：成功例子的选择、顺序</li>
+</ol>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230425150445963.png" alt="image-20230425150445963" style="zoom:80%;" /></p>
+<blockquote>
+<p>Prompt Composition：将多个问题组合起来一起问</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230425150842018.png" alt="image-20230425150842018" style="zoom:80%;" /></p>
+<blockquote>
+<p>Prompt Decomposition：问题过于复杂时，将问题分解为多个子问题</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230425150912054.png" alt="image-20230425150912054" style="zoom:80%;" /></p>
+<h2 id="data-efficient-fine-tuning">9.2 Data-Efficient Fine-tuning</h2>
+<p>Fine-tuning的过程：对每一层的参数进行修改</p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230425151741193.png" alt="image-20230425151741193" style="zoom:80%;" /></p>
+<h3 id="adapter">9.2.1 Adapter</h3>
+<blockquote>
+<p>在模型中添加进一个Adapter层，微调时只改Adapter</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230425151839155.png" alt="image-20230425151839155" style="zoom:80%;" /></p>
+<h3 id="lora">9.2.2 LoRA</h3>
+<blockquote>
+<p>在旁路中添加一个残差部分</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230425151914487.png" alt="image-20230425151914487" style="zoom:80%;" /></p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230425152226724.png" alt="image-20230425152226724" style="zoom:80%;" /></p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230425152244750.png" alt="image-20230425152244750" style="zoom:80%;" /></p>
+<h3 id="prefixprompt-tuning">9.2.3 Prefix/Prompt Tuning</h3>
+<p>Prompt Tuning：只修改输入的提示</p>
+<p>Prefix Tuning：相当于模型的每一层都有一个提示需要被调</p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230425152604377.png" alt="image-20230425152604377" style="zoom:80%;" /></p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230425152622432.png" alt="image-20230425152622432" style="zoom:80%;" /></p>
+<h3 id="不同方法的比较">9.2.4 不同方法的比较</h3>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230425152857242.png" alt="image-20230425152857242" style="zoom:80%;" /></p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230425153042641.png" alt="image-20230425153042641" style="zoom:80%;" /></p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230425153109739.png" alt="image-20230425153109739" style="zoom:80%;" /></p>
+<h2 id="early-exit">9.3 Early Exit</h2>
+<p>在每一层添加一个分类器，可以在中间就停止计算：在精度不变的情况下减小计算量</p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230425153303456.png" alt="image-20230425153303456" style="zoom:80%;" /></p>
+<h2 id="训练策略">9.4 训练策略</h2>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230425153732016.png" alt="image-20230425153732016" style="zoom:80%;" /></p>
+<h2 id="半监督学习">9.5 半监督学习</h2>
+<p>有大量的数据，但是只有一部分有标签，让语言模型对数据打上标签</p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230425154105314.png" alt="image-20230425154105314" style="zoom:80%;" /></p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230425154119612.png" alt="image-20230425154119612" style="zoom:80%;" /></p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230425154131414.png" alt="image-20230425154131414" style="zoom:80%;" /></p>
+<h2 id="如何选择策略">9.6 如何选择策略</h2>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230425154234931.png" alt="image-20230425154234931" style="zoom:80%;" /></p>
+<h1 id="十深度强化学习-reinforcement-learning">十、深度强化学习
+Reinforcement Learning</h1>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230515211940385.png" alt="image-20230515211940385" style="zoom:80%;" /></p>
+<p>Reinforcement：</p>
+<ol type="1">
+<li>针对Decision Process</li>
+<li>计算很长一段时间后，才能获得reward，根据reward反思decision
+process</li>
+</ol>
+<h2 id="强化学习简介">10.1 强化学习简介</h2>
+<p>个体在环境基于的奖励或惩罚的刺激<strong>Reward</strong>下，逐步形成对刺激的预期，产生能获得最大利益的习惯性为<strong>Actions</strong></p>
+<ol type="1">
+<li>经验<strong>Experience</strong>：一系列的observation、action、reward，<span
+class="math inline">\(o_1,r_1,a_1,...,a_{t-1},o_t,r_t\)</span></li>
+<li>状态<strong>State</strong>：experience的总结，<span
+class="math inline">\(s_t=f(o_1,r_1,a_1,...,a_{t-1},o_t,r_t)\)</span></li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230515213533354.png" alt="image-20230515213533354" style="zoom:80%;" /></p>
+<h2 id="value-based-rl">10.2 Value-based RL</h2>
+<h3 id="q-learning">10.2.1 Q-Learning</h3>
+<ol type="1">
+<li>策略<span class="math inline">\(\pi\)</span>：即Agent</li>
+<li><span
+class="math inline">\(r_{t+i}\)</span>：经过i个时间后，期望得到的回报</li>
+<li><span
+class="math inline">\(\gamma\)</span>：理性，用于控制未来的期望回报对当前价值判断的影响，一般取值为<span
+class="math inline">\([0,1]\)</span></li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230515213822800.png" alt="image-20230515213822800" style="zoom:80%;" /></p>
+<blockquote>
+<p>Value迭代：可以通过蒙特卡洛搜索的方式实现迭代</p>
+<ol type="1">
+<li>随机生成一个策略</li>
+<li>然后根据策略模拟对局，根据实际得到的Reward更新策略</li>
+</ol>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230515215032973.png" alt="image-20230515215032973" style="zoom:80%;" /></p>
+<h3 id="深度强化学习">10.2.2 深度强化学习</h3>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230515220641479.png" alt="image-20230515220641479" style="zoom:80%;" /></p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230515220655097.png" alt="image-20230515220655097" style="zoom:80%;" /></p>
+<ol type="1">
+<li>反向传播算法失败：借鉴RNN的思想，修改hidden</li>
+<li>图像差异小：Experience
+Reply，每次随机传入几帧，而不是传入游戏的连续画面</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230515221855303.png" alt="image-20230515221855303" style="zoom:80%;" /></p>
+<h2 id="policy-based-rl">10.3 Policy-Based RL</h2>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230515222054847.png" alt="image-20230515222054847" style="zoom:80%;" /></p>
+<h3 id="机器人走迷宫带来的启发">10.3.1 机器人走迷宫带来的启发</h3>
+<p>以机器人走迷宫为例，图示为模型训练结束后，在该点的策略，得到的启发如下</p>
+<ol type="1">
+<li>Environment对最优策略有很大的影响</li>
+<li>Reward structure对最优策略有很大的影响</li>
+</ol>
+<blockquote>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230515222345643.png" alt="image-20230515222345643" style="zoom:80%;" /></p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230515222354601.png" alt="image-20230515222354601" style="zoom:80%;" /></p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230515222401888.png" alt="image-20230515222401888" style="zoom:80%;" /></p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230515222409133.png" alt="image-20230515222409133" style="zoom:80%;" /></p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230515222423781.png" alt="image-20230515222423781" style="zoom:80%;" /></p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230515222436877.png" alt="image-20230515222436877" style="zoom:80%;" /></p>
+</blockquote>
+<h3 id="神经网络-actor">10.3.2 神经网络 =&gt; Actor</h3>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230515222702782.png" alt="image-20230515222702782" style="zoom:80%;" /></p>
+<blockquote>
+<p>每次选择时，按照已知概率进行选择，如果得到了Reward，则提升该选择的概率</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230515223131660.png" alt="image-20230515223131660" style="zoom:80%;" /></p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230515223145827.png" alt="image-20230515223145827" style="zoom:80%;" /></p>
+<h2 id="valuepolicy">10.4 Value+Policy</h2>
+<blockquote>
+<p>Asynchronous Advantage Actor-Critic (A3C)</p>
+</blockquote>
+<h3 id="critic">10.4.1 Critic</h3>
+<p>Critic也是一个神经网络，给定一个actor <span
+class="math inline">\(\pi\)</span>，它会评价这个actor的表现如何</p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230515223244340.png" alt="image-20230515223244340" style="zoom:80%;" /></p>
+<h3 id="如何计算vpis">10.4.2 如何计算<span
+class="math inline">\(V^\pi(s)\)</span></h3>
+<blockquote>
+<p>使用蒙特卡洛搜索算法：Monte-Carlo，MC</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230515223441496.png" alt="image-20230515223441496" style="zoom:80%;" /></p>
+<blockquote>
+<p>直接评估两个状态的差值：Temporal-Difference，TD</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230515223518986.png" alt="image-20230515223518986" style="zoom: 80%;" /></p>
+<blockquote>
+<p>示例：MC vs TD</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230515223728204.png" alt="image-20230515223728204" style="zoom:80%;" /></p>
+<h2 id="model-based-rl">10.5 Model-based RL</h2>
+<p>输入：当前state</p>
+<p>输出：预测下一时刻的state</p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230516011525612.png" alt="image-20230516011525612" style="zoom:80%;" /></p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230516011810247.png" alt="image-20230516011810247" style="zoom:80%;" /></p>
+<p>Model-Based的优点：</p>
+<ol type="1">
+<li>更容易收集reward</li>
+<li>更容易迁移到其他任务</li>
+<li>只需要很少的supervised data</li>
+</ol>
+<p>Model-Based的缺点：</p>
+<ol type="1">
+<li>不能优化task的表示</li>
+<li>有时比学习一个policy更难</li>
+</ol>
+<h2 id="imitation-learning">10.6 Imitation Learning</h2>
+<p>有时候很难定义哪一种操作是更优的，如开车前往目的地，一个直接到达了目的地，另一个歪歪扭扭的到达了目的地，在到达目的地这个任务上，两者表现无法产生差异。因此需要一个第三方的标注/模型，告诉当前模型哪一种选择更优</p>
+<h3 id="behavior-cloning">10.6.1 Behavior Cloning</h3>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230516012532489.png" alt="image-20230516012532489" style="zoom:80%;" /></p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230516012521521.png" alt="image-20230516012521521" style="zoom:80%;" /></p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230516012543337.png" alt="image-20230516012543337" style="zoom:80%;" /></p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230516012551225.png" alt="image-20230516012551225" style="zoom:80%;" /></p>
+<h3 id="inverse-reinforcement-learning">10.6.2 Inverse Reinforcement
+Learning</h3>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230516012751872.png" alt="image-20230516012751872" style="zoom:80%;" /></p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230516012803851.png" alt="image-20230516012803851" style="zoom:80%;" /></p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230516012820233.png" alt="image-20230516012820233" style="zoom:80%;" /></p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230516012827042.png" alt="image-20230516012827042" style="zoom:80%;" /></p>
+<h1 id="十二图神经网络">十二、图神经网络</h1>
+<h2 id="基础图论">12.1 基础图论</h2>
+<h3 id="图的稀疏表达">12.1.1 图的稀疏表达</h3>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230523144447157.png" alt="image-20230523144447157" style="zoom:80%;" /></p>
+<h3 id="图上的操作">12.1.2 图上的操作</h3>
+<ol type="1">
+<li>Walk：从一个节点开始，走到另一个节点</li>
+<li>Path：不存在回头路的Walk</li>
+<li>Trail：存在回头路的Walk</li>
+<li>Cycle：Path的头尾相同</li>
+<li>Cricuit：多个Cycle的集合</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230523144642059.png" alt="image-20230523144642059" style="zoom:80%;" /></p>
+<h3 id="节点的度">12.1.3 节点的度</h3>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230523144857577.png" alt="image-20230523144857577" style="zoom:80%;" /></p>
+<h3 id="邻接矩阵">12.1.4 邻接矩阵</h3>
+<ol type="1">
+<li>对于无向图来说，邻接矩阵是对称的</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230523144956347.png" alt="image-20230523144956347" style="zoom:80%;" /></p>
+<h3 id="二分图-bipartite-graph">12.1.5 二分图 Bipartite Graph</h3>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230523145127459.png" alt="image-20230523145127459" style="zoom:80%;" /></p>
+<h2 id="图神经网络-gnn">12.2 图神经网络 GNN</h2>
+<blockquote>
+<p>Graph Neural Networks</p>
+</blockquote>
+<h3 id="node-embeddings">12.2.1 Node Embeddings</h3>
+<p>学习一个映射函数，将图映射为向量表达</p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230523145551723.png" alt="image-20230523145551723" style="zoom:80%;" /></p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230523145845194.png" alt="image-20230523145845194" style="zoom:80%;" /></p>
+<h3 id="naive-approach">12.2.2 Naive Approach</h3>
+<ol type="1">
+<li>将邻接矩阵和节点的特征组合到一起</li>
+<li>如果节点不存在特征，则通过编码设置节点的特征</li>
+</ol>
+<p>缺点：</p>
+<ol type="1">
+<li>输入较大</li>
+<li>限制输入的维度</li>
+<li>顺序也被视为了一种特征</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230523145952603.png" alt="image-20230523145952603" style="zoom:80%;" /></p>
+<h2 id="图卷积网络-gcn">12.3 图卷积网络 GCN</h2>
+<blockquote>
+<p>Graph Convolutional Networks</p>
+</blockquote>
+<h3 id="图卷积操作">12.3.1 图卷积操作</h3>
+<p>将邻居的信息加权，添加到自己的特征中</p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230523150503696.png" alt="image-20230523150503696" style="zoom:80%;" /></p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230523150516874.png" alt="image-20230523150516874" style="zoom:80%;" /></p>
+<h3 id="相关定义">12.3.2 相关定义</h3>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230523150606540.png" alt="image-20230523150606540" style="zoom:80%;" /></p>
+<h3 id="idea聚合邻居的信息">12.3.3 Idea：聚合邻居的信息</h3>
+<ol type="1">
+<li>将邻居的信息，加权聚合到当前节点中</li>
+<li>多次卷积时，相当于扩大了感受野
+<ol type="1">
+<li>如第二次卷积时，添加了邻居的邻居的信息</li>
+</ol></li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230523150733220.png" alt="image-20230523150733220" style="zoom:80%;" /></p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230523151105236.png" alt="image-20230523151105236" style="zoom:80%;" /></p>
+<ol type="1">
+<li>每一个节点都要生成一个计算图</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230523151116763.png" alt="image-20230523151116763" style="zoom:80%;" /></p>
+<ol type="1">
+<li>计算方法：每次将邻居的信息加权，然后加上自己的信息，过一个激活函数，得到<span
+class="math inline">\(h_v^k\)</span></li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230523151238084.png" alt="image-20230523151238084" style="zoom:80%;" /></p>
+<h3 id="无监督训练">12.3.4 无监督训练</h3>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230523151432938.png" alt="image-20230523151432938" style="zoom:80%;" /></p>
+<h3 id="有监督训练">12.3.5 有监督训练</h3>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230523151514049.png" alt="image-20230523151514049" style="zoom:80%;" /></p>
+<h3 id="模型的设计">12.3.6 模型的设计</h3>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230523151604714.png" alt="image-20230523151604714" style="zoom:80%;" /></p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230523151614379.png" alt="image-20230523151614379" style="zoom:80%;" /></p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230523151626219.png" alt="image-20230523151626219" style="zoom:80%;" /></p>
+<ol type="1">
+<li>由于只学习了投影操作，因此可以很容易的新增一个节点，使用相同方式计算该节点的特征</li>
+<li>由于参数变化会导致所有节点的特征变化，因此训练和推理的成本都很大</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230523152100466.png" alt="image-20230523152100466" style="zoom:80%;" /></p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230523152112932.png" alt="image-20230523152112932" style="zoom:80%;" /></p>
+<h2 id="spectral-based-gnn">12.4 Spectral-based GNN</h2>
+<h3 id="变换编码">12.4.1 变换编码</h3>
+<ol type="1">
+<li>将一个波形，分解为若干个已知波形的组合</li>
+<li>只需要记录该波形在每个波形分量上的强度即可</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230523152336938.png" alt="image-20230523152336938" style="zoom:80%;" /></p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230523152643876.png" alt="image-20230523152643876" style="zoom:80%;" /></p>
+<h3 id="卷积定理">12.4.2 卷积定理</h3>
+<ol type="1">
+<li>时域上的卷积 &lt;=&gt; 频域上的乘积(逐位相乘)</li>
+<li>因此计算卷积时，可以将原图像和卷积核先进行FFT变换转换为频率空间，然后再将结果进行乘积，得到两者进行卷积操作后的频率空间表示</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230523152736538.png" alt="image-20230523152736538" style="zoom:80%;" /></p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230523153314026.png" alt="image-20230523153314026" style="zoom:80%;" /></p>
+<h3 id="spectral-based-convolution">12.4.3 Spectral-Based
+Convolution</h3>
+<ol type="1">
+<li>对图、卷积核分别进行傅里叶变换，然后相乘，最后再进行一次逆傅里叶变换，得到图和卷积核的卷积结果</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230523153625210.png" alt="image-20230523153625210" style="zoom:80%;" /></p>
+<h3 id="spectral-graph-theory">12.4.4 Spectral Graph Theory</h3>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230523153603529.png" alt="image-20230523153603529" style="zoom:80%;" /></p>
+<ol type="1">
+<li><span class="math inline">\(D\)</span>：degree
+matrix，表示每个点的邻居个数</li>
+<li><span class="math inline">\(A\)</span>：邻接矩阵</li>
+<li><span class="math inline">\(L=D-A\)</span>：拉普拉斯矩阵</li>
+<li>对<span class="math inline">\(L\)</span>进行分解，<span
+class="math inline">\(L=UΛU^T\)</span></li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230523153839689.png" alt="image-20230523153839689" style="zoom:80%;" /></p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230523153852457.png" alt="image-20230523153852457" style="zoom:80%;" /></p>
+<h2 id="gcn的缺点">12.5 GCN的缺点</h2>
+<h3 id="图的同构问题">12.5.1 图的同构问题</h3>
+<p>图结构 =&gt; 特征向量 的投影不是一一对应的</p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230530134439036.png" alt="image-20230530134439036" style="zoom:80%;" /></p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230530134407243.png" alt="image-20230530134407243" style="zoom:80%;" /></p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230530134450017.png" alt="image-20230530134450017" style="zoom:80%;" /></p>
+<h3 id="gin做邻居节点的aggregation">12.5.2
+GIN：做邻居节点的aggregation</h3>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230530134527531.png" alt="image-20230530134527531" style="zoom:80%;" /></p>
+<h3 id="图的同构判断-图着色问题">12.5.3 图的同构判断 &lt;=&gt;
+图着色问题</h3>
+<p>K-WL算法：</p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230530135358522.png" alt="image-20230530135358522" style="zoom:80%;" /></p>
+<p>CW网络</p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230530135417371.png" alt="image-20230530135417371" style="zoom:80%;" /></p>
+<h1 id="十三知识图谱">十三、知识图谱</h1>
+<p>衡量一个知识图谱的好坏：</p>
+<ol type="1">
+<li>正确性 correctness</li>
+<li>覆盖性 coverage</li>
+<li>新鲜度 freshness &amp; usage</li>
+</ol>
+<h2 id="什么是知识图谱">13.1 什么是知识图谱</h2>
+<p>从数据到知识</p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230530140822050.png" alt="image-20230530140822050" style="zoom:80%;" /></p>
+<p>什么是知识图谱：</p>
+<ol type="1">
+<li>用图来表示知识
+<ol type="1">
+<li>可以发现邻居之间的关系</li>
+<li>图是稀疏的，如果用数据库存，则会需要存一个邻接矩阵，有大量的浪费</li>
+</ol></li>
+<li>图的节点 =&gt; entities，表示当前知识关心的对象</li>
+<li>图的边 =&gt; 表述不同对象之间的联系
+<ol type="1">
+<li>attributes：连接实体、属性</li>
+<li>relationships：连接两个实体</li>
+<li>Ontology(本体)：表述图的定义域，如节点都有哪些取值、关系有哪些类型</li>
+</ol></li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230530141510477.png" alt="image-20230530141510477" style="zoom:80%;" /></p>
+<p>知识图谱与数据库类似，是一个架构，具体存什么东西，由定义决定</p>
+<h2 id="如何构建一个知识图谱">13.2 如何构建一个知识图谱</h2>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230530143757069.png" alt="image-20230530143757069" style="zoom:80%;" /></p>
+<h3 id="人工构建">13.2.1 人工构建</h3>
+<ol type="1">
+<li>更新成本高</li>
+<li>越到后期越难更新，因为需要检查与之前知识之间的关系</li>
+</ol>
+<h4 id="wordnet">13.2.1.1 WordNet</h4>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230530143740359.png" alt="image-20230530143740359" style="zoom:80%;" /></p>
+<h4 id="babelnet">13.2.1.2 BabelNet</h4>
+<blockquote>
+<p>多语言</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230530143831235.png" alt="image-20230530143831235" style="zoom:80%;" /></p>
+<h4 id="cyc">13.2.1.3 Cyc</h4>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230530144055717.png" alt="image-20230530144055717" style="zoom:80%;" /></p>
+<h3 id="从半结构化数据中抽取信息">13.2.2 从半结构化数据中抽取信息</h3>
+<h4 id="dbpedia">13.2.2.1 DBPedia</h4>
+<blockquote>
+<p>直接使用维基百科的info，使用小程序将info的同义标签映射为一种表达</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230530144224228.png" alt="image-20230530144224228" style="zoom:80%;" /></p>
+<h4 id="freebase">13.2.2.2 Freebase</h4>
+<blockquote>
+<p>从Wikipedia中抽取 + 人工标注</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230530144750201.png" alt="image-20230530144750201" style="zoom:80%;" /></p>
+<h4 id="wikidata">13.2.2.3 WikiData</h4>
+<blockquote>
+<p>SPARQL：用于查询语义网的Query Language</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230530144806815.png" alt="image-20230530144806815" style="zoom:80%;" /></p>
+<h3 id="从非结构化数据中通过nlp技术得到结构化的知识图谱">13.2.3
+从非结构化数据中，通过NLP技术，得到结构化的知识图谱</h3>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230530145446852.png" alt="image-20230530145446852" style="zoom:80%;" /></p>
+<h4 id="mention-detection提及检测">13.2.3.1 Mention
+Detection：提及检测</h4>
+<p>NER：命名实体识别，用于识别一些专有名词</p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230530145747183.png" alt="image-20230530145747183" style="zoom:80%;" /></p>
+<p>几种实现途径：</p>
+<ol type="1">
+<li>基于规则
+<ol type="1">
+<li>不需要训练数据</li>
+<li>但是需要由一些特定的知识</li>
+</ol></li>
+<li>非监督&amp;迭代方法
+<ol type="1">
+<li>先收集一些种子规则，然后标注一些数据，训练一个模型，提炼新的规则</li>
+<li>然后再标注数据，训练模型，提炼规则......</li>
+</ol></li>
+<li>特征工程</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230530150421541.png" alt="image-20230530150421541" style="zoom:80%;" /></p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230530151005436.png" alt="image-20230530151005436" style="zoom:80%;" /></p>
+<p><strong>Deep Learning For NER</strong></p>
+<ol type="1">
+<li>分类数：IBOE×PER/LOC：8类</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230530152036919.png" alt="image-20230530152036919" style="zoom:80%;" /></p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230530152043801.png" alt="image-20230530152043801" style="zoom:80%;" /></p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230530152214365.png" alt="image-20230530152214365" style="zoom:80%;" /></p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230530152225092.png" alt="image-20230530152225092" style="zoom:80%;" /></p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230530152233536.png" alt="image-20230530152233536" style="zoom:80%;" /></p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230530152448093.png" alt="image-20230530152448093" style="zoom:80%;" /></p>
+<h4 id="multi-task-learning-多任务学习">13.2.3.2 Multi-task Learning
+多任务学习</h4>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230530152513818.png" alt="image-20230530152513818" style="zoom:80%;" /></p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230530153223070.png" alt="image-20230530153223070" style="zoom:80%;" /></p>
+<h4 id="knowledge-distillation-知识蒸馏">13.2.3.3 Knowledge Distillation
+知识蒸馏</h4>
+<p>将大模型的知识，教给小模型</p>
+<ol type="1">
+<li>可以收集很多未标注数据，交给大模型生成标签，然后交给小模型训练</li>
+<li>小模型可以模仿大模型的输出，也可以模仿大模型的中间状态</li>
+<li>小模型学习的是大模型的logists，即经过softmax之后的结果</li>
+<li>在蒸馏的时候，要调整温度<span
+class="math inline">\(\tau\)</span>，温度越大，logist越平缓</li>
+</ol>
+<p>多实例学习MIL：抑制噪音</p>
+<ol type="1">
+<li>假设一种化学式有ABC三种同分异构体，A是有效成分，但是生产的药品都是混合物。数据只能表示某个混合物是否有效，但我们的目标是找出有效成分。</li>
+<li>假设当前的数据为：AB有效，AC有效，BC无效，在训练时，从包里随机挑选一种成分作为输入，给出对应的标签，让神经网络学习。</li>
+<li>由于是随机采样，每个成分被选中的概率相同，但是药物是因为含有A而有效，从而模型会微微偏向A有效，然后在下一次采样中，模型会更加倾向于选A。</li>
+<li>通过多轮迭代，强化这种倾向，最终模型会学习出来A是有效成分</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230530153345099.png" alt="image-20230530153345099" style="zoom:80%;" /></p>
+<h4 id="mention-disambiguation提及消歧">13.2.3.3 Mention
+Disambiguation：提及消歧</h4>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230530155007930.png" alt="image-20230530155007930" style="zoom:80%;" /></p>
+<p><strong>Entity Linking</strong></p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230530155115809.png" alt="image-20230530155115809" style="zoom:80%;" /></p>
+<p>输入：文档</p>
+<p>输出：mention及其对应的title</p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230530155138393.png" alt="image-20230530155138393" style="zoom:80%;" /></p>
+<ol type="1">
+<li>找到文档中的mention
+<ol type="1">
+<li>每个n元组都是可能的mention</li>
+<li>基础过滤：删除chunk(固定词组)、stop word</li>
+<li>基于统计的过滤</li>
+<li>对mention进行扩展：词根化、将缩写变成全拼/全拼变成缩写</li>
+</ol></li>
+<li>尽可能全的找到与mention有关的title
+<ol type="1">
+<li>基于Name Dictionary：通过维基百科/数据挖掘
+<ol type="1">
+<li>Redirect pages：将不同的词重定向到同一个页面</li>
+<li>Disambiguation pages：一词多义</li>
+<li>Bold phrases from the first paragraphs,
+hyperlinks：第一段的粗体、超链接</li>
+</ol></li>
+<li>基于搜索引擎</li>
+</ol></li>
+<li>局部Inference</li>
+<li>全局Inference</li>
+<li>空聚类</li>
+</ol>
+<h4 id="实体链接任务">13.2.3.4 实体链接任务</h4>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20230606143431589.png" alt="image-20230606143431589" style="zoom:80%;" /></p>
+<h4 id="entity-typing实体类别">13.2.3.5 Entity Typing：实体类别</h4>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="unicorn2022.github.io">华丰夏</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://hzoi-unicorn.top/2023/02/28/%E4%B8%93%E4%B8%9A%E8%AF%BE%E7%AC%94%E8%AE%B0/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86%E5%AF%BC%E8%AE%BA/">https://hzoi-unicorn.top/2023/02/28/专业课笔记/自然语言处理导论/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://hzoi-unicorn.top" target="_blank">华风夏韵</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E4%B8%93%E4%B8%9A%E8%AF%BE/">专业课</a></div><div class="post_share"><div class="social-share" data-image="/img/avatar.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/03/01/%E4%B8%93%E4%B8%9A%E8%AF%BE%E7%AC%94%E8%AE%B0/%E5%A4%9A%E5%AA%92%E4%BD%93%E6%8A%80%E6%9C%AF/" title="多媒体技术"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">多媒体技术</div></div></a></div><div class="next-post pull-right"><a href="/2023/02/27/%E4%B8%93%E4%B8%9A%E8%AF%BE%E7%AC%94%E8%AE%B0/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/" title="编译原理"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">编译原理</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2023/07/19/%E6%8C%87%E4%BB%A4%E5%90%88%E9%9B%86/cmake%E6%8C%87%E4%BB%A4%E5%90%88%E9%9B%86/" title="cmake指令合集"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-07-19</div><div class="title">cmake指令合集</div></div></a></div><div><a href="/2023/07/15/%E6%8C%87%E4%BB%A4%E5%90%88%E9%9B%86/cmake%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="cmake学习笔记"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-07-15</div><div class="title">cmake学习笔记</div></div></a></div><div><a href="/2023/03/01/%E4%B8%93%E4%B8%9A%E8%AF%BE%E7%AC%94%E8%AE%B0/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" title="人工智能"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-03-01</div><div class="title">人工智能</div></div></a></div><div><a href="/2023/03/01/%E4%B8%93%E4%B8%9A%E8%AF%BE%E7%AC%94%E8%AE%B0/%E5%A4%9A%E5%AA%92%E4%BD%93%E6%8A%80%E6%9C%AF/" title="多媒体技术"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-03-01</div><div class="title">多媒体技术</div></div></a></div><div><a href="/2023/02/27/%E4%B8%93%E4%B8%9A%E8%AF%BE%E7%AC%94%E8%AE%B0/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/" title="编译原理"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-02-27</div><div class="title">编译原理</div></div></a></div><div><a href="/2022/09/15/%E4%B8%93%E4%B8%9A%E8%AF%BE%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/" title="计算机图形学"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-09-15</div><div class="title">计算机图形学</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">华丰夏</div><div class="author-info__description">一切都是上天最好的安排</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">48</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">4</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/unicorn2022"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/unicorn2022" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:496300118@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">愿你前行的道路有群星闪耀。愿你留下的足迹有百花绽放。你即是上帝的馈赠，世界因你而瑰丽。</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E5%85%A8%E8%BF%9E%E6%8E%A5%E5%89%8D%E9%A6%88%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C-fcfn"><span class="toc-text">一、全连接前馈神经网络 FCFN</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E5%AF%BB%E6%89%BE%E7%9B%AE%E6%A0%87%E5%87%BD%E6%95%B0"><span class="toc-text">1.1 机器学习 &#x3D;&gt; 寻找目标函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%AE%9A%E4%B9%89%E5%87%BD%E6%95%B0%E9%9B%86%E5%90%88"><span class="toc-text">1.2 神经网络：定义函数集合</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A5%9E%E7%BB%8F%E5%85%83-neuron"><span class="toc-text">1.2.1 神经元 Neuron</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C"><span class="toc-text">1.2.2 神经网络</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%A8%E8%BF%9E%E6%8E%A5%E5%89%8D%E9%A6%88%E7%BD%91%E7%BB%9C-fcfn"><span class="toc-text">1.2.3 全连接前馈网络 FCFN</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0"><span class="toc-text">1.2.4 深度学习</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81%E6%B7%B1%E5%BA%A6"><span class="toc-text">1.2.5 为什么需要深度</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BE%E8%AE%A1%E8%AF%84%E4%BB%B7%E5%87%BD%E6%95%B0"><span class="toc-text">1.3 设计评价函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%AD%E7%BB%83%E6%95%B0%E6%8D%AE"><span class="toc-text">1.3.1 训练数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%A6%E4%B9%A0%E7%9B%AE%E6%A0%87"><span class="toc-text">1.3.2 学习目标</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BE%93%E5%87%BA%E5%B1%82"><span class="toc-text">1.3.3 输出层</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8D%9F%E5%A4%B1"><span class="toc-text">1.3.4 损失</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E6%8D%9F%E5%A4%B1"><span class="toc-text">1.3.5 总损失</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%BE%E5%88%B0%E6%9C%80%E4%BC%98%E5%87%BD%E6%95%B0"><span class="toc-text">1.4 找到最优函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#gradient-descent-%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D"><span class="toc-text">1.4.1 Gradient Descent 梯度下降</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B1%80%E9%83%A8%E6%9C%80%E5%B0%8F%E5%80%BC"><span class="toc-text">1.4.2 局部最小值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#backpropagation"><span class="toc-text">1.4.3 Backpropagation</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C%E8%AF%8D%E5%90%91%E9%87%8F-word-embeddings"><span class="toc-text">二、词向量 Word Embeddings</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%8D%E8%AF%AD%E7%9A%84%E8%A1%A8%E7%A4%BA"><span class="toc-text">2.1 词语的表示</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%86%E8%AF%8D%E8%AF%AD%E9%99%8D%E7%BB%B4"><span class="toc-text">2.2 将词语降维</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%8D%E5%90%91%E9%87%8F-word2vec"><span class="toc-text">2.3 词向量 word2vec</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%AD%E7%BB%83%E7%9A%84%E8%BF%87%E7%A8%8B%E7%9B%B8%E5%BD%93%E4%BA%8E%E6%98%AF%E4%B8%80%E4%B8%AAsoftmax"><span class="toc-text">2.4
+训练的过程：相当于是一个Softmax</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#hierarchical-softmax"><span class="toc-text">2.5 Hierarchical Softmax</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%BA%E7%82%B9"><span class="toc-text">2.6 缺点</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%89%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C-cnn"><span class="toc-text">三、卷积神经网络 CNN</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81cnn"><span class="toc-text">3.1 为什么需要CNN</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#cnn%E7%9A%84%E7%BB%93%E6%9E%84"><span class="toc-text">3.2 CNN的结构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%B7%E7%A7%AF-convolution"><span class="toc-text">3.2.1 卷积 Convolution</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%80%E5%A4%A7%E6%B1%A0%E5%8C%96-max-pooling"><span class="toc-text">3.2.2 最大池化 Max Pooling</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%89%81%E5%B9%B3%E5%8C%96-flatten"><span class="toc-text">3.2.3 扁平化 Flatten</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#cnn%E5%8F%98%E7%A7%8D"><span class="toc-text">3.3 CNN变种</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#vggnet"><span class="toc-text">3.3.1 VGGNet</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#googlenetinception"><span class="toc-text">3.3.2 GoogLeNet(Inception)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#resnet"><span class="toc-text">3.3.3 ResNet</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#convolution"><span class="toc-text">3.4 Convolution</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#d-convolution"><span class="toc-text">3.4.1 1D Convolution</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#d-convolution-1"><span class="toc-text">3.4.2 2D Convolution</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#d-convolution-2"><span class="toc-text">3.4.3 3D Convolution</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%BE%E5%8D%B7%E7%A7%AF"><span class="toc-text">3.4.4 图卷积</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%90%83%E5%8D%B7%E7%A7%AF"><span class="toc-text">3.4.5 球卷积</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BD%AC%E7%BD%AE%E5%8D%B7%E7%A7%AF%E9%80%86%E5%8D%B7%E7%A7%AF"><span class="toc-text">3.4.6 转置卷积&#x2F;逆卷积</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%83%B6%E5%9B%8A%E7%BD%91%E7%BB%9C"><span class="toc-text">3.4.7 胶囊网络</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#nlp%E4%B8%AD%E7%9A%84cnn"><span class="toc-text">3.5 NLP中的CNN</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#bag-of-words"><span class="toc-text">3.5.1 Bag of Words</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#bag-of-n-grams"><span class="toc-text">3.5.2 Bag of n-grams</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#nlp%E4%B8%AD%E7%9A%84cnn-1"><span class="toc-text">3.5.3 NLP中的CNN</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#stride"><span class="toc-text">3.5.3.1 Stride</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#pooling"><span class="toc-text">3.5.3.2 Pooling</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A4%BA%E4%BE%8B"><span class="toc-text">3.5.3.3 示例</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#stacked-convolution"><span class="toc-text">3.5.3.4 Stacked Convolution</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#dilated-convolution-%E8%86%A8%E8%83%80%E5%8D%B7%E7%A7%AF"><span class="toc-text">3.5.3.5 Dilated Convolution
+膨胀卷积</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#structured-convolution-%E7%BB%93%E6%9E%84%E5%8D%B7%E7%A7%AF"><span class="toc-text">3.5.3.6 Structured Convolution
+结构卷积</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9B%9B%E5%BE%AA%E7%8E%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C-rnn"><span class="toc-text">四、循环神经网络 RNN</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#rnn"><span class="toc-text">4.1 RNN</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#rnn-1"><span class="toc-text">4.1.1 RNN</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#deep-rnn"><span class="toc-text">4.1.2 Deep RNN</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%8C%E5%90%91rnn"><span class="toc-text">4.1.3 双向RNN</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#naive-rnn"><span class="toc-text">4.1.4 Naive RNN</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#lstm"><span class="toc-text">4.2 LSTM</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#lstm%E7%AE%97%E6%B3%95"><span class="toc-text">4.2.1 LSTM算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%B9lstm%E4%B8%8D%E5%90%8C%E5%8F%82%E6%95%B0%E7%9A%84%E7%A0%94%E7%A9%B6"><span class="toc-text">4.2.2 对LSTM不同参数的研究</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#gru"><span class="toc-text">4.2.3 GRU</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#nlp%E4%B8%AD%E7%9A%84rnn"><span class="toc-text">4.3 NLP中的RNN</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#rnn%E5%8A%A0%E5%B7%A5%E4%B8%80%E4%B8%AA%E5%BA%8F%E5%88%97"><span class="toc-text">4.3.1 RNN加工一个序列</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#rnn%E6%97%A2%E5%8F%AF%E4%BB%A5%E5%81%9A%E7%BC%96%E7%A0%81%E5%99%A8%E4%B9%9F%E5%8F%AF%E4%BB%A5%E5%81%9A%E8%A7%A3%E7%A0%81%E5%99%A8"><span class="toc-text">4.3.2
+RNN既可以做编码器，也可以做解码器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#encoder-decoder%E6%A8%A1%E5%9E%8B"><span class="toc-text">4.3.3 Encoder-decoder模型</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#attention-%E6%B3%A8%E6%84%8F%E5%8A%9B"><span class="toc-text">4.4 Attention 注意力</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E6%B3%A8%E6%84%8F%E5%8A%9B"><span class="toc-text">4.4.1 计算注意力</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%A8%E6%84%8F%E5%8A%9B%E5%BE%97%E5%88%86%E5%87%BD%E6%95%B0"><span class="toc-text">4.4.2 注意力得分函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#attention%E7%9A%84%E7%94%A8%E9%80%94"><span class="toc-text">4.4.3 Attention的用途</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#hierarchical-structure"><span class="toc-text">4.4.4 Hierarchical Structure</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#hard-attention"><span class="toc-text">4.4.5 Hard Attention</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#pointer-network"><span class="toc-text">4.5 Pointer Network</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E6%B3%A8%E6%84%8F%E5%8A%9B%E5%81%9A%E9%80%89%E6%8B%A9%E9%97%AE%E9%A2%98"><span class="toc-text">4.5.1 使用注意力做选择问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#copy%E6%9C%BA%E5%88%B6"><span class="toc-text">4.5.2 Copy机制</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#attention-and-augmented-rnn"><span class="toc-text">4.6 Attention and Augmented
+RNN</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ntmneural-turing-machines"><span class="toc-text">4.6.1 NTM：Neural Turing
+Machines</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#dncdifferentiable-neural-computer"><span class="toc-text">4.6.2 DNC：Differentiable
+Neural Computer</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#actadaptive-computation-time"><span class="toc-text">4.6.4 ACT：Adaptive Computation
+Time</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#neural-programmer"><span class="toc-text">4.6.5 Neural Programmer</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%94%E7%94%9F%E6%88%90%E6%A8%A1%E5%9E%8B%E8%AF%AD%E8%A8%80%E7%94%9F%E6%88%90"><span class="toc-text">五、生成模型、语言生成</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%9F%E6%88%90%E6%A8%A1%E5%9E%8B-generative-models"><span class="toc-text">5.1 生成模型 Generative Models</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%AB%98%E6%96%AF%E6%B7%B7%E5%90%88%E6%A8%A1%E5%9E%8B-gmmgaussian-mixture-models"><span class="toc-text">5.1.1 高斯混合模型
+GMM：Gaussian Mixture Models</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%81%E5%BD%A2%E5%81%87%E8%AE%BE-manifold-assumption"><span class="toc-text">5.1.2 流形假设 Manifold
+Assumption</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#auto-encoder"><span class="toc-text">5.1.3 Auto-Encoder</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#generator"><span class="toc-text">5.1.3.1 Generator</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#variational-autoencoders"><span class="toc-text">5.1.4 Variational AutoEncoders</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#flow-based-deep-generative-models"><span class="toc-text">5.1.6 Flow-based Deep
+Generative Models</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#pixelrnnpixelcnn"><span class="toc-text">5.1.7 PixelRNN、PixelCNN</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E7%94%9F%E6%88%90-nlg"><span class="toc-text">5.2 自然语言生成 NLG</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B"><span class="toc-text">5.2.1 语言模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%AD%E7%BB%83rnn-lm"><span class="toc-text">5.2.2 训练RNN-LM</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%9F%E6%88%90%E5%8F%A5%E5%AD%90"><span class="toc-text">5.2.3 生成句子</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8E%E9%87%87%E6%A0%B7%E7%9A%84decoding"><span class="toc-text">5.2.3.1 基于采样的decoding</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#beam-search"><span class="toc-text">5.2.3.2 Beam Search</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#softmax-temperature"><span class="toc-text">5.2.3.3 Softmax Temperature</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#decoding%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93"><span class="toc-text">5.2.4 Decoding算法总结</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%84%E4%BC%B0-evaluation"><span class="toc-text">5.3 评估 Evaluation</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#human-evaluation"><span class="toc-text">5.3.1 Human Evaluation</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#bleu"><span class="toc-text">5.3.2 BLEU</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#meteor"><span class="toc-text">5.3.3 METEOR</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#perplexity"><span class="toc-text">5.3.4 Perplexity</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#unconditional-generation"><span class="toc-text">5.3.5 Unconditional Generation</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%AD%E6%9C%BA%E5%99%A8%E7%BF%BB%E8%AF%91-transformer"><span class="toc-text">六、机器翻译 &amp; Transformer</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%9F%E8%AE%A1%E6%9C%BA%E5%99%A8%E7%BF%BB%E8%AF%91smt"><span class="toc-text">6.1 统计机器翻译SMT</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%9C%BA%E5%99%A8%E7%BF%BB%E8%AF%91nmt"><span class="toc-text">6.2 神经网络机器翻译NMT</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#v1encoder-decoder"><span class="toc-text">6.2.1 V1：Encoder-Decoder</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#v2%E5%9F%BA%E4%BA%8Eattention%E7%9A%84encoder-decoder"><span class="toc-text">6.2.2
+V2：基于Attention的Encoder-Decoder</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#v3%E5%8F%8C%E5%90%91encoder"><span class="toc-text">6.2.3 V3：双向Encoder</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#v4%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0"><span class="toc-text">6.2.4 V4：深度学习</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#v5%E5%B9%B6%E8%A1%8C%E4%BC%98%E5%8C%96"><span class="toc-text">6.2.5 V5：并行优化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#v6residuals-are-the-new-hotness"><span class="toc-text">6.2.6 V6：Residuals are the new
+hotness</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#nmt%E7%9A%84%E8%BF%91%E4%BB%A3%E5%8F%91%E5%B1%95"><span class="toc-text">6.3 NMT的近代发展</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#multilingual-model"><span class="toc-text">6.3.1 Multilingual Model</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#code-switching"><span class="toc-text">6.3.2 Code-Switching</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#big-picture"><span class="toc-text">6.3.3 Big Picture</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#unsupervised-mt"><span class="toc-text">6.3.4 Unsupervised MT</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%B9%E5%81%B6%E5%AD%A6%E4%B9%A0-dual-learning"><span class="toc-text">6.3.5 对偶学习 Dual Learning</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#transformer"><span class="toc-text">6.4 Transformer</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#sequence"><span class="toc-text">6.4.1 Sequence</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#self-attention"><span class="toc-text">6.4.2 Self-Attention</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#multi-head-self-attention"><span class="toc-text">6.4.3 Multi-head Self-Attention</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#positional-encoding"><span class="toc-text">6.4.4 Positional Encoding</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#transform"><span class="toc-text">6.4.5 Transform</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%83%E9%A2%84%E8%AE%AD%E7%BB%83%E6%A8%A1%E5%9E%8Bbert%E5%92%8C%E5%AE%83%E7%9A%84%E5%8F%82%E6%95%B0"><span class="toc-text">七、预训练模型：BERT和它的参数</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E9%A2%84%E8%AE%AD%E7%BB%83%E6%A8%A1%E5%9E%8B"><span class="toc-text">7.1 什么是预训练模型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8%E9%A2%84%E8%AE%AD%E7%BB%83%E6%A8%A1%E5%9E%8Bfine-tune"><span class="toc-text">7.2
+如何使用预训练模型：fine-tune</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#nlp%E7%9A%84%E5%B8%B8%E8%A7%81%E4%BB%BB%E5%8A%A1"><span class="toc-text">7.2.1 NLP的常见任务</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BE%93%E5%85%A5%E5%A4%9A%E4%B8%AA%E5%8F%A5%E5%AD%90"><span class="toc-text">7.2.1.1 输入：多个句子</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BE%93%E5%87%BA%E5%88%86%E7%B1%BB"><span class="toc-text">7.2.1.2 输出：分类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BE%93%E5%87%BA%E6%AF%8F%E4%B8%AA%E8%AF%8D%E7%9A%84%E5%88%86%E7%B1%BB"><span class="toc-text">7.2.1.3 输出：每个词的分类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BE%93%E5%87%BA%E4%BB%8E%E8%BE%93%E5%85%A5%E4%B8%AD%E5%8F%96%E7%89%B9%E5%AE%9A%E7%9A%84%E9%83%A8%E5%88%86"><span class="toc-text">7.2.1.4
+输出：从输入中取特定的部分</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BE%93%E5%87%BA%E5%8F%A6%E4%B8%80%E4%B8%AA%E5%BA%8F%E5%88%97"><span class="toc-text">7.2.1.5 输出：另一个序列</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BE%AE%E8%B0%83%E9%A2%84%E8%AE%AD%E7%BB%83%E6%A8%A1%E5%9E%8B-fine-tune"><span class="toc-text">7.2.2 微调预训练模型 fine-tune</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%9B%B4%E6%8E%A5%E5%AF%B9%E6%A8%A1%E5%9E%8B%E8%BF%9B%E8%A1%8C%E5%BE%AE%E8%B0%83"><span class="toc-text">7.2.2.1 直接对模型进行微调</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9C%A8%E6%A8%A1%E5%9E%8B%E4%B8%8A%E9%9D%A2%E6%B7%BB%E5%8A%A0%E4%B8%80%E4%B8%AA%E5%8F%AF%E5%8F%98%E9%83%A8%E5%88%86-adaptor"><span class="toc-text">7.2.2.2
+在模型上面添加一个可变部分 Adaptor</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%B0%83%E6%95%B4%E5%8F%82%E6%95%B0%E7%9A%84%E6%9D%83%E9%87%8D"><span class="toc-text">7.2.2.3 调整参数的权重</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E5%BE%97%E5%88%B0%E9%A2%84%E8%AE%AD%E7%BB%83%E6%A8%A1%E5%9E%8B"><span class="toc-text">7.3 如何得到预训练模型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%9A%E8%BF%87%E6%9C%BA%E5%99%A8%E7%BF%BB%E8%AF%91%E8%BF%9B%E8%A1%8Cpre-training"><span class="toc-text">7.3.1
+通过机器翻译进行Pre-training</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%87%AA%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0-self-supervised-learning"><span class="toc-text">7.3.2 自监督学习
+Self-supervised Learning</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E8%AE%A9%E4%B8%80%E9%83%A8%E5%88%86%E7%9A%84%E6%95%B0%E6%8D%AE%E4%BD%9C%E4%B8%BA%E7%9B%91%E7%9D%A3%E4%BF%A1%E5%8F%B7masking-input"><span class="toc-text">7.3.3
+如何让一部分的数据作为监督信号：Masking Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#xlnet"><span class="toc-text">7.3.4 XLNet</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%84%E6%B5%8B%E4%B8%8B%E4%B8%80%E4%B8%AAtoken"><span class="toc-text">7.3.5 预测下一个token</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%A8bert%E7%BC%96%E7%A0%81%E5%99%A8%E5%81%9A%E7%94%9F%E6%88%90%E4%BB%BB%E5%8A%A1"><span class="toc-text">7.3.6 用BERT编码器做生成任务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#unilm"><span class="toc-text">7.3.7 UniLM</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#electra"><span class="toc-text">7.3.8 ELECTRA</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sentence-level"><span class="toc-text">7.3.9 Sentence Level</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#bert%E7%9A%84%E5%8F%98%E7%A7%8D"><span class="toc-text">7.4 BERT的变种</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#albert"><span class="toc-text">7.4.1 ALBERT</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%AB%E4%BD%BF%E7%94%A8%E9%AB%98%E6%95%88transformer%E5%BB%BA%E6%A8%A1%E9%95%BF%E5%8F%A5%E5%AD%90"><span class="toc-text">八、使用高效Transformer建模长句子</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#transformer-xl"><span class="toc-text">8.1 Transformer-XL</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BC%98%E5%8C%96self-attention"><span class="toc-text">8.2 优化Self-attention</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#sparse-attention%E5%B0%91%E7%AE%97%E4%B8%80%E9%83%A8%E5%88%86"><span class="toc-text">8.2.1 Sparse
+Attention：少算一部分</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#heuristic%E5%90%AF%E5%8F%91%E5%BC%8F%E7%9A%84%E8%AE%BE%E8%AE%A1%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%95%E4%BB%A5%E5%87%8F%E5%B0%91%E8%AE%A1%E7%AE%97%E9%87%8F"><span class="toc-text">8.2.1.1
+Heuristic：启发式的，设计计算方法以减少计算量</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#clustering%E8%81%9A%E7%B1%BB"><span class="toc-text">8.2.1.2 Clustering：聚类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#learnable"><span class="toc-text">8.2.1.3 Learnable：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#representative-key"><span class="toc-text">8.2.1.4 Representative key</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#attention-approximation"><span class="toc-text">8.2.2 Attention Approximation</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#attention-free"><span class="toc-text">8.2.3 Attention free</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#synthesizer"><span class="toc-text">8.2.3.1 Synthesizer</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%B6%E4%BB%96attention-free%E6%96%B9%E6%B3%95"><span class="toc-text">8.2.3.2 其他Attention-free方法</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E8%AF%84%E4%BC%B0%E6%96%87%E6%A1%A3%E6%A8%A1%E5%9E%8B"><span class="toc-text">8.3 如何评估文档模型</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B9%9Dprompting-and-data-efficient-fine-tuning-for-pretrained-lms"><span class="toc-text">九、Prompting
+and Data-Efficient Fine-tuning for Pretrained LMs</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%89%E6%8B%A9%E9%A2%84%E8%AE%AD%E7%BB%83%E6%A8%A1%E5%9E%8B"><span class="toc-text">9.1 选择预训练模型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%84%E8%AE%AD%E7%BB%83%E6%A8%A1%E5%9E%8B%E7%9A%84%E7%B1%BB%E5%9E%8B"><span class="toc-text">9.1.1 预训练模型的类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%B9%E6%8D%AE%E7%9B%AE%E6%A0%87%E4%BB%BB%E5%8A%A1%E9%80%89%E6%8B%A9%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B"><span class="toc-text">9.1.2 根据目标任务选择语言模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BE%E8%AE%A1%E5%90%88%E9%80%82%E7%9A%84prompt-template"><span class="toc-text">9.1.3 设计合适的prompt template</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B0%86lm%E7%9A%84%E8%BE%93%E5%87%BA%E6%98%A0%E5%B0%84%E5%88%B0%E7%9B%AE%E6%A0%87%E4%BB%BB%E5%8A%A1%E7%9A%84%E8%BE%93%E5%87%BA%E4%B8%8A"><span class="toc-text">9.1.4
+将LM的输出映射到目标任务的输出上</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%9A%E6%8F%90%E7%A4%BA%E5%AD%A6%E4%B9%A0"><span class="toc-text">9.1.5 多提示学习</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#data-efficient-fine-tuning"><span class="toc-text">9.2 Data-Efficient Fine-tuning</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#adapter"><span class="toc-text">9.2.1 Adapter</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#lora"><span class="toc-text">9.2.2 LoRA</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#prefixprompt-tuning"><span class="toc-text">9.2.3 Prefix&#x2F;Prompt Tuning</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8D%E5%90%8C%E6%96%B9%E6%B3%95%E7%9A%84%E6%AF%94%E8%BE%83"><span class="toc-text">9.2.4 不同方法的比较</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#early-exit"><span class="toc-text">9.3 Early Exit</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%AD%E7%BB%83%E7%AD%96%E7%95%A5"><span class="toc-text">9.4 训练策略</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%8A%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0"><span class="toc-text">9.5 半监督学习</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E9%80%89%E6%8B%A9%E7%AD%96%E7%95%A5"><span class="toc-text">9.6 如何选择策略</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8D%81%E6%B7%B1%E5%BA%A6%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0-reinforcement-learning"><span class="toc-text">十、深度强化学习
+Reinforcement Learning</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AE%80%E4%BB%8B"><span class="toc-text">10.1 强化学习简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#value-based-rl"><span class="toc-text">10.2 Value-based RL</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#q-learning"><span class="toc-text">10.2.1 Q-Learning</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B7%B1%E5%BA%A6%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0"><span class="toc-text">10.2.2 深度强化学习</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#policy-based-rl"><span class="toc-text">10.3 Policy-Based RL</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%BA%E5%99%A8%E4%BA%BA%E8%B5%B0%E8%BF%B7%E5%AE%AB%E5%B8%A6%E6%9D%A5%E7%9A%84%E5%90%AF%E5%8F%91"><span class="toc-text">10.3.1 机器人走迷宫带来的启发</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C-actor"><span class="toc-text">10.3.2 神经网络 &#x3D;&gt; Actor</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#valuepolicy"><span class="toc-text">10.4 Value+Policy</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#critic"><span class="toc-text">10.4.1 Critic</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E8%AE%A1%E7%AE%97vpis"><span class="toc-text">10.4.2 如何计算\(V^\pi(s)\)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#model-based-rl"><span class="toc-text">10.5 Model-based RL</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#imitation-learning"><span class="toc-text">10.6 Imitation Learning</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#behavior-cloning"><span class="toc-text">10.6.1 Behavior Cloning</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#inverse-reinforcement-learning"><span class="toc-text">10.6.2 Inverse Reinforcement
+Learning</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8D%81%E4%BA%8C%E5%9B%BE%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C"><span class="toc-text">十二、图神经网络</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E5%9B%BE%E8%AE%BA"><span class="toc-text">12.1 基础图论</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%BE%E7%9A%84%E7%A8%80%E7%96%8F%E8%A1%A8%E8%BE%BE"><span class="toc-text">12.1.1 图的稀疏表达</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%BE%E4%B8%8A%E7%9A%84%E6%93%8D%E4%BD%9C"><span class="toc-text">12.1.2 图上的操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%8A%82%E7%82%B9%E7%9A%84%E5%BA%A6"><span class="toc-text">12.1.3 节点的度</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%82%BB%E6%8E%A5%E7%9F%A9%E9%98%B5"><span class="toc-text">12.1.4 邻接矩阵</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E5%88%86%E5%9B%BE-bipartite-graph"><span class="toc-text">12.1.5 二分图 Bipartite Graph</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%BE%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C-gnn"><span class="toc-text">12.2 图神经网络 GNN</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#node-embeddings"><span class="toc-text">12.2.1 Node Embeddings</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#naive-approach"><span class="toc-text">12.2.2 Naive Approach</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%BE%E5%8D%B7%E7%A7%AF%E7%BD%91%E7%BB%9C-gcn"><span class="toc-text">12.3 图卷积网络 GCN</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%BE%E5%8D%B7%E7%A7%AF%E6%93%8D%E4%BD%9C"><span class="toc-text">12.3.1 图卷积操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E5%AE%9A%E4%B9%89"><span class="toc-text">12.3.2 相关定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#idea%E8%81%9A%E5%90%88%E9%82%BB%E5%B1%85%E7%9A%84%E4%BF%A1%E6%81%AF"><span class="toc-text">12.3.3 Idea：聚合邻居的信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%97%A0%E7%9B%91%E7%9D%A3%E8%AE%AD%E7%BB%83"><span class="toc-text">12.3.4 无监督训练</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%89%E7%9B%91%E7%9D%A3%E8%AE%AD%E7%BB%83"><span class="toc-text">12.3.5 有监督训练</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A8%A1%E5%9E%8B%E7%9A%84%E8%AE%BE%E8%AE%A1"><span class="toc-text">12.3.6 模型的设计</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#spectral-based-gnn"><span class="toc-text">12.4 Spectral-based GNN</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%98%E6%8D%A2%E7%BC%96%E7%A0%81"><span class="toc-text">12.4.1 变换编码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%B7%E7%A7%AF%E5%AE%9A%E7%90%86"><span class="toc-text">12.4.2 卷积定理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#spectral-based-convolution"><span class="toc-text">12.4.3 Spectral-Based
+Convolution</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#spectral-graph-theory"><span class="toc-text">12.4.4 Spectral Graph Theory</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#gcn%E7%9A%84%E7%BC%BA%E7%82%B9"><span class="toc-text">12.5 GCN的缺点</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%BE%E7%9A%84%E5%90%8C%E6%9E%84%E9%97%AE%E9%A2%98"><span class="toc-text">12.5.1 图的同构问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#gin%E5%81%9A%E9%82%BB%E5%B1%85%E8%8A%82%E7%82%B9%E7%9A%84aggregation"><span class="toc-text">12.5.2
+GIN：做邻居节点的aggregation</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%BE%E7%9A%84%E5%90%8C%E6%9E%84%E5%88%A4%E6%96%AD-%E5%9B%BE%E7%9D%80%E8%89%B2%E9%97%AE%E9%A2%98"><span class="toc-text">12.5.3 图的同构判断 &lt;&#x3D;&gt;
+图着色问题</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8D%81%E4%B8%89%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1"><span class="toc-text">十三、知识图谱</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1"><span class="toc-text">13.1 什么是知识图谱</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E6%9E%84%E5%BB%BA%E4%B8%80%E4%B8%AA%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1"><span class="toc-text">13.2 如何构建一个知识图谱</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%BA%E5%B7%A5%E6%9E%84%E5%BB%BA"><span class="toc-text">13.2.1 人工构建</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#wordnet"><span class="toc-text">13.2.1.1 WordNet</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#babelnet"><span class="toc-text">13.2.1.2 BabelNet</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#cyc"><span class="toc-text">13.2.1.3 Cyc</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%8E%E5%8D%8A%E7%BB%93%E6%9E%84%E5%8C%96%E6%95%B0%E6%8D%AE%E4%B8%AD%E6%8A%BD%E5%8F%96%E4%BF%A1%E6%81%AF"><span class="toc-text">13.2.2 从半结构化数据中抽取信息</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#dbpedia"><span class="toc-text">13.2.2.1 DBPedia</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#freebase"><span class="toc-text">13.2.2.2 Freebase</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#wikidata"><span class="toc-text">13.2.2.3 WikiData</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%8E%E9%9D%9E%E7%BB%93%E6%9E%84%E5%8C%96%E6%95%B0%E6%8D%AE%E4%B8%AD%E9%80%9A%E8%BF%87nlp%E6%8A%80%E6%9C%AF%E5%BE%97%E5%88%B0%E7%BB%93%E6%9E%84%E5%8C%96%E7%9A%84%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1"><span class="toc-text">13.2.3
+从非结构化数据中，通过NLP技术，得到结构化的知识图谱</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#mention-detection%E6%8F%90%E5%8F%8A%E6%A3%80%E6%B5%8B"><span class="toc-text">13.2.3.1 Mention
+Detection：提及检测</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#multi-task-learning-%E5%A4%9A%E4%BB%BB%E5%8A%A1%E5%AD%A6%E4%B9%A0"><span class="toc-text">13.2.3.2 Multi-task Learning
+多任务学习</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#knowledge-distillation-%E7%9F%A5%E8%AF%86%E8%92%B8%E9%A6%8F"><span class="toc-text">13.2.3.3 Knowledge Distillation
+知识蒸馏</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#mention-disambiguation%E6%8F%90%E5%8F%8A%E6%B6%88%E6%AD%A7"><span class="toc-text">13.2.3.3 Mention
+Disambiguation：提及消歧</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9E%E4%BD%93%E9%93%BE%E6%8E%A5%E4%BB%BB%E5%8A%A1"><span class="toc-text">13.2.3.4 实体链接任务</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#entity-typing%E5%AE%9E%E4%BD%93%E7%B1%BB%E5%88%AB"><span class="toc-text">13.2.3.5 Entity Typing：实体类别</span></a></li></ol></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/07/19/%E6%8C%87%E4%BB%A4%E5%90%88%E9%9B%86/cmake%E6%8C%87%E4%BB%A4%E5%90%88%E9%9B%86/" title="cmake指令合集">cmake指令合集</a><time datetime="2023-07-19T12:19:11.000Z" title="发表于 2023-07-19 20:19:11">2023-07-19</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/07/15/%E6%8C%87%E4%BB%A4%E5%90%88%E9%9B%86/cmake%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="cmake学习笔记">cmake学习笔记</a><time datetime="2023-07-15T10:00:00.000Z" title="发表于 2023-07-15 18:00:00">2023-07-15</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/07/13/%E6%8C%87%E4%BB%A4%E5%90%88%E9%9B%86/hexo%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4/" title="hexo常用指令">hexo常用指令</a><time datetime="2023-07-13T13:11:11.000Z" title="发表于 2023-07-13 21:11:11">2023-07-13</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/04/01/GAMES104/02--%E6%80%BB%E8%A7%88%EF%BC%9A%E5%BC%95%E6%93%8E%E6%9E%B6%E6%9E%84%E5%88%86%E5%B1%82%E4%B8%8E%E6%95%B4%E4%BD%93pipeline/" title="GAMES104-02：总览：引擎架构分层与整体pipeline">GAMES104-02：总览：引擎架构分层与整体pipeline</a><time datetime="2023-04-01T04:49:00.000Z" title="发表于 2023-04-01 12:49:00">2023-04-01</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/04/01/GAMES104/03--%E6%80%BB%E8%A7%88%EF%BC%9A%E5%A6%82%E4%BD%95%E6%9E%84%E5%BB%BA%E6%B8%B8%E6%88%8F%E4%B8%96%E7%95%8C/" title="GAMES104-03：总览：如何构建游戏世界">GAMES104-03：总览：如何构建游戏世界</a><time datetime="2023-04-01T04:49:00.000Z" title="发表于 2023-04-01 12:49:00">2023-04-01</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By 华丰夏</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-nest.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = true;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-heart.min.js" async="async" mobile="true"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div class="no-result" id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>
