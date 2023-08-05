@@ -1,0 +1,450 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>华风夏韵 | 华风夏韵</title><meta name="author" content="华丰夏"><meta name="copyright" content="华丰夏"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="[TOC] 八、动画：动画技术基础8.1    2D游戏动画技术8.1.1    Sprite Animation记录每一帧的动作，循环播放  在不同视角采样一系列的动作，根据当前视角播放不同动画  现代游戏引擎中，粒子效果就是Sprite Animation  8.1.2    Live2D将一个角色的所有元素，变成一个个小图元，通过变换图元，组成人物的不同姿态    首先，定义不同图元的深度，">
+<meta property="og:type" content="website">
+<meta property="og:title" content="华风夏韵">
+<meta property="og:url" content="https://hzoi-unicorn.top/GAMES104/08--%E5%8A%A8%E7%94%BB%EF%BC%9A%E5%8A%A8%E7%94%BB%E6%8A%80%E6%9C%AF%E5%9F%BA%E7%A1%80.html">
+<meta property="og:site_name" content="华风夏韵">
+<meta property="og:description" content="[TOC] 八、动画：动画技术基础8.1    2D游戏动画技术8.1.1    Sprite Animation记录每一帧的动作，循环播放  在不同视角采样一系列的动作，根据当前视角播放不同动画  现代游戏引擎中，粒子效果就是Sprite Animation  8.1.2    Live2D将一个角色的所有元素，变成一个个小图元，通过变换图元，组成人物的不同姿态    首先，定义不同图元的深度，">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://hzoi-unicorn.top/img/avatar.png">
+<meta property="article:published_time" content="2023-08-05T06:34:16.969Z">
+<meta property="article:modified_time" content="2023-07-27T02:48:30.746Z">
+<meta property="article:author" content="华丰夏">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://hzoi-unicorn.top/img/avatar.png"><link rel="shortcut icon" href="https://raw.githubusercontent.com/unicorn2022/Pictures/main/img/favicon.png"><link rel="canonical" href="https://hzoi-unicorn.top/GAMES104/08--%E5%8A%A8%E7%94%BB%EF%BC%9A%E5%8A%A8%E7%94%BB%E6%8A%80%E6%9C%AF%E5%9F%BA%E7%A1%80.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta name="baidu-site-verification" content="codeva-PpLfvQYdq5"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: 华丰夏","link":"链接: ","source":"来源: 华风夏韵","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '华风夏韵',
+  isPost: false,
+  isHome: false,
+  isHighlightShrink: true,
+  isToc: true,
+  postUpdate: '2023-07-27 10:48:30'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/background.css"><meta name="generator" content="Hexo 6.3.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">14</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">4</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-graduation-cap"></i><span> 博文</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 归档</span></a></li><li><a class="site-page child" href="/GAMES104/"><i class="fa-fw fas fa-book"></i><span> GAMES104学习笔记</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/resources/"><i class="fa-fw fa fa-book"></i><span> 资源</span></a></div><div class="menus_item"><a class="site-page" href="/tools/"><i class="fa-fw fas fa-list"></i><span> 在线工具</span></a></div><div class="menus_item"><a class="site-page" href="/comment/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于笔者</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="not-home-page" id="page-header" style="background-image: url('/img/default_top_img.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="华风夏韵"><span class="site-name">华风夏韵</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-graduation-cap"></i><span> 博文</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 归档</span></a></li><li><a class="site-page child" href="/GAMES104/"><i class="fa-fw fas fa-book"></i><span> GAMES104学习笔记</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/resources/"><i class="fa-fw fa fa-book"></i><span> 资源</span></a></div><div class="menus_item"><a class="site-page" href="/tools/"><i class="fa-fw fas fa-list"></i><span> 在线工具</span></a></div><div class="menus_item"><a class="site-page" href="/comment/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于笔者</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="page-site-info"><h1 id="site-title">华风夏韵</h1></div></header><main class="layout" id="content-inner"><div id="page"><div id="article-container"><p>[TOC]</p>
+<h1 id="八、动画：动画技术基础"><a href="#八、动画：动画技术基础" class="headerlink" title="八、动画：动画技术基础"></a>八、动画：动画技术基础</h1><h2 id="8-1-2D游戏动画技术"><a href="#8-1-2D游戏动画技术" class="headerlink" title="8.1    2D游戏动画技术"></a>8.1    2D游戏动画技术</h2><h3 id="8-1-1-Sprite-Animation"><a href="#8-1-1-Sprite-Animation" class="headerlink" title="8.1.1    Sprite Animation"></a>8.1.1    Sprite Animation</h3><p>记录每一帧的动作，循环播放</p>
+<p><img src="AssetMarkdown/image-20230725172639259.png" alt="image-20230725172639259" style="zoom:80%;" /></p>
+<p>在不同视角采样一系列的动作，根据当前视角播放不同动画</p>
+<p><img src="AssetMarkdown/image-20230725173034724.png" alt="image-20230725173034724" style="zoom:80%;" /></p>
+<p>现代游戏引擎中，粒子效果就是Sprite Animation</p>
+<p><img src="AssetMarkdown/image-20230725173149954.png" alt="image-20230725173149954" style="zoom:80%;" /></p>
+<h3 id="8-1-2-Live2D"><a href="#8-1-2-Live2D" class="headerlink" title="8.1.2    Live2D"></a>8.1.2    Live2D</h3><p>将一个角色的所有元素，变成一个个小图元，通过变换图元，组成人物的不同姿态</p>
+<p><img src="AssetMarkdown/image-20230725173218195.png" alt="image-20230725173218195" style="zoom:80%;" /></p>
+<p><img src="AssetMarkdown/image-20230725173430996.png" alt="image-20230725173430996" style="zoom:80%;" /></p>
+<ol>
+<li><p>首先，定义不同图元的深度，以控制图元是否出现，不同图元之间的层次关系</p>
+<p><img src="AssetMarkdown/image-20230725173813825.png" alt="image-20230725173813825" style="zoom:80%;" /></p>
+</li>
+<li><p>然后，生成ArtMesh，通过拖动ArtMesh上的控制点，控制图元的变化</p>
+<p><img src="AssetMarkdown/image-20230725173852827.png" alt="image-20230725173852827" style="zoom:80%;" /></p>
+</li>
+<li><p>设置动画关键帧，从而进行动画插值</p>
+<p><img src="AssetMarkdown/image-20230725173944369.png" alt="image-20230725173944369" style="zoom:80%;" /></p>
+</li>
+</ol>
+<h2 id="8-2-3D游戏动画技术"><a href="#8-2-3D游戏动画技术" class="headerlink" title="8.2    3D游戏动画技术"></a>8.2    3D游戏动画技术</h2><h3 id="8-2-1-DoF：Degress-of-Freedom-自由度"><a href="#8-2-1-DoF：Degress-of-Freedom-自由度" class="headerlink" title="8.2.1    DoF：Degress of Freedom 自由度"></a>8.2.1    DoF：Degress of Freedom 自由度</h3><p>一个物体可以在多少个维度进行变化</p>
+<ol>
+<li>刚体：6个自由度，平移3个，旋转3个</li>
+</ol>
+<p><img src="AssetMarkdown/image-20230725174149918.png" alt="image-20230725174149918" style="zoom:80%;" /></p>
+<h3 id="8-2-2-Rigid-Hierarchical-Animation"><a href="#8-2-2-Rigid-Hierarchical-Animation" class="headerlink" title="8.2.2    Rigid Hierarchical Animation"></a>8.2.2    Rigid Hierarchical Animation</h3><ol>
+<li>将mesh分为层次化的多个可以变化的刚体，动画即是改变这些刚体的平移/旋转</li>
+<li>缺点：不同关节之间可能会穿插</li>
+</ol>
+<p><img src="AssetMarkdown/image-20230725174416495.png" alt="image-20230725174416495" style="zoom:80%;" /></p>
+<h3 id="8-2-3-Per-vertex-Animation-顶点动画"><a href="#8-2-3-Per-vertex-Animation-顶点动画" class="headerlink" title="8.2.3    Per-vertex Animation 顶点动画"></a>8.2.3    Per-vertex Animation 顶点动画</h3><p>顶点动画：</p>
+<ol>
+<li>记录每个顶点的位置随时间的变化</li>
+<li>一般存两个texture，一个texture记录顶点的位置，另一个记录顶点的法向</li>
+<li>通常是用物理引擎离线计算好，然后存到texture中</li>
+</ol>
+<p><img src="AssetMarkdown/image-20230725174558034.png" alt="image-20230725174558034" style="zoom:80%;" /></p>
+<h3 id="8-2-4-Morph-Target-Animation"><a href="#8-2-4-Morph-Target-Animation" class="headerlink" title="8.2.4    Morph Target Animation"></a>8.2.4    Morph Target Animation</h3><ol>
+<li>也是一种顶点动画，但是记录的是顶点影响权重</li>
+<li>存储多个Key Poses，然后在Key Poses之间进行插值</li>
+<li>在捏脸系统中更好用</li>
+</ol>
+<p><img src="AssetMarkdown/image-20230725174900318.png" alt="image-20230725174900318" style="zoom:80%;" /></p>
+<h3 id="8-2-5-Skinned-Animation-蒙皮动画"><a href="#8-2-5-Skinned-Animation-蒙皮动画" class="headerlink" title="8.2.5    Skinned Animation 蒙皮动画"></a>8.2.5    Skinned Animation 蒙皮动画</h3><p>刚体骨骼驱动外表的蒙皮进行动画，每个顶点由多个骨骼同时影响</p>
+<p><img src="AssetMarkdown/image-20230725175213453.png" alt="image-20230725175213453" style="zoom:80%;" /></p>
+<p><img src="AssetMarkdown/image-20230725175347643.png" alt="image-20230725175347643" style="zoom:80%;" /></p>
+<h3 id="8-2-6-Physics-based-Animation"><a href="#8-2-6-Physics-based-Animation" class="headerlink" title="8.2.6    Physics-based Animation"></a>8.2.6    Physics-based Animation</h3><ol>
+<li>布娃娃系统</li>
+<li>衣料、流体模拟</li>
+<li>IK反向动力学</li>
+</ol>
+<p><img src="AssetMarkdown/image-20230725175428162.png" alt="image-20230725175428162" style="zoom:80%;" /></p>
+<h3 id="8-2-7-Animation-Content-Creation"><a href="#8-2-7-Animation-Content-Creation" class="headerlink" title="8.2.7    Animation Content Creation"></a>8.2.7    Animation Content Creation</h3><ol>
+<li>动画师设置关键帧</li>
+<li>动捕</li>
+</ol>
+<p><img src="AssetMarkdown/image-20230725175649795.png" alt="image-20230725175649795" style="zoom:80%;" /></p>
+<h2 id="8-3-蒙皮动画的实现"><a href="#8-3-蒙皮动画的实现" class="headerlink" title="8.3    蒙皮动画的实现"></a>8.3    蒙皮动画的实现</h2><h3 id="8-3-1-如何让Mesh播放动画"><a href="#8-3-1-如何让Mesh播放动画" class="headerlink" title="8.3.1    如何让Mesh播放动画"></a>8.3.1    如何让Mesh播放动画</h3><ol>
+<li>创建mesh的binding pose</li>
+<li>创建binding skeleton</li>
+<li>刷上蒙皮，告诉每个顶点应该受到哪些骨骼的影响</li>
+<li>移动skeleton</li>
+<li>蒙皮上的顶点会跟着运动</li>
+</ol>
+<p><img src="AssetMarkdown/image-20230726102514399.png" alt="image-20230726102514399" style="zoom:80%;" /></p>
+<h3 id="8-3-2-不同的空间"><a href="#8-3-2-不同的空间" class="headerlink" title="8.3.2    不同的空间"></a>8.3.2    不同的空间</h3><ol>
+<li>世界空间：全局坐标系</li>
+<li>模型空间：以角色为中心，相对世界空间有平移&amp;旋转</li>
+<li>局部空间：每根骨骼的坐标系，每根骨骼都不相同，需要逐步累加进来</li>
+</ol>
+<p><img src="AssetMarkdown/image-20230726102748726.png" alt="image-20230726102748726" style="zoom:80%;" /></p>
+<h3 id="8-3-3-两种骨骼"><a href="#8-3-3-两种骨骼" class="headerlink" title="8.3.3    两种骨骼"></a>8.3.3    两种骨骼</h3><p>Humanoid Skeleton：两足动物的骨骼</p>
+<ol>
+<li>起点在人的胯部：Pelvis</li>
+<li>有时会在Pelvis之上添加一个root</li>
+</ol>
+<p>Non-humanoid Skeleton：四足动物的骨骼</p>
+<p><img src="AssetMarkdown/image-20230726103147477.png" alt="image-20230726103147477" style="zoom:80%;" /></p>
+<h3 id="8-3-4-骨骼-Bone-amp-关节-Joint"><a href="#8-3-4-骨骼-Bone-amp-关节-Joint" class="headerlink" title="8.3.4    骨骼 Bone &amp; 关节 Joint"></a>8.3.4    骨骼 Bone &amp; 关节 Joint</h3><ol>
+<li>在引擎中，存储的是关节的信息</li>
+<li>相邻两个关节定义一个骨骼</li>
+<li>joint是严格的刚体，无法被扭曲；而bone是可以扭曲的</li>
+</ol>
+<p><img src="AssetMarkdown/image-20230726103450456.png" alt="image-20230726103450456" style="zoom:80%;" /></p>
+<h3 id="8-3-5-游戏中的关节"><a href="#8-3-5-游戏中的关节" class="headerlink" title="8.3.5    游戏中的关节"></a>8.3.5    游戏中的关节</h3><ol>
+<li>通常会添加一些额外的骨骼，用于控制角色的面部表情、衣物等附加物</li>
+<li>武器、骑乘等都会有对应的关节，用于绑定外部物品</li>
+</ol>
+<p><img src="AssetMarkdown/image-20230726103902491.png" alt="image-20230726103902491" style="zoom:80%;" /></p>
+<h3 id="8-3-6-根骨骼"><a href="#8-3-6-根骨骼" class="headerlink" title="8.3.6    根骨骼"></a>8.3.6    根骨骼</h3><ol>
+<li>通常会放置于两脚之间，便于表示离地高度、移速等属性</li>
+</ol>
+<p><img src="AssetMarkdown/image-20230726104007356.png" alt="image-20230726104007356" style="zoom:80%;" /></p>
+<ol>
+<li>四足动物的Pelvis在尾椎处，而root在肚子下四足中心</li>
+</ol>
+<p><img src="AssetMarkdown/image-20230726104125333.png" alt="image-20230726104125333" style="zoom:80%;" /></p>
+<h3 id="8-3-7-绑定动画"><a href="#8-3-7-绑定动画" class="headerlink" title="8.3.7    绑定动画"></a>8.3.7    绑定动画</h3><ol>
+<li>当人物骑乘在马身上时，两者的bind point就会绑定到一起<ol>
+<li>不仅仅是位置的绑定，还有旋转的绑定</li>
+</ol>
+</li>
+<li>两者分别播放自己的动画</li>
+</ol>
+<p><img src="AssetMarkdown/image-20230726104219332.png" alt="image-20230726104219332" style="zoom:80%;" /></p>
+<h3 id="8-3-8-绑定姿势：T-pose-vs-A-pose"><a href="#8-3-8-绑定姿势：T-pose-vs-A-pose" class="headerlink" title="8.3.8    绑定姿势：T-pose vs A-pose"></a>8.3.8    绑定姿势：T-pose vs A-pose</h3><p>T-pose：肩胛处的骨骼是压缩的，精度不够</p>
+<p>A-pose：人相对自然的站在那里，肩胛处的精度会更高</p>
+<p><img src="AssetMarkdown/image-20230726104519860.png" alt="image-20230726104519860" style="zoom:80%;" /></p>
+<h3 id="8-3-9-骨骼姿势"><a href="#8-3-9-骨骼姿势" class="headerlink" title="8.3.9    骨骼姿势"></a>8.3.9    骨骼姿势</h3><p>关节姿势有9个自由度：平移、旋转、缩放</p>
+<p><img src="AssetMarkdown/image-20230726104647937.png" alt="image-20230726104647937" style="zoom:80%;" /></p>
+<h2 id="8-4-3D旋转的数学原理"><a href="#8-4-3D旋转的数学原理" class="headerlink" title="8.4    3D旋转的数学原理"></a>8.4    3D旋转的数学原理</h2><h3 id="8-4-1-2D空间的旋转"><a href="#8-4-1-2D空间的旋转" class="headerlink" title="8.4.1    2D空间的旋转"></a>8.4.1    2D空间的旋转</h3><p><img src="AssetMarkdown/image-20230726104902602.png" alt="image-20230726104902602" style="zoom:80%;" /></p>
+<h3 id="8-4-2-3D空间的旋转：欧拉角"><a href="#8-4-2-3D空间的旋转：欧拉角" class="headerlink" title="8.4.2    3D空间的旋转：欧拉角"></a>8.4.2    3D空间的旋转：欧拉角</h3><h4 id="8-4-2-1-旋转矩阵"><a href="#8-4-2-1-旋转矩阵" class="headerlink" title="8.4.2.1    旋转矩阵"></a>8.4.2.1    旋转矩阵</h4><p><img src="AssetMarkdown/image-20230726105052981.png" alt="image-20230726105052981" style="zoom:80%;" /></p>
+<h4 id="8-4-2-2-Yaw-amp-Pitch-amp-Roll"><a href="#8-4-2-2-Yaw-amp-Pitch-amp-Roll" class="headerlink" title="8.4.2.2    Yaw &amp; Pitch &amp; Roll"></a>8.4.2.2    Yaw &amp; Pitch &amp; Roll</h4><p><img src="AssetMarkdown/image-20230726105207538.png" alt="image-20230726105207538" style="zoom:80%;" /></p>
+<h4 id="8-4-2-3-问题：欧拉角的运算是严格依赖顺序的"><a href="#8-4-2-3-问题：欧拉角的运算是严格依赖顺序的" class="headerlink" title="8.4.2.3    问题：欧拉角的运算是严格依赖顺序的"></a>8.4.2.3    问题：欧拉角的运算是严格依赖顺序的</h4><p><img src="AssetMarkdown/image-20230726105341930.png" alt="image-20230726105341930" style="zoom:80%;" /></p>
+<h4 id="8-4-2-4-万向锁：Gimbal-lock"><a href="#8-4-2-4-万向锁：Gimbal-lock" class="headerlink" title="8.4.2.4    万向锁：Gimbal lock"></a>8.4.2.4    万向锁：Gimbal lock</h4><p><img src="AssetMarkdown/image-20230726105432867.png" alt="image-20230726105432867" style="zoom:80%;" /></p>
+<h4 id="8-4-2-5-欧拉角的退化现象：β-90°"><a href="#8-4-2-5-欧拉角的退化现象：β-90°" class="headerlink" title="8.4.2.5    欧拉角的退化现象：β=90°"></a>8.4.2.5    欧拉角的退化现象：β=90°</h4><p>当β=90°时，α和γ各自都没有意义，只有α-γ有意义，此时最终的DoF变为了1</p>
+<p><img src="AssetMarkdown/image-20230726105811316.png" alt="image-20230726105811316" style="zoom:80%;" /></p>
+<h4 id="8-4-2-6-欧拉角的问题"><a href="#8-4-2-6-欧拉角的问题" class="headerlink" title="8.4.2.6    欧拉角的问题"></a>8.4.2.6    欧拉角的问题</h4><ol>
+<li>万向锁</li>
+<li>难以插值</li>
+<li>难以进行旋转的叠加，必须通过旋转矩阵相乘</li>
+<li>难以进行任意轴旋转，必须将其分解为XYZ轴的旋转</li>
+</ol>
+<p><img src="AssetMarkdown/image-20230726105951500.png" alt="image-20230726105951500" style="zoom:80%;" /></p>
+<h3 id="8-4-3-四元数-Quaternion"><a href="#8-4-3-四元数-Quaternion" class="headerlink" title="8.4.3    四元数 Quaternion"></a>8.4.3    四元数 Quaternion</h3><h4 id="8-4-3-1-用复数表示2D旋转"><a href="#8-4-3-1-用复数表示2D旋转" class="headerlink" title="8.4.3.1    用复数表示2D旋转"></a>8.4.3.1    用复数表示2D旋转</h4><p><img src="AssetMarkdown/image-20230726110321992.png" alt="image-20230726110321992" style="zoom:80%;" /></p>
+<h4 id="8-4-3-2-四元数的定义"><a href="#8-4-3-2-四元数的定义" class="headerlink" title="8.4.3.2    四元数的定义"></a>8.4.3.2    四元数的定义</h4><p>定义：$q=a+bi+cj+dk \ (a,b,c,d\in R)$，其中 $i^2=j^2=k^2=ijk=-1$</p>
+<p>性质：单位四元数的共轭，就是它的逆</p>
+<p><img src="AssetMarkdown/image-20230726115007887.png" alt="image-20230726115007887" style="zoom:80%;" /></p>
+<h4 id="8-4-3-3-欧拉角-gt-四元数"><a href="#8-4-3-3-欧拉角-gt-四元数" class="headerlink" title="8.4.3.3    欧拉角 =&gt; 四元数"></a>8.4.3.3    欧拉角 =&gt; 四元数</h4><p><img src="AssetMarkdown/image-20230726111111068.png" alt="image-20230726111111068" style="zoom:80%;" /></p>
+<h4 id="8-4-3-4-用四元数表示旋转"><a href="#8-4-3-4-用四元数表示旋转" class="headerlink" title="8.4.3.4    用四元数表示旋转"></a>8.4.3.4    用四元数表示旋转</h4><p><img src="AssetMarkdown/image-20230726114919429.png" alt="image-20230726114919429" style="zoom: 67%;" /></p>
+<p><img src="AssetMarkdown/image-20230726115156359.png" alt="image-20230726115156359" style="zoom: 60%;" /></p>
+<p><img src="AssetMarkdown/image-20230726115332722.png" alt="image-20230726115332722" style="zoom:80%;" /></p>
+<p><img src="AssetMarkdown/image-20230726140131693.png" alt="image-20230726140131693" style="zoom:80%;" /></p>
+<h2 id="8-5-关节与蒙皮"><a href="#8-5-关节与蒙皮" class="headerlink" title="8.5    关节与蒙皮"></a>8.5    关节与蒙皮</h2><h3 id="8-5-1-三种数据：旋转、平移、缩放"><a href="#8-5-1-三种数据：旋转、平移、缩放" class="headerlink" title="8.5.1    三种数据：旋转、平移、缩放"></a>8.5.1    三种数据：旋转、平移、缩放</h3><ol>
+<li><p>Orientation 空间上的朝向</p>
+<p><img src="AssetMarkdown/image-20230726140531917.png" alt="image-20230726140531917" style="zoom:80%;" /></p>
+</li>
+<li><p>Position</p>
+<ol>
+<li>通常是不变的</li>
+<li>但是当角色蹲下时，是通过pelvis相对于root的位置变换表示的</li>
+<li>表情动画也会用到位置变换</li>
+</ol>
+<p><img src="AssetMarkdown/image-20230726140846380.png" alt="image-20230726140846380" style="zoom:80%;" /></p>
+<p><img src="AssetMarkdown/image-20230726141023444.png" alt="image-20230726141023444" style="zoom:80%;" /></p>
+</li>
+<li><p>Scale：缩放变换</p>
+<ol>
+<li>通常也不会变</li>
+<li>但是在更改角色面部关节时，可能会改变</li>
+</ol>
+<p><img src="AssetMarkdown/image-20230726141049396.png" alt="image-20230726141049396" style="zoom:80%;" /></p>
+<p><img src="AssetMarkdown/image-20230726141102714.png" alt="image-20230726141102714" style="zoom:80%;" /></p>
+</li>
+</ol>
+<h2 id="8-5-2-Affine-Matrix-仿射矩阵"><a href="#8-5-2-Affine-Matrix-仿射矩阵" class="headerlink" title="8.5.2    Affine Matrix 仿射矩阵"></a>8.5.2    Affine Matrix 仿射矩阵</h2><p><img src="AssetMarkdown/image-20230726141216420.png" alt="image-20230726141216420" style="zoom:80%;" /></p>
+<h2 id="8-5-3-局部空间-gt-模型空间"><a href="#8-5-3-局部空间-gt-模型空间" class="headerlink" title="8.5.3    局部空间 =&gt; 模型空间"></a>8.5.3    局部空间 =&gt; 模型空间</h2><p>对于每一个关节$j$：</p>
+<ol>
+<li>$p(j)$：父关节</li>
+<li>$M_{p(j)}^l$：父关节在局部空间的关节姿势</li>
+<li>$M_j^m$：关节在模型空间的关节姿势</li>
+</ol>
+<script type="math/tex; mode=display">
+M_j^m=\prod_{j=J}^0 M_{p(j)}^l</script><p>即从当前节点开始，逐步乘父节点的关节姿势，直到到达根节点</p>
+<p><img src="AssetMarkdown/image-20230726141439188.png" alt="image-20230726141439188" style="zoom:80%;" /></p>
+<h3 id="8-5-4-关节姿势的插值：局部空间-vs-模型空间"><a href="#8-5-4-关节姿势的插值：局部空间-vs-模型空间" class="headerlink" title="8.5.4    关节姿势的插值：局部空间 vs 模型空间"></a>8.5.4    关节姿势的插值：局部空间 vs 模型空间</h3><p>将动画存储在局部坐标系</p>
+<ol>
+<li>transform中的数据更少</li>
+<li>更容易进行插值/混合</li>
+</ol>
+<p><img src="AssetMarkdown/image-20230726141729580.png" alt="image-20230726141729580" style="zoom:80%;" /></p>
+<h3 id="8-5-5-Single-Joint-Skin"><a href="#8-5-5-Single-Joint-Skin" class="headerlink" title="8.5.5    Single Joint Skin"></a>8.5.5    Single Joint Skin</h3><h4 id="8-5-5-1-顶点相对于关节的局部坐标永远不变"><a href="#8-5-5-1-顶点相对于关节的局部坐标永远不变" class="headerlink" title="8.5.5.1    顶点相对于关节的局部坐标永远不变"></a>8.5.5.1    顶点相对于关节的局部坐标永远不变</h4><p>将mesh上的一个顶点，绑定到一个骨骼上</p>
+<ol>
+<li>每个顶点可以绑定一个或多个关节，每个关节有不同的权重</li>
+<li>顶点在每个绑定关节的局部空间的位置是固定的</li>
+</ol>
+<p><img src="AssetMarkdown/image-20230726142238716.png" alt="image-20230726142238716" style="zoom:80%;" /></p>
+<p><img src="AssetMarkdown/image-20230726143414912.png" alt="image-20230726143414912" style="zoom:80%;" /></p>
+<p><img src="AssetMarkdown/image-20230726143513171.png" alt="image-20230726143513171" style="zoom:80%;" /></p>
+<h4 id="8-5-5-2-Skinning-Matrix-Palette"><a href="#8-5-5-2-Skinning-Matrix-Palette" class="headerlink" title="8.5.5.2    Skinning Matrix Palette"></a>8.5.5.2    Skinning Matrix Palette</h4><ol>
+<li>先计算每一个关节的Skinning Matrix，保存起来</li>
+<li>在渲染顶点的时候，可以直接查表，不用重新计算蒙皮矩阵</li>
+</ol>
+<p>优化：通常会再乘上$M^w$，将模型空间转化为世界空间</p>
+<p><img src="AssetMarkdown/image-20230726143715728.png" alt="image-20230726143715728" style="zoom:80%;" /></p>
+<h4 id="8-5-5-3-在内存中表示一个骨骼"><a href="#8-5-5-3-在内存中表示一个骨骼" class="headerlink" title="8.5.5.3    在内存中表示一个骨骼"></a>8.5.5.3    在内存中表示一个骨骼</h4><p><img src="AssetMarkdown/image-20230726144203453.png" alt="image-20230726144203453" style="zoom:80%;" /></p>
+<h3 id="8-5-6-Weighted-Skinning-with-Multi-joints"><a href="#8-5-6-Weighted-Skinning-with-Multi-joints" class="headerlink" title="8.5.6    Weighted Skinning with Multi-joints"></a>8.5.6    Weighted Skinning with Multi-joints</h3><ol>
+<li>每个mesh上的顶点会由多个关节同时作用</li>
+<li>每个关节有不同的权重，但是要求权重和为1</li>
+</ol>
+<p><img src="AssetMarkdown/image-20230726144503596.png" alt="image-20230726144503596" style="zoom:80%;" /></p>
+<ol>
+<li>计算每个关节对应的顶点的模型空间坐标，在模型空间中进行混合</li>
+</ol>
+<p><img src="AssetMarkdown/image-20230726144939033.png" alt="image-20230726144939033" style="zoom:80%;" /></p>
+<h3 id="8-5-7-Clip"><a href="#8-5-7-Clip" class="headerlink" title="8.5.7    Clip"></a>8.5.7    Clip</h3><p>将每一帧的骨骼姿势放在一个序列里面，称为一个clip</p>
+<p><img src="AssetMarkdown/image-20230726145536660.png" alt="image-20230726145536660" style="zoom:80%;" /></p>
+<h3 id="8-5-8-在不同Pose之间进行插值"><a href="#8-5-8-在不同Pose之间进行插值" class="headerlink" title="8.5.8    在不同Pose之间进行插值"></a>8.5.8    在不同Pose之间进行插值</h3><p><strong>位移&amp;缩放 lerp</strong>：线性插值</p>
+<p><img src="AssetMarkdown/image-20230726145711201.png" alt="image-20230726145711201" style="zoom:80%;" /></p>
+<p><strong>旋转 Nlerp</strong>：q1和q2的线性插值，然后进行归一化</p>
+<p><img src="AssetMarkdown/image-20230726145736080.png" alt="image-20230726145736080" style="zoom:80%;" /></p>
+<p><strong>最短路径插值</strong>：判断一下q1·q2，如果是&lt;0，则需要反向插值</p>
+<p><img src="AssetMarkdown/image-20230726150409999.png" alt="image-20230726150409999" style="zoom:80%;" /></p>
+<p><strong>Nlerp的问题</strong>：插值的角速度不恒定</p>
+<p><img src="AssetMarkdown/image-20230726150653720.png" alt="image-20230726150653720" style="zoom:80%;" /></p>
+<p><strong>Slerp</strong>：通过arccos，计算两个方向的夹角，通过θ插值</p>
+<ol>
+<li>但是计算比较费资源</li>
+<li>并且当角度很小时，结果不精确</li>
+<li>通常会指定一个角度，小于它用NLERP，大于它用SLERP</li>
+</ol>
+<p><img src="AssetMarkdown/image-20230726150718402.png" alt="image-20230726150718402" style="zoom:80%;" /></p>
+<h3 id="8-5-9-简单动画的Runtime-Pipeline"><a href="#8-5-9-简单动画的Runtime-Pipeline" class="headerlink" title="8.5.9    简单动画的Runtime Pipeline"></a>8.5.9    简单动画的Runtime Pipeline</h3><p><img src="AssetMarkdown/image-20230726151230438.png" alt="image-20230726151230438" style="zoom:80%;" /></p>
+<h2 id="8-6-动画压缩技术"><a href="#8-6-动画压缩技术" class="headerlink" title="8.6    动画压缩技术"></a>8.6    动画压缩技术</h2><h3 id="8-6-1-减少DoF"><a href="#8-6-1-减少DoF" class="headerlink" title="8.6.1    减少DoF"></a>8.6.1    减少DoF</h3><ol>
+<li><p>Scale：直接忽略</p>
+</li>
+<li><p>Translation：只存储最初的值</p>
+</li>
+<li><p>Rotation：通过关键帧进行插值</p>
+<ol>
+<li>以第0帧作为第一个关键帧，通过插值计算下一帧</li>
+<li>如果误差高于某个值，则将其作为下一个关键帧</li>
+</ol>
+<p><img src="AssetMarkdown/image-20230726151745711.png" alt="image-20230726151745711" style="zoom:80%;" /></p>
+</li>
+<li><p>Catmull-Rom曲线：</p>
+<ol>
+<li>由四个控制点生成一个曲线，拟合原有的旋转曲线</li>
+</ol>
+<p><img src="AssetMarkdown/image-20230726151936487.png" alt="image-20230726151936487" style="zoom:80%;" /></p>
+<p><img src="AssetMarkdown/image-20230726152053696.png" alt="image-20230726152053696" style="zoom:80%;" /></p>
+</li>
+</ol>
+<h3 id="8-6-2-用定点数代替float"><a href="#8-6-2-用定点数代替float" class="headerlink" title="8.6.2    用定点数代替float"></a>8.6.2    用定点数代替float</h3><p><img src="AssetMarkdown/image-20230726152215646.png" alt="image-20230726152215646" style="zoom:80%;" /></p>
+<p><img src="AssetMarkdown/image-20230726152341008.png" alt="image-20230726152341008" style="zoom:80%;" /></p>
+<p><img src="AssetMarkdown/image-20230726152358663.png" alt="image-20230726152358663" style="zoom:80%;" /></p>
+<h3 id="8-6-3-误差传播"><a href="#8-6-3-误差传播" class="headerlink" title="8.6.3    误差传播"></a>8.6.3    误差传播</h3><p>由于关节的模型坐标是从根节点累乘得到的，因此会导致误差的累积</p>
+<p><img src="AssetMarkdown/image-20230726152529422.png" alt="image-20230726152529422" style="zoom:80%;" /></p>
+<p>衡量精确度：Visual Error</p>
+<p><img src="AssetMarkdown/image-20230726152700328.png" alt="image-20230726152700328" style="zoom:80%;" /></p>
+<p><img src="AssetMarkdown/image-20230726152726472.png" alt="image-20230726152726472" style="zoom:80%;" /></p>
+<p>误差补偿：子骨骼对父骨骼产生的误差进行补偿</p>
+<ol>
+<li>缺点：父骨骼的误差叠加后，可能在子骨骼上产生高频数据，导致末端骨骼产生高频抖动</li>
+</ol>
+<p><img src="AssetMarkdown/image-20230726153005119.png" alt="image-20230726153005119" style="zoom:80%;" /></p>
+<h2 id="8-7-动画制作流程"><a href="#8-7-动画制作流程" class="headerlink" title="8.7    动画制作流程"></a>8.7    动画制作流程</h2><ol>
+<li><p>构建mesh，用低精度的mesh做动画</p>
+<p><img src="AssetMarkdown/image-20230726153201327.png" alt="image-20230726153201327" style="zoom:80%;" /></p>
+</li>
+<li><p>在关节处添加网格，防止关节处变形</p>
+<p><img src="AssetMarkdown/image-20230726153255760.png" alt="image-20230726153255760" style="zoom:80%;" /></p>
+</li>
+<li><p>骨架绑定，并添加Game Play关节（如武器关节、Pelvis、root）</p>
+<p><img src="AssetMarkdown/image-20230726153358233.png" alt="image-20230726153358233" style="zoom:80%;" /></p>
+<p><img src="AssetMarkdown/image-20230726153421687.png" alt="image-20230726153421687" style="zoom:80%;" /></p>
+</li>
+<li><p>自动计算skinning</p>
+<p><img src="AssetMarkdown/image-20230726153522586.png" alt="image-20230726153522586" style="zoom:80%;" /></p>
+</li>
+<li><p>手动调整skinning</p>
+<p><img src="AssetMarkdown/image-20230726153553479.png" alt="image-20230726153553479" style="zoom:80%;" /></p>
+</li>
+<li><p>制作动画：设置关键帧及时间间隔</p>
+<p><img src="AssetMarkdown/image-20230726153629247.png" alt="image-20230726153629247" style="zoom:80%;" /></p>
+</li>
+<li><p>导出动画</p>
+<ol>
+<li>如果在动画中root产生位移，会将root的移动单独导出为一个位移曲线给引擎用</li>
+</ol>
+<p><img src="AssetMarkdown/image-20230726153644960.png" alt="image-20230726153644960" style="zoom:80%;" /></p>
+<p><img src="AssetMarkdown/image-20230726153828377.png" alt="image-20230726153828377" style="zoom:80%;" /></p>
+</li>
+</ol>
+</div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">华丰夏</div><div class="author-info__description">一切都是上天最好的安排</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">14</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">4</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/unicorn2022"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/unicorn2022" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:496300118@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">愿你前行的道路有群星闪耀。愿你留下的足迹有百花绽放。你即是上帝的馈赠，世界因你而瑰丽。</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%AB%E3%80%81%E5%8A%A8%E7%94%BB%EF%BC%9A%E5%8A%A8%E7%94%BB%E6%8A%80%E6%9C%AF%E5%9F%BA%E7%A1%80"><span class="toc-text">八、动画：动画技术基础</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#8-1-2D%E6%B8%B8%E6%88%8F%E5%8A%A8%E7%94%BB%E6%8A%80%E6%9C%AF"><span class="toc-text">8.1    2D游戏动画技术</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#8-1-1-Sprite-Animation"><span class="toc-text">8.1.1    Sprite Animation</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-1-2-Live2D"><span class="toc-text">8.1.2    Live2D</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-2-3D%E6%B8%B8%E6%88%8F%E5%8A%A8%E7%94%BB%E6%8A%80%E6%9C%AF"><span class="toc-text">8.2    3D游戏动画技术</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#8-2-1-DoF%EF%BC%9ADegress-of-Freedom-%E8%87%AA%E7%94%B1%E5%BA%A6"><span class="toc-text">8.2.1    DoF：Degress of Freedom 自由度</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-2-2-Rigid-Hierarchical-Animation"><span class="toc-text">8.2.2    Rigid Hierarchical Animation</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-2-3-Per-vertex-Animation-%E9%A1%B6%E7%82%B9%E5%8A%A8%E7%94%BB"><span class="toc-text">8.2.3    Per-vertex Animation 顶点动画</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-2-4-Morph-Target-Animation"><span class="toc-text">8.2.4    Morph Target Animation</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-2-5-Skinned-Animation-%E8%92%99%E7%9A%AE%E5%8A%A8%E7%94%BB"><span class="toc-text">8.2.5    Skinned Animation 蒙皮动画</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-2-6-Physics-based-Animation"><span class="toc-text">8.2.6    Physics-based Animation</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-2-7-Animation-Content-Creation"><span class="toc-text">8.2.7    Animation Content Creation</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-3-%E8%92%99%E7%9A%AE%E5%8A%A8%E7%94%BB%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="toc-text">8.3    蒙皮动画的实现</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#8-3-1-%E5%A6%82%E4%BD%95%E8%AE%A9Mesh%E6%92%AD%E6%94%BE%E5%8A%A8%E7%94%BB"><span class="toc-text">8.3.1    如何让Mesh播放动画</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-3-2-%E4%B8%8D%E5%90%8C%E7%9A%84%E7%A9%BA%E9%97%B4"><span class="toc-text">8.3.2    不同的空间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-3-3-%E4%B8%A4%E7%A7%8D%E9%AA%A8%E9%AA%BC"><span class="toc-text">8.3.3    两种骨骼</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-3-4-%E9%AA%A8%E9%AA%BC-Bone-amp-%E5%85%B3%E8%8A%82-Joint"><span class="toc-text">8.3.4    骨骼 Bone &amp; 关节 Joint</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-3-5-%E6%B8%B8%E6%88%8F%E4%B8%AD%E7%9A%84%E5%85%B3%E8%8A%82"><span class="toc-text">8.3.5    游戏中的关节</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-3-6-%E6%A0%B9%E9%AA%A8%E9%AA%BC"><span class="toc-text">8.3.6    根骨骼</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-3-7-%E7%BB%91%E5%AE%9A%E5%8A%A8%E7%94%BB"><span class="toc-text">8.3.7    绑定动画</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-3-8-%E7%BB%91%E5%AE%9A%E5%A7%BF%E5%8A%BF%EF%BC%9AT-pose-vs-A-pose"><span class="toc-text">8.3.8    绑定姿势：T-pose vs A-pose</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-3-9-%E9%AA%A8%E9%AA%BC%E5%A7%BF%E5%8A%BF"><span class="toc-text">8.3.9    骨骼姿势</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-4-3D%E6%97%8B%E8%BD%AC%E7%9A%84%E6%95%B0%E5%AD%A6%E5%8E%9F%E7%90%86"><span class="toc-text">8.4    3D旋转的数学原理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#8-4-1-2D%E7%A9%BA%E9%97%B4%E7%9A%84%E6%97%8B%E8%BD%AC"><span class="toc-text">8.4.1    2D空间的旋转</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-4-2-3D%E7%A9%BA%E9%97%B4%E7%9A%84%E6%97%8B%E8%BD%AC%EF%BC%9A%E6%AC%A7%E6%8B%89%E8%A7%92"><span class="toc-text">8.4.2    3D空间的旋转：欧拉角</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#8-4-2-1-%E6%97%8B%E8%BD%AC%E7%9F%A9%E9%98%B5"><span class="toc-text">8.4.2.1    旋转矩阵</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#8-4-2-2-Yaw-amp-Pitch-amp-Roll"><span class="toc-text">8.4.2.2    Yaw &amp; Pitch &amp; Roll</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#8-4-2-3-%E9%97%AE%E9%A2%98%EF%BC%9A%E6%AC%A7%E6%8B%89%E8%A7%92%E7%9A%84%E8%BF%90%E7%AE%97%E6%98%AF%E4%B8%A5%E6%A0%BC%E4%BE%9D%E8%B5%96%E9%A1%BA%E5%BA%8F%E7%9A%84"><span class="toc-text">8.4.2.3    问题：欧拉角的运算是严格依赖顺序的</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#8-4-2-4-%E4%B8%87%E5%90%91%E9%94%81%EF%BC%9AGimbal-lock"><span class="toc-text">8.4.2.4    万向锁：Gimbal lock</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#8-4-2-5-%E6%AC%A7%E6%8B%89%E8%A7%92%E7%9A%84%E9%80%80%E5%8C%96%E7%8E%B0%E8%B1%A1%EF%BC%9A%CE%B2-90%C2%B0"><span class="toc-text">8.4.2.5    欧拉角的退化现象：β&#x3D;90°</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#8-4-2-6-%E6%AC%A7%E6%8B%89%E8%A7%92%E7%9A%84%E9%97%AE%E9%A2%98"><span class="toc-text">8.4.2.6    欧拉角的问题</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-4-3-%E5%9B%9B%E5%85%83%E6%95%B0-Quaternion"><span class="toc-text">8.4.3    四元数 Quaternion</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#8-4-3-1-%E7%94%A8%E5%A4%8D%E6%95%B0%E8%A1%A8%E7%A4%BA2D%E6%97%8B%E8%BD%AC"><span class="toc-text">8.4.3.1    用复数表示2D旋转</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#8-4-3-2-%E5%9B%9B%E5%85%83%E6%95%B0%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="toc-text">8.4.3.2    四元数的定义</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#8-4-3-3-%E6%AC%A7%E6%8B%89%E8%A7%92-gt-%E5%9B%9B%E5%85%83%E6%95%B0"><span class="toc-text">8.4.3.3    欧拉角 &#x3D;&gt; 四元数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#8-4-3-4-%E7%94%A8%E5%9B%9B%E5%85%83%E6%95%B0%E8%A1%A8%E7%A4%BA%E6%97%8B%E8%BD%AC"><span class="toc-text">8.4.3.4    用四元数表示旋转</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-5-%E5%85%B3%E8%8A%82%E4%B8%8E%E8%92%99%E7%9A%AE"><span class="toc-text">8.5    关节与蒙皮</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#8-5-1-%E4%B8%89%E7%A7%8D%E6%95%B0%E6%8D%AE%EF%BC%9A%E6%97%8B%E8%BD%AC%E3%80%81%E5%B9%B3%E7%A7%BB%E3%80%81%E7%BC%A9%E6%94%BE"><span class="toc-text">8.5.1    三种数据：旋转、平移、缩放</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-5-2-Affine-Matrix-%E4%BB%BF%E5%B0%84%E7%9F%A9%E9%98%B5"><span class="toc-text">8.5.2    Affine Matrix 仿射矩阵</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-5-3-%E5%B1%80%E9%83%A8%E7%A9%BA%E9%97%B4-gt-%E6%A8%A1%E5%9E%8B%E7%A9%BA%E9%97%B4"><span class="toc-text">8.5.3    局部空间 &#x3D;&gt; 模型空间</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#8-5-4-%E5%85%B3%E8%8A%82%E5%A7%BF%E5%8A%BF%E7%9A%84%E6%8F%92%E5%80%BC%EF%BC%9A%E5%B1%80%E9%83%A8%E7%A9%BA%E9%97%B4-vs-%E6%A8%A1%E5%9E%8B%E7%A9%BA%E9%97%B4"><span class="toc-text">8.5.4    关节姿势的插值：局部空间 vs 模型空间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-5-5-Single-Joint-Skin"><span class="toc-text">8.5.5    Single Joint Skin</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#8-5-5-1-%E9%A1%B6%E7%82%B9%E7%9B%B8%E5%AF%B9%E4%BA%8E%E5%85%B3%E8%8A%82%E7%9A%84%E5%B1%80%E9%83%A8%E5%9D%90%E6%A0%87%E6%B0%B8%E8%BF%9C%E4%B8%8D%E5%8F%98"><span class="toc-text">8.5.5.1    顶点相对于关节的局部坐标永远不变</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#8-5-5-2-Skinning-Matrix-Palette"><span class="toc-text">8.5.5.2    Skinning Matrix Palette</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#8-5-5-3-%E5%9C%A8%E5%86%85%E5%AD%98%E4%B8%AD%E8%A1%A8%E7%A4%BA%E4%B8%80%E4%B8%AA%E9%AA%A8%E9%AA%BC"><span class="toc-text">8.5.5.3    在内存中表示一个骨骼</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-5-6-Weighted-Skinning-with-Multi-joints"><span class="toc-text">8.5.6    Weighted Skinning with Multi-joints</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-5-7-Clip"><span class="toc-text">8.5.7    Clip</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-5-8-%E5%9C%A8%E4%B8%8D%E5%90%8CPose%E4%B9%8B%E9%97%B4%E8%BF%9B%E8%A1%8C%E6%8F%92%E5%80%BC"><span class="toc-text">8.5.8    在不同Pose之间进行插值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-5-9-%E7%AE%80%E5%8D%95%E5%8A%A8%E7%94%BB%E7%9A%84Runtime-Pipeline"><span class="toc-text">8.5.9    简单动画的Runtime Pipeline</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-6-%E5%8A%A8%E7%94%BB%E5%8E%8B%E7%BC%A9%E6%8A%80%E6%9C%AF"><span class="toc-text">8.6    动画压缩技术</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#8-6-1-%E5%87%8F%E5%B0%91DoF"><span class="toc-text">8.6.1    减少DoF</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-6-2-%E7%94%A8%E5%AE%9A%E7%82%B9%E6%95%B0%E4%BB%A3%E6%9B%BFfloat"><span class="toc-text">8.6.2    用定点数代替float</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-6-3-%E8%AF%AF%E5%B7%AE%E4%BC%A0%E6%92%AD"><span class="toc-text">8.6.3    误差传播</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-7-%E5%8A%A8%E7%94%BB%E5%88%B6%E4%BD%9C%E6%B5%81%E7%A8%8B"><span class="toc-text">8.7    动画制作流程</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/07/19/cmake%E6%8C%87%E4%BB%A4%E5%90%88%E9%9B%86/" title="cmake指令合集">cmake指令合集</a><time datetime="2023-07-19T12:19:11.000Z" title="发表于 2023-07-19 20:19:11">2023-07-19</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/07/15/cmake%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="cmake学习笔记">cmake学习笔记</a><time datetime="2023-07-15T10:00:00.000Z" title="发表于 2023-07-15 18:00:00">2023-07-15</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/07/13/hexo%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4/" title="hexo常用指令">hexo常用指令</a><time datetime="2023-07-13T13:11:11.000Z" title="发表于 2023-07-13 21:11:11">2023-07-13</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/04/01/GAMES104/" title="GAMES104">GAMES104</a><time datetime="2023-04-01T04:49:00.000Z" title="发表于 2023-04-01 12:49:00">2023-04-01</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/03/01/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" title="人工智能">人工智能</a><time datetime="2023-03-01T02:00:00.000Z" title="发表于 2023-03-01 10:00:00">2023-03-01</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>分类</span>
+            
+            </div>
+            <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/GAMES%E7%B3%BB%E5%88%97%E8%AF%BE%E7%A8%8B/"><span class="card-category-list-name">GAMES系列课程</span><span class="card-category-list-count">2</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E4%B8%93%E4%B8%9A%E8%AF%BE%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"><span class="card-category-list-name">专业课学习笔记</span><span class="card-category-list-count">9</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4/"><span class="card-category-list-name">常用指令</span><span class="card-category-list-count">3</span></a></li>
+            </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/GAMES%E7%B3%BB%E5%88%97%E8%AF%BE%E7%A8%8B-GAMES101%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" style="font-size: 1.1em; color: #999">GAMES系列课程 GAMES101学习笔记</a> <a href="/tags/GAMES%E7%B3%BB%E5%88%97%E8%AF%BE%E7%A8%8B-GAMES104%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" style="font-size: 1.1em; color: #999">GAMES系列课程 GAMES104学习笔记</a> <a href="/tags/%E4%B8%93%E4%B8%9A%E8%AF%BE/" style="font-size: 1.5em; color: #99a9bf">专业课</a> <a href="/tags/%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4/" style="font-size: 1.1em; color: #999">常用指令</a></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/07/"><span class="card-archive-list-date">七月 2023</span><span class="card-archive-list-count">3</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/04/"><span class="card-archive-list-date">四月 2023</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/03/"><span class="card-archive-list-date">三月 2023</span><span class="card-archive-list-count">2</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/02/"><span class="card-archive-list-date">二月 2023</span><span class="card-archive-list-count">3</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/09/"><span class="card-archive-list-date">九月 2022</span><span class="card-archive-list-count">4</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/08/"><span class="card-archive-list-date">八月 2022</span><span class="card-archive-list-count">1</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">14</div></div><div class="webinfo-item"><div class="item-name">本站总字数 :</div><div class="item-count">249.2k</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总访问量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2023-08-05T07:09:59.458Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By 华丰夏</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-nest.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = true;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-heart.min.js" async="async" mobile="true"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div class="no-result" id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>
