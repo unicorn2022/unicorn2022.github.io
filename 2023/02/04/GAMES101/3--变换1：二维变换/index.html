@@ -1,0 +1,272 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>GAMES101-03：变换1：2维变换 | 华风夏韵</title><meta name="author" content="华丰夏"><meta name="copyright" content="华丰夏"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="GAMES101学习笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="GAMES101-03：变换1：2维变换">
+<meta property="og:url" content="https://hzoi-unicorn.top/2023/02/04/GAMES101/3--%E5%8F%98%E6%8D%A21%EF%BC%9A%E4%BA%8C%E7%BB%B4%E5%8F%98%E6%8D%A2/index.html">
+<meta property="og:site_name" content="华风夏韵">
+<meta property="og:description" content="GAMES101学习笔记">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://hzoi-unicorn.top/img/avatar.png">
+<meta property="article:published_time" content="2023-02-03T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-08-05T07:44:39.965Z">
+<meta property="article:author" content="华丰夏">
+<meta property="article:tag" content="GAMES101学习笔记">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://hzoi-unicorn.top/img/avatar.png"><link rel="shortcut icon" href="https://raw.githubusercontent.com/unicorn2022/Pictures/main/img/favicon.png"><link rel="canonical" href="https://hzoi-unicorn.top/2023/02/04/GAMES101/3--%E5%8F%98%E6%8D%A21%EF%BC%9A%E4%BA%8C%E7%BB%B4%E5%8F%98%E6%8D%A2/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta name="baidu-site-verification" content="codeva-PpLfvQYdq5"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: 华丰夏","link":"链接: ","source":"来源: 华风夏韵","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'GAMES101-03：变换1：2维变换',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: true,
+  isToc: true,
+  postUpdate: '2023-08-05 15:44:39'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/background.css"><meta name="generator" content="Hexo 6.3.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">48</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">4</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-graduation-cap"></i><span> 博文</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 归档</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/resources/"><i class="fa-fw fa fa-book"></i><span> 资源</span></a></div><div class="menus_item"><a class="site-page" href="/tools/"><i class="fa-fw fas fa-list"></i><span> 在线工具</span></a></div><div class="menus_item"><a class="site-page" href="/comment/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于笔者</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/default_top_img.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="华风夏韵"><span class="site-name">华风夏韵</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-graduation-cap"></i><span> 博文</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 归档</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/resources/"><i class="fa-fw fa fa-book"></i><span> 资源</span></a></div><div class="menus_item"><a class="site-page" href="/tools/"><i class="fa-fw fas fa-list"></i><span> 在线工具</span></a></div><div class="menus_item"><a class="site-page" href="/comment/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于笔者</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">GAMES101-03：变换1：2维变换</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-02-03T16:00:00.000Z" title="发表于 2023-02-04 00:00:00">2023-02-04</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-08-05T07:44:39.965Z" title="更新于 2023-08-05 15:44:39">2023-08-05</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/GAMES%E7%B3%BB%E5%88%97%E8%AF%BE%E7%A8%8B/">GAMES系列课程</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">511</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>1分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="GAMES101-03：变换1：2维变换"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><script type="text/javascript"
+src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<h1 id="第3课-变换12维变换">第3课 变换1：2维变换</h1>
+<p>变换：</p>
+<ol type="1">
+<li>Modeling：模型变换，物体在3D空间中的运动</li>
+<li>Viewing：视图变换，3D到2D的投影</li>
+</ol>
+<h2 id="d-transform">3.1 2D Transform</h2>
+<h3 id="scale缩放变换">3.1.1 Scale缩放变换</h3>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20220811125108799.png" alt="image-20220811125108799" style="zoom:80%;" /></p>
+<h3 id="reflectin翻转">3.1.2 Reflectin翻转</h3>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20220811125051816.png" alt="image-20220811125051816" style="zoom:80%;" /></p>
+<h3 id="shear切变">3.1.3 Shear切变</h3>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20220811125253629.png" alt="image-20220811125253629" style="zoom:80%;" /></p>
+<h3 id="rotate旋转默认-绕原点-逆时针-旋转">3.1.4 Rotate旋转(默认 绕原点
+逆时针 旋转)</h3>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20220811125758262.png" alt="image-20220811125758262" style="zoom:80%;" /></p>
+<h3 id="linear-transform线性变换矩阵">3.1.5 Linear
+Transform线性变换=矩阵</h3>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20220811130400053.png" alt="image-20220811130400053" style="zoom:80%;" /></p>
+<h2 id="homogeneous-coordinates齐次坐标">3.2 Homogeneous
+coordinates齐次坐标</h2>
+<h3 id="translation平移变换notin线性变换">3.2.1 Translation平移变换<span
+class="math inline">\(\notin\)</span>线性变换</h3>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20220811130553973.png" alt="image-20220811130553973" style="zoom:80%;" /></p>
+<p>矩阵表示：</p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20220811130633298.png" alt="image-20220811130633298" style="zoom:80%;" /></p>
+<h3 id="齐次坐标">3.2.2 齐次坐标</h3>
+<p>添加一个维度</p>
+<ol type="1">
+<li>2维点：<span class="math inline">\((x,y,1)^T\)</span></li>
+<li>2维点的补充形式：<span
+class="math inline">\((x,y,w)^T\)</span>与<span
+class="math inline">\((\frac{x}{w},\frac{y}{w},1)^T\)</span>等价</li>
+<li>2维向量：<span class="math inline">\((x,y,0)^T\)</span></li>
+</ol>
+<p>对于两者第3个坐标的解释：</p>
+<ol type="1">
+<li>点的第三维为0，向量的第三维为1，可以满足向量的平移不变性</li>
+<li>且可以满足以下性质
+<ol type="1">
+<li>vector + vector = vector</li>
+<li>point - point = vector</li>
+<li>point + vector = point</li>
+<li>point + point = 两个point的中点</li>
+</ol></li>
+</ol>
+<h3 id="affine-transformation仿射变换-线性变换-平移变换">3.2.3 Affine
+Transformation仿射变换 = 线性变换 + 平移变换</h3>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20220811131633578.png" alt="image-20220811131633578" style="zoom:80%;" /></p>
+<h3 id="d-transformation">3.2.4 2D Transformation</h3>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20220811131725685.png" alt="image-20220811131725685" style="zoom:80%;" /></p>
+<h3 id="inverse-transform逆变换">3.2.5 Inverse Transform逆变换</h3>
+<p>逆变换 &lt;==&gt; 乘变换矩阵的逆矩阵</p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20220811155155659.png" alt="image-20220811155155659" style="zoom:80%;" /></p>
+<h2 id="composing-transforms变换的组合">3.3 Composing
+Transforms变换的组合</h2>
+<h3 id="举例">3.3.1 举例</h3>
+<ol type="1">
+<li>复杂变换可以有简单变换组合而成</li>
+<li>简单变换的顺序是很有必要的 &lt;==&gt; 矩阵乘法不满足交换律</li>
+</ol>
+<p>变换的目标：</p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20220811155307566.png" alt="image-20220811155307566" style="zoom:80%;" /></p>
+<p>变换的方法：先平移后旋转 or 先旋转后平移</p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20220811155434542.png" alt="image-20220811155434542" style="zoom:80%;" /></p>
+<p>矩阵表示：<strong>从右到左</strong>进行矩阵乘法，顺序为：<strong>缩放
+=&gt; 旋转 =&gt; 平移</strong></p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20220811155453930.png" alt="image-20220811155453930" style="zoom:80%;" /></p>
+<h3 id="多个变换">3.3.2 多个变换</h3>
+<p>假设有一系列仿射变换<span
+class="math inline">\(A_1,A_2,A_3...\)</span></p>
+<ol type="1">
+<li><p>可以用矩阵乘法表示：</p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20220811155912416.png" alt="image-20220811155912416" style="zoom:80%;" /></p></li>
+<li><p>可以先计算<span
+class="math inline">\(A_n...A_2·A_1\)</span>，再与列向量相乘</p>
+<ol type="1">
+<li>一个3*3的矩阵可以表示任意的变换</li>
+</ol></li>
+</ol>
+<h3 id="变换的分解">3.3.3 变换的分解</h3>
+<p>以C点为中心进行旋转<span
+class="math inline">\(\alpha\)</span>度：<span
+class="math inline">\(T(\vec{c})·R(\alpha)·T(\vec{-c})\)</span></p>
+<ol type="1">
+<li>先将图形按照<span
+class="math inline">\(\vec{-c}\)</span>的方向进行平移：<span
+class="math inline">\(T(\vec{-c})\)</span></li>
+<li>然后绕原点旋转<span class="math inline">\(\alpha\)</span>度：<span
+class="math inline">\(R(\alpha)\)</span></li>
+<li>然后将图形按照<span
+class="math inline">\(\vec{c}\)</span>的方向进行平移：<span
+class="math inline">\(T(\vec{c})\)</span></li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20220811160035313.png" alt="image-20220811160035313" style="zoom:80%;" /></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="unicorn2022.github.io">华丰夏</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://hzoi-unicorn.top/2023/02/04/GAMES101/3--%E5%8F%98%E6%8D%A21%EF%BC%9A%E4%BA%8C%E7%BB%B4%E5%8F%98%E6%8D%A2/">https://hzoi-unicorn.top/2023/02/04/GAMES101/3--变换1：二维变换/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://hzoi-unicorn.top" target="_blank">华风夏韵</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/GAMES101%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">GAMES101学习笔记</a></div><div class="post_share"><div class="social-share" data-image="/img/avatar.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/02/05/GAMES101/4--%E5%8F%98%E6%8D%A22%EF%BC%9A%E4%B8%89%E7%BB%B4%E5%8F%98%E6%8D%A2/" title="GAMES101-04：变换2：三维变换"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">GAMES101-04：变换2：三维变换</div></div></a></div><div class="next-post pull-right"><a href="/2023/02/03/GAMES101/2--%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E5%A4%8D%E4%B9%A0/" title="GAMES101-02：线性代数复习"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">GAMES101-02：线性代数复习</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2023/02/22/GAMES101/21--%E5%8A%A8%E7%94%BB/" title="GAMES101-21：动画&#x2F;模拟&#x2F;仿真"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-02-22</div><div class="title">GAMES101-21：动画&#x2F;模拟&#x2F;仿真</div></div></a></div><div><a href="/2023/02/21/GAMES101/19--%E7%9B%B8%E6%9C%BA&%E9%80%8F%E9%95%9C&%E5%85%89%E5%9C%BA/" title="GAMES101-19：相机&amp;透镜&amp;光场"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-02-21</div><div class="title">GAMES101-19：相机&amp;透镜&amp;光场</div></div></a></div><div><a href="/2023/02/20/GAMES101/18--%E9%AB%98%E7%BA%A7%E6%B8%B2%E6%9F%93/" title="GAMES101-18：高级渲染"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-02-20</div><div class="title">GAMES101-18：高级渲染</div></div></a></div><div><a href="/2023/02/19/GAMES101/17--%E6%9D%90%E8%B4%A8%E4%B8%8E%E5%A4%96%E8%A7%82/" title="GAMES101-17：材质与外观"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-02-19</div><div class="title">GAMES101-17：材质与外观</div></div></a></div><div><a href="/2023/02/18/GAMES101/16--%E5%85%89%E7%BA%BF%E8%BF%BD%E8%B8%AA4%EF%BC%9A%E8%92%99%E7%89%B9%E5%8D%A1%E6%B4%9B%E7%A7%AF%E5%88%86%20&%20%E8%B7%AF%E5%BE%84%E8%BF%BD%E8%B8%AA/" title="GAMES101-16：光线追踪4：蒙特卡洛积分 &amp; 路径追踪"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-02-18</div><div class="title">GAMES101-16：光线追踪4：蒙特卡洛积分 &amp; 路径追踪</div></div></a></div><div><a href="/2023/02/17/GAMES101/15--%E5%85%89%E7%BA%BF%E8%BF%BD%E8%B8%AA3%EF%BC%9ABRDF%20&%20%E6%B8%B2%E6%9F%93%E6%96%B9%E7%A8%8B/" title="GAMES101-15：光线追踪3：BRDF &amp; 渲染方程"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-02-17</div><div class="title">GAMES101-15：光线追踪3：BRDF &amp; 渲染方程</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">华丰夏</div><div class="author-info__description">一切都是上天最好的安排</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">48</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">4</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/unicorn2022"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/unicorn2022" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:496300118@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">愿你前行的道路有群星闪耀。愿你留下的足迹有百花绽放。你即是上帝的馈赠，世界因你而瑰丽。</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AC%AC3%E8%AF%BE-%E5%8F%98%E6%8D%A212%E7%BB%B4%E5%8F%98%E6%8D%A2"><span class="toc-text">第3课 变换1：2维变换</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#d-transform"><span class="toc-text">3.1 2D Transform</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#scale%E7%BC%A9%E6%94%BE%E5%8F%98%E6%8D%A2"><span class="toc-text">3.1.1 Scale缩放变换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#reflectin%E7%BF%BB%E8%BD%AC"><span class="toc-text">3.1.2 Reflectin翻转</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#shear%E5%88%87%E5%8F%98"><span class="toc-text">3.1.3 Shear切变</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#rotate%E6%97%8B%E8%BD%AC%E9%BB%98%E8%AE%A4-%E7%BB%95%E5%8E%9F%E7%82%B9-%E9%80%86%E6%97%B6%E9%92%88-%E6%97%8B%E8%BD%AC"><span class="toc-text">3.1.4 Rotate旋转(默认 绕原点
+逆时针 旋转)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#linear-transform%E7%BA%BF%E6%80%A7%E5%8F%98%E6%8D%A2%E7%9F%A9%E9%98%B5"><span class="toc-text">3.1.5 Linear
+Transform线性变换&#x3D;矩阵</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#homogeneous-coordinates%E9%BD%90%E6%AC%A1%E5%9D%90%E6%A0%87"><span class="toc-text">3.2 Homogeneous
+coordinates齐次坐标</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#translation%E5%B9%B3%E7%A7%BB%E5%8F%98%E6%8D%A2notin%E7%BA%BF%E6%80%A7%E5%8F%98%E6%8D%A2"><span class="toc-text">3.2.1 Translation平移变换\(\notin\)线性变换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%BD%90%E6%AC%A1%E5%9D%90%E6%A0%87"><span class="toc-text">3.2.2 齐次坐标</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#affine-transformation%E4%BB%BF%E5%B0%84%E5%8F%98%E6%8D%A2-%E7%BA%BF%E6%80%A7%E5%8F%98%E6%8D%A2-%E5%B9%B3%E7%A7%BB%E5%8F%98%E6%8D%A2"><span class="toc-text">3.2.3 Affine
+Transformation仿射变换 &#x3D; 线性变换 + 平移变换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#d-transformation"><span class="toc-text">3.2.4 2D Transformation</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#inverse-transform%E9%80%86%E5%8F%98%E6%8D%A2"><span class="toc-text">3.2.5 Inverse Transform逆变换</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#composing-transforms%E5%8F%98%E6%8D%A2%E7%9A%84%E7%BB%84%E5%90%88"><span class="toc-text">3.3 Composing
+Transforms变换的组合</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BE%E4%BE%8B"><span class="toc-text">3.3.1 举例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%9A%E4%B8%AA%E5%8F%98%E6%8D%A2"><span class="toc-text">3.3.2 多个变换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%98%E6%8D%A2%E7%9A%84%E5%88%86%E8%A7%A3"><span class="toc-text">3.3.3 变换的分解</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/07/19/%E6%8C%87%E4%BB%A4%E5%90%88%E9%9B%86/cmake%E6%8C%87%E4%BB%A4%E5%90%88%E9%9B%86/" title="cmake指令合集">cmake指令合集</a><time datetime="2023-07-19T12:19:11.000Z" title="发表于 2023-07-19 20:19:11">2023-07-19</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/07/15/%E6%8C%87%E4%BB%A4%E5%90%88%E9%9B%86/cmake%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="cmake学习笔记">cmake学习笔记</a><time datetime="2023-07-15T10:00:00.000Z" title="发表于 2023-07-15 18:00:00">2023-07-15</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/07/13/%E6%8C%87%E4%BB%A4%E5%90%88%E9%9B%86/hexo%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4/" title="hexo常用指令">hexo常用指令</a><time datetime="2023-07-13T13:11:11.000Z" title="发表于 2023-07-13 21:11:11">2023-07-13</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/04/01/GAMES104/02--%E6%80%BB%E8%A7%88%EF%BC%9A%E5%BC%95%E6%93%8E%E6%9E%B6%E6%9E%84%E5%88%86%E5%B1%82%E4%B8%8E%E6%95%B4%E4%BD%93pipeline/" title="GAMES104-02：总览：引擎架构分层与整体pipeline">GAMES104-02：总览：引擎架构分层与整体pipeline</a><time datetime="2023-04-01T04:49:00.000Z" title="发表于 2023-04-01 12:49:00">2023-04-01</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/04/01/GAMES104/03--%E6%80%BB%E8%A7%88%EF%BC%9A%E5%A6%82%E4%BD%95%E6%9E%84%E5%BB%BA%E6%B8%B8%E6%88%8F%E4%B8%96%E7%95%8C/" title="GAMES104-03：总览：如何构建游戏世界">GAMES104-03：总览：如何构建游戏世界</a><time datetime="2023-04-01T04:49:00.000Z" title="发表于 2023-04-01 12:49:00">2023-04-01</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By 华丰夏</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-nest.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = true;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-heart.min.js" async="async" mobile="true"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div class="no-result" id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>
