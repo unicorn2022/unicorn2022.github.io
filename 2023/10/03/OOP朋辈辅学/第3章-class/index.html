@@ -1,0 +1,274 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>OOP 第3章：class | 华风夏韵</title><meta name="author" content="华丰夏"><meta name="copyright" content="华丰夏"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="OOP朋辈辅学">
+<meta property="og:type" content="article">
+<meta property="og:title" content="OOP 第3章：class">
+<meta property="og:url" content="https://hzoi-unicorn.top/2023/10/03/OOP%E6%9C%8B%E8%BE%88%E8%BE%85%E5%AD%A6/%E7%AC%AC3%E7%AB%A0-class/index.html">
+<meta property="og:site_name" content="华风夏韵">
+<meta property="og:description" content="OOP朋辈辅学">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://hzoi-unicorn.top/img/avatar.png">
+<meta property="article:published_time" content="2023-10-02T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-10-22T04:26:15.534Z">
+<meta property="article:author" content="华丰夏">
+<meta property="article:tag" content="OOP朋辈辅学">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://hzoi-unicorn.top/img/avatar.png"><link rel="shortcut icon" href="https://raw.githubusercontent.com/unicorn2022/Pictures/main/img/favicon.png"><link rel="canonical" href="https://hzoi-unicorn.top/2023/10/03/OOP%E6%9C%8B%E8%BE%88%E8%BE%85%E5%AD%A6/%E7%AC%AC3%E7%AB%A0-class/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta name="baidu-site-verification" content="codeva-PpLfvQYdq5"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: 华丰夏","link":"链接: ","source":"来源: 华风夏韵","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'OOP 第3章：class',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: true,
+  isToc: true,
+  postUpdate: '2023-10-22 12:26:15'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/background.css"><!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">60</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">5</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-graduation-cap"></i><span> 博文</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 归档</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/resources/"><i class="fa-fw fa fa-book"></i><span> 资源</span></a></div><div class="menus_item"><a class="site-page" href="/tools/"><i class="fa-fw fas fa-list"></i><span> 在线工具</span></a></div><div class="menus_item"><a class="site-page" href="/comment/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于笔者</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/default_top_img.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="华风夏韵"><span class="site-name">华风夏韵</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-graduation-cap"></i><span> 博文</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 归档</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/resources/"><i class="fa-fw fa fa-book"></i><span> 资源</span></a></div><div class="menus_item"><a class="site-page" href="/tools/"><i class="fa-fw fas fa-list"></i><span> 在线工具</span></a></div><div class="menus_item"><a class="site-page" href="/comment/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于笔者</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">OOP 第3章：class</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-10-02T16:00:00.000Z" title="发表于 2023-10-03 00:00:00">2023-10-03</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-10-22T04:26:15.534Z" title="更新于 2023-10-22 12:26:15">2023-10-22</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/OOP%E6%9C%8B%E8%BE%88%E8%BE%85%E5%AD%A6/">OOP朋辈辅学</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.6k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>6分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="OOP 第3章：class"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><script type="text/javascript"
+src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+<h1 id="三、class"><a href="#三、class" class="headerlink" title="三、class"></a>三、class</h1><h2 id="3-1-C语言–面向过程"><a href="#3-1-C语言–面向过程" class="headerlink" title="3.1    C语言–面向过程"></a>3.1    C语言–面向过程</h2><ol>
+<li>定义：定义结构体、对结构体的操作函数</li>
+<li>使用：传入结构体指针、对应的参数</li>
+</ol>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 定义</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">point</span> &#123;</span>  </span><br><span class="line">    <span class="type">float</span> x;</span><br><span class="line">	<span class="type">float</span> y;</span><br><span class="line">&#125;Point;</span><br><span class="line"><span class="type">void</span> <span class="title function_">print</span><span class="params">(<span class="type">const</span> Point *p)</span>&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%f %f\n&quot;</span>,p-&gt;x,p-&gt;y);</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">void</span> <span class="title function_">move</span><span class="params">(Point* p,<span class="type">int</span> dx,<span class="type">int</span> dy)</span>&#123;</span><br><span class="line">    p-&gt;x += dx; p-&gt;y += dy;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 使用</span></span><br><span class="line">Point a;</span><br><span class="line">a.x = <span class="number">1</span>;a.y = <span class="number">2</span>;</span><br><span class="line">move(&amp;a,<span class="number">2</span>,<span class="number">2</span>);</span><br><span class="line">print(&amp;a);</span><br></pre></td></tr></table></figure>
+<h2 id="3-2-C-语言–面向对象"><a href="#3-2-C-语言–面向对象" class="headerlink" title="3.2    C++语言–面向对象"></a>3.2    C++语言–面向对象</h2><ol>
+<li>定义：将<strong>对象</strong>和<strong>操作</strong>绑定到一起</li>
+<li>使用：操作Point对象</li>
+</ol>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 定义</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Point</span>&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">init</span><span class="params">(<span class="type">int</span> x,<span class="type">int</span> y)</span></span>;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">move</span><span class="params">(<span class="type">int</span> dx,<span class="type">int</span> dy)</span></span>;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">print</span><span class="params">()</span><span class="type">const</span></span>;</span><br><span class="line">    </span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="type">int</span> x;</span><br><span class="line">    <span class="type">int</span> y;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 实现</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Point::init</span><span class="params">(<span class="type">int</span> ix,<span class="type">int</span> iy)</span></span>&#123;</span><br><span class="line">	x = ix; y = iy;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Point::move</span><span class="params">(<span class="type">int</span> dx,<span class="type">int</span> dy)</span></span>&#123;</span><br><span class="line">    x += dx; y += dy;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Point::print</span><span class="params">()</span> <span class="type">const</span></span>&#123;</span><br><span class="line">    cout &lt;&lt; x &lt;&lt; <span class="string">&#x27; &#x27;</span> &lt;&lt; y &lt;&lt; endl;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 使用</span></span><br><span class="line">Point a;</span><br><span class="line">a.<span class="built_in">init</span>(<span class="number">1</span>,<span class="number">2</span>);</span><br><span class="line">a.<span class="built_in">move</span>(<span class="number">2</span>,<span class="number">2</span>);</span><br><span class="line">a.<span class="built_in">print</span>();</span><br></pre></td></tr></table></figure>
+<h2 id="3-3-resolver"><a href="#3-3-resolver" class="headerlink" title="3.3    :: resolver"></a>3.3    :: resolver</h2><p><strong>&lt; Class Name &gt;::&lt; function name &gt;</strong></p>
+<p><strong>::&lt; function name &gt;</strong></p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">S::f</span><span class="params">()</span></span>&#123;</span><br><span class="line">	::<span class="built_in">f</span>();<span class="comment">//这里调用的f()是全局的函数f(),而非自己</span></span><br><span class="line">    ::a++;<span class="comment">//全局的a++</span></span><br><span class="line">    a--;<span class="comment">//S里的a++</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="3-4-Container容器"><a href="#3-4-Container容器" class="headerlink" title="3.4    Container容器"></a>3.4    Container容器</h2><p><strong>container</strong>：是一个能够保存其它对象的<strong>object</strong></p>
+<p><strong>stash</strong>：是一个可以存储变量、运行时可以扩展的<strong>container</strong></p>
+<p>要求：</p>
+<ol>
+<li>无类型限制</li>
+<li>存储的对象类型相同</li>
+<li>操作：<strong>add()</strong>、<strong>fetch()</strong></li>
+<li>可以自动扩展内存</li>
+</ol>
+<h3 id="3-4-1-声明"><a href="#3-4-1-声明" class="headerlink" title="3.4.1    声明"></a>3.4.1    声明</h3><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">ifndef</span> STASH2_H</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> STASH2_H</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Stash</span>&#123;</span><br><span class="line">    <span class="type">int</span> size;	 <span class="comment">// 每个空间的大小</span></span><br><span class="line">    <span class="type">int</span> quantity;<span class="comment">// 空间的个数</span></span><br><span class="line">    <span class="type">int</span> next;	 <span class="comment">// 下一个为空的空间</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 进行动态内存访问</span></span><br><span class="line">    <span class="type">unsigned</span> <span class="type">char</span>* storage; </span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">inflatte</span><span class="params">(<span class="type">int</span> increase)</span></span>;<span class="comment">// 增长内存</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">Stash</span>(<span class="type">int</span> size);</span><br><span class="line">    ~<span class="built_in">Stash</span>();</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">add</span><span class="params">(<span class="type">void</span> * element)</span></span>;</span><br><span class="line">    <span class="function"><span class="type">void</span>* <span class="title">fetch</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">count</span><span class="params">()</span></span>;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="3-4-2-定义"><a href="#3-4-2-定义" class="headerlink" title="3.4.2    定义"></a>3.4.2    定义</h3><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;Stash2.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;../require.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cassert&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> increment = <span class="number">100</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 构造函数,函数名和类名相同</span></span><br><span class="line">Stash::<span class="built_in">Stash</span>(<span class="type">int</span> sz) &#123; </span><br><span class="line">	size = sz;</span><br><span class="line">	quantity = <span class="number">0</span>;</span><br><span class="line">	storage = <span class="number">0</span>;</span><br><span class="line">	next = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">Stash::add</span><span class="params">(<span class="type">void</span>* element)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 剩余内存不够,增加内存</span></span><br><span class="line">	<span class="keyword">if</span>(next &gt;= quantity) </span><br><span class="line">		<span class="built_in">inflate</span>(increment);</span><br><span class="line">	<span class="comment">// 将元素复制到storage[]中,开始另一个新内存</span></span><br><span class="line">	<span class="type">int</span> startBytes = next * size;</span><br><span class="line">	<span class="type">unsigned</span> <span class="type">char</span>* e = (<span class="type">unsigned</span> <span class="type">char</span>*)element;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; size; i++)</span><br><span class="line">		storage[startBytes + i] = e[i];</span><br><span class="line">	next++;</span><br><span class="line">	<span class="keyword">return</span> (next - <span class="number">1</span>); <span class="comment">//当前元素存储的空间编号</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span>* <span class="title">Stash::fetch</span><span class="params">(<span class="type">int</span> index)</span> </span>&#123;</span><br><span class="line">	<span class="built_in">require</span>(<span class="number">0</span> &lt;= index, <span class="string">&quot;Stash::fetch (-)index&quot;</span>);</span><br><span class="line">    </span><br><span class="line">	<span class="keyword">if</span>(index &gt;= next) <span class="keyword">return</span> <span class="number">0</span>;<span class="comment">// 访问为空</span></span><br><span class="line">	<span class="comment">// 返回访问的内存地址</span></span><br><span class="line">	<span class="keyword">return</span> &amp;(storage[index * size]);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">Stash::count</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> next; <span class="comment">// Stash中的元素个数</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Stash::inflate</span><span class="params">(<span class="type">int</span> increase)</span> </span>&#123;</span><br><span class="line">	<span class="built_in">require</span>(increase &gt; <span class="number">0</span>, <span class="string">&quot;Stash::inflate zero or negative increase&quot;</span>);</span><br><span class="line">    </span><br><span class="line">	<span class="type">int</span> newQuantity = quantity + increase;</span><br><span class="line">	<span class="type">int</span> newBytes = newQuantity * size;</span><br><span class="line">	<span class="type">int</span> oldBytes = quantity * size;</span><br><span class="line">	<span class="type">unsigned</span> <span class="type">char</span>* b = <span class="keyword">new</span> <span class="type">unsigned</span> <span class="type">char</span>[newBytes];</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; oldBytes; i++)</span><br><span class="line">		b[i] = storage[i]; <span class="comment">// 将旧内存中的元素复制到新内存中</span></span><br><span class="line">	<span class="keyword">delete</span>[] (storage); <span class="comment">// 删除旧内存</span></span><br><span class="line">	storage = b; <span class="comment">// storage指向新内存</span></span><br><span class="line">	quantity = newQuantity;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 析构函数</span></span><br><span class="line">Stash::~<span class="built_in">Stash</span>() &#123;</span><br><span class="line">	<span class="keyword">if</span>(storage != <span class="number">0</span>) &#123;</span><br><span class="line">    	cout &lt;&lt; <span class="string">&quot;freeing storage&quot;</span> &lt;&lt; endl;</span><br><span class="line">    	<span class="keyword">delete</span>[] storage;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="3-5-this"><a href="#3-5-this" class="headerlink" title="3.5    this"></a>3.5    this</h2><p><strong>this</strong>：指向对象本身的指针，是类的每个成员函数的隐藏参数</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">Stash::initialize</span><span class="params">(<span class="type">int</span> sz)</span></span>;</span><br><span class="line"><span class="comment">// 可以被视为: </span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Stash::initialize</span><span class="params">(Stash* <span class="keyword">this</span>, <span class="type">int</span> sz)</span></span>;</span><br><span class="line"></span><br><span class="line">Stash a;</span><br><span class="line">a.<span class="built_in">initialize</span>(<span class="number">10</span>);</span><br><span class="line"><span class="comment">// 可以被视为: </span></span><br><span class="line">Stash::<span class="built_in">initialize</span>(&amp;a, <span class="number">10</span>);</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">MyClass</span>&#123;</span><br><span class="line">    <span class="type">int</span> x;</span><br><span class="line">    <span class="type">int</span> y;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">MyClass</span>()&#123;x = <span class="number">0</span>; y = <span class="number">0</span>;&#125;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">foo</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> y)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>-&gt;x = x;</span><br><span class="line">        <span class="keyword">this</span>-&gt;y = y; <span class="comment">// 在运行时,this会被看为指向该对象的一个指针</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="3-6-Object-amp-class"><a href="#3-6-Object-amp-class" class="headerlink" title="3.6    Object &amp; class"></a>3.6    Object &amp; class</h2><p><strong>Objects = Attributes + Services</strong></p>
+<ol>
+<li>data：对象的特性or状态；operations：对对象的操作</li>
+<li>通过接口修改数据，而非直接修改数据</li>
+<li>直接访问变量，变量的声明者对变量没有控制权，无法控制操作者的行为</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20231013192216365.png" alt="image-20231013192216365" style="zoom:80%;" /></p>
+<p><strong>class</strong>定义<strong>object</strong>，<strong>object</strong>是<strong>class</strong>的一个实例</p>
+<ol>
+<li>class表述对象可能具有哪些特性</li>
+<li>object表示当前对象的每个特性的具体取值</li>
+</ol>
+<p>OOP的特性：</p>
+<ol>
+<li>所有事物均可以看作一个对象object</li>
+<li>程序是对象的集合，他们通过互相发送消息，告知应该做些什么</li>
+<li>每个对象都有自己独有的内存空间，由其他更加通用的对象组成</li>
+<li>每个对象都有一个类型type</li>
+<li>一个特定类型的所有对象，可以收到相同的信息</li>
+</ol>
+<h2 id="3-7-Definition-of-a-class"><a href="#3-7-Definition-of-a-class" class="headerlink" title="3.7    Definition of a class"></a>3.7    Definition of a class</h2><ol>
+<li><strong>class</strong>的声明放入<strong>.h</strong>文件</li>
+<li><strong>class</strong>的函数体、静态成员变量放入<strong>*.cpp</strong>文件</li>
+</ol>
+<h2 id="3-8-compile-unit"><a href="#3-8-compile-unit" class="headerlink" title="3.8    compile unit"></a>3.8    compile unit</h2><ol>
+<li><strong>compiler</strong>只会看到当前的<strong>cpp</strong>文件，生成当前文件对应的 <strong>obj</strong>文件</li>
+<li><strong>linker</strong>会链接所有的<strong>obj</strong>文件，生成一个 <strong>exe</strong>文件</li>
+<li>如果要使用其它<strong>cpp</strong>文件中定义的函数/类，需要使用 <strong>.h</strong>头文件进行声明</li>
+</ol>
+<h2 id="3-9-The-header-files"><a href="#3-9-The-header-files" class="headerlink" title="3.9    The header files"></a>3.9    The header files</h2><ol>
+<li>如果函数定义在头文件，那么必须在任何使用该函数和定义该函数的地方<strong>include</strong>该头文件</li>
+<li>如果<strong>class</strong>定义在头文件，那么必须在任何使用<strong>class</strong>和定义<strong>class</strong>的地方<strong>include</strong>该头文件</li>
+<li>当使用<code>#include</code>引用头文件时，编译器会将头文件的内容展开到当前文件，相当于将函数/类的声明写入了当前<strong>cpp</strong>文件中</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20231013193814111.png" alt="image-20231013193814111" style="zoom:80%;" /></p>
+<h2 id="3-10-Makefile"><a href="#3-10-Makefile" class="headerlink" title="3.10    Makefile"></a>3.10    Makefile</h2><ul>
+<li>当程序的代码量过大时，如果仅使用单个文件，会导致诸如难以管理、单次修改需要编译整个项目等问题</li>
+<li>因此我们需要将代码拆分为多个文件进行管理与修改</li>
+<li>多个代码文件之间的关系，通过Makefile文件声明</li>
+</ul>
+<h3 id="3-10-1-Project的结构"><a href="#3-10-1-Project的结构" class="headerlink" title="3.10.1    Project的结构"></a>3.10.1    Project的结构</h3><p>可以看作是一个有向无环图<strong>DAG</strong></p>
+<p>以一个工程为例</p>
+<ul>
+<li>包含main.c、sum.c、sum.h</li>
+<li>sum.h在所有.c文件中都包含</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20231013194226096.png" alt="image-20231013194226096" style="zoom:80%;" /></p>
+<p>此时的<strong>makefile</strong>为：</p>
+<figure class="highlight makefile"><table><tr><td class="code"><pre><span class="line"><span class="section">sum: main.o	sum.o</span></span><br><span class="line">	gcc –o sum main.o sum.o</span><br><span class="line"><span class="section">main.o: main.c sum.h  </span></span><br><span class="line">    gcc –c main.c</span><br><span class="line"><span class="section">sum.o: sum.c sum.h  </span></span><br><span class="line">    gcc –c sum.c</span><br></pre></td></tr></table></figure>
+<h3 id="3-10-2-makefile的语法规则："><a href="#3-10-2-makefile的语法规则：" class="headerlink" title="3.10.2    makefile的语法规则："></a>3.10.2    makefile的语法规则：</h3><p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20231013194235783.png" alt="image-20231013194235783" style="zoom:80%;" /></p>
+<p>简化语法：</p>
+<figure class="highlight makefile"><table><tr><td class="code"><pre><span class="line"><span class="section">sum: main.o	sum.o</span></span><br><span class="line">	gcc –o <span class="variable">$@</span> main.o sum.o <span class="comment"># $@ ==&gt; sum</span></span><br><span class="line">main.o	sum.o: sum.h  </span><br><span class="line">    gcc –c <span class="variable">$*</span>.c <span class="comment"># $* ==&gt; main、sum</span></span><br></pre></td></tr></table></figure>
+<h3 id="3-10-3-makefile的过程"><a href="#3-10-3-makefile的过程" class="headerlink" title="3.10.3    makefile的过程"></a>3.10.3    makefile的过程</h3><ol>
+<li>构建项目依赖树</li>
+<li>创建第一条指令的目标，当且仅当一下两种情况成立之时：<ol>
+<li>目标文件不存在</li>
+<li>目标文件比它的一个依赖项更早生成</li>
+</ol>
+</li>
+<li><strong>makefile</strong>的作用是保证最小的编译数量，因此需要正确写明<ol>
+<li>不要写成下面这样(这样写会直接重新编译所有文件)</li>
+</ol>
+</li>
+</ol>
+<figure class="highlight makefile"><table><tr><td class="code"><pre><span class="line"><span class="section">prog: main.c sum1.c	sum2.c</span></span><br><span class="line">gcc –o prog main.c sum1.c sum2.c</span><br></pre></td></tr></table></figure>
+<h2 id="3-11-CMake"><a href="#3-11-CMake" class="headerlink" title="3.11    CMake"></a>3.11    CMake</h2><ol>
+<li>是一个跨平台的，开源编译系统</li>
+<li>可以看作是Makefile的升级版</li>
+</ol>
+<p><a href="https://hzoi-unicorn.top/2023/06/02/指令合集/cmake学习笔记/">cmake学习笔记 | 华风夏韵 (hzoi-unicorn.top)</a></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="unicorn2022.github.io">华丰夏</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://hzoi-unicorn.top/2023/10/03/OOP%E6%9C%8B%E8%BE%88%E8%BE%85%E5%AD%A6/%E7%AC%AC3%E7%AB%A0-class/">https://hzoi-unicorn.top/2023/10/03/OOP朋辈辅学/第3章-class/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://hzoi-unicorn.top" target="_blank">华风夏韵</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/OOP%E6%9C%8B%E8%BE%88%E8%BE%85%E5%AD%A6/">OOP朋辈辅学</a></div><div class="post_share"><div class="social-share" data-image="/img/avatar.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/10/04/OOP%E6%9C%8B%E8%BE%88%E8%BE%85%E5%AD%A6/%E7%AC%AC4%E7%AB%A0-Object%20Interactive/" title="OOP 第4章：Object Interactive"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">OOP 第4章：Object Interactive</div></div></a></div><div class="next-post pull-right"><a href="/2023/10/02/OOP%E6%9C%8B%E8%BE%88%E8%BE%85%E5%AD%A6/%E7%AC%AC2%E7%AB%A0-using%20objects/" title="OOP 第2章：Using Object"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">OOP 第2章：Using Object</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2023/10/13/OOP%E6%9C%8B%E8%BE%88%E8%BE%85%E5%AD%A6/%E7%AC%AC13%E7%AB%A0-SmartPointer/" title="OOP 第13章：SmartPointer"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-10-13</div><div class="title">OOP 第13章：SmartPointer</div></div></a></div><div><a href="/2023/10/12/OOP%E6%9C%8B%E8%BE%88%E8%BE%85%E5%AD%A6/%E7%AC%AC12%E7%AB%A0-Policy-based%20Design/" title="OOP 第12章：Policy-based Design"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-10-12</div><div class="title">OOP 第12章：Policy-based Design</div></div></a></div><div><a href="/2023/10/11/OOP%E6%9C%8B%E8%BE%88%E8%BE%85%E5%AD%A6/%E7%AC%AC11%E7%AB%A0-Iterators/" title="OOP 第11章：Iterators"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-10-11</div><div class="title">OOP 第11章：Iterators</div></div></a></div><div><a href="/2023/10/10/OOP%E6%9C%8B%E8%BE%88%E8%BE%85%E5%AD%A6/%E7%AC%AC11%E7%AB%A0-Class%20Design/" title="OOP 第11章：Class Design"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-10-10</div><div class="title">OOP 第11章：Class Design</div></div></a></div><div><a href="/2023/10/09/OOP%E6%9C%8B%E8%BE%88%E8%BE%85%E5%AD%A6/%E7%AC%AC10%E7%AB%A0-Exceptions/" title="OOP 第10章：Exceptions"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-10-09</div><div class="title">OOP 第10章：Exceptions</div></div></a></div><div><a href="/2023/10/08/OOP%E6%9C%8B%E8%BE%88%E8%BE%85%E5%AD%A6/%E7%AC%AC9%E7%AB%A0-Template/" title="OOP 第9章：Template"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-10-08</div><div class="title">OOP 第9章：Template</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">华丰夏</div><div class="author-info__description">一切都是上天最好的安排</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">60</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">5</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/unicorn2022"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/unicorn2022" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:496300118@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">愿你前行的道路有群星闪耀。愿你留下的足迹有百花绽放。你即是上帝的馈赠，世界因你而瑰丽。</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%89%E3%80%81class"><span class="toc-text">三、class</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1-C%E8%AF%AD%E8%A8%80%E2%80%93%E9%9D%A2%E5%90%91%E8%BF%87%E7%A8%8B"><span class="toc-text">3.1    C语言–面向过程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2-C-%E8%AF%AD%E8%A8%80%E2%80%93%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1"><span class="toc-text">3.2    C++语言–面向对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-3-resolver"><span class="toc-text">3.3    :: resolver</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-4-Container%E5%AE%B9%E5%99%A8"><span class="toc-text">3.4    Container容器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-1-%E5%A3%B0%E6%98%8E"><span class="toc-text">3.4.1    声明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-2-%E5%AE%9A%E4%B9%89"><span class="toc-text">3.4.2    定义</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-5-this"><span class="toc-text">3.5    this</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-6-Object-amp-class"><span class="toc-text">3.6    Object &amp; class</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-7-Definition-of-a-class"><span class="toc-text">3.7    Definition of a class</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-8-compile-unit"><span class="toc-text">3.8    compile unit</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-9-The-header-files"><span class="toc-text">3.9    The header files</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-10-Makefile"><span class="toc-text">3.10    Makefile</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-10-1-Project%E7%9A%84%E7%BB%93%E6%9E%84"><span class="toc-text">3.10.1    Project的结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-10-2-makefile%E7%9A%84%E8%AF%AD%E6%B3%95%E8%A7%84%E5%88%99%EF%BC%9A"><span class="toc-text">3.10.2    makefile的语法规则：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-10-3-makefile%E7%9A%84%E8%BF%87%E7%A8%8B"><span class="toc-text">3.10.3    makefile的过程</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-11-CMake"><span class="toc-text">3.11    CMake</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/10/13/OOP%E6%9C%8B%E8%BE%88%E8%BE%85%E5%AD%A6/%E7%AC%AC13%E7%AB%A0-SmartPointer/" title="OOP 第13章：SmartPointer">OOP 第13章：SmartPointer</a><time datetime="2023-10-12T16:00:00.000Z" title="发表于 2023-10-13 00:00:00">2023-10-13</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/10/12/OOP%E6%9C%8B%E8%BE%88%E8%BE%85%E5%AD%A6/%E7%AC%AC12%E7%AB%A0-Policy-based%20Design/" title="OOP 第12章：Policy-based Design">OOP 第12章：Policy-based Design</a><time datetime="2023-10-11T16:00:00.000Z" title="发表于 2023-10-12 00:00:00">2023-10-12</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/10/11/OOP%E6%9C%8B%E8%BE%88%E8%BE%85%E5%AD%A6/%E7%AC%AC11%E7%AB%A0-Iterators/" title="OOP 第11章：Iterators">OOP 第11章：Iterators</a><time datetime="2023-10-10T16:00:00.000Z" title="发表于 2023-10-11 00:00:00">2023-10-11</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/10/10/OOP%E6%9C%8B%E8%BE%88%E8%BE%85%E5%AD%A6/%E7%AC%AC11%E7%AB%A0-Class%20Design/" title="OOP 第11章：Class Design">OOP 第11章：Class Design</a><time datetime="2023-10-09T16:00:00.000Z" title="发表于 2023-10-10 00:00:00">2023-10-10</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/10/09/OOP%E6%9C%8B%E8%BE%88%E8%BE%85%E5%AD%A6/%E7%AC%AC10%E7%AB%A0-Exceptions/" title="OOP 第10章：Exceptions">OOP 第10章：Exceptions</a><time datetime="2023-10-08T16:00:00.000Z" title="发表于 2023-10-09 00:00:00">2023-10-09</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By 华丰夏</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-nest.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = true;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-heart.min.js" async="async" mobile="true"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div class="no-result" id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>
