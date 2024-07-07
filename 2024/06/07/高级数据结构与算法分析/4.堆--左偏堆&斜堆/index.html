@@ -1,0 +1,350 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>ADS04：堆--左偏堆&amp;斜堆 | 华风夏韵</title><meta name="author" content="华丰夏"><meta name="copyright" content="华丰夏"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="第4章：堆--左偏堆&amp;斜堆">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ADS04：堆--左偏堆&amp;斜堆">
+<meta property="og:url" content="https://hzoi-unicorn.top/2024/06/07/%E9%AB%98%E7%BA%A7%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90/4.%E5%A0%86--%E5%B7%A6%E5%81%8F%E5%A0%86&%E6%96%9C%E5%A0%86/index.html">
+<meta property="og:site_name" content="华风夏韵">
+<meta property="og:description" content="第4章：堆--左偏堆&amp;斜堆">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://hzoi-unicorn.top/img/avatar.png">
+<meta property="article:published_time" content="2024-06-06T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-07-07T11:49:59.606Z">
+<meta property="article:author" content="华丰夏">
+<meta property="article:tag" content="ADS学习笔记">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://hzoi-unicorn.top/img/avatar.png"><link rel="shortcut icon" href="https://raw.githubusercontent.com/unicorn2022/Pictures/main/img/favicon.png"><link rel="canonical" href="https://hzoi-unicorn.top/2024/06/07/%E9%AB%98%E7%BA%A7%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90/4.%E5%A0%86--%E5%B7%A6%E5%81%8F%E5%A0%86&amp;%E6%96%9C%E5%A0%86/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta name="baidu-site-verification" content="codeva-PpLfvQYdq5"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: 华丰夏","link":"链接: ","source":"来源: 华风夏韵","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'ADS04：堆--左偏堆&斜堆',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: true,
+  isToc: true,
+  postUpdate: '2024-07-07 19:49:59'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/background.css"><!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">83</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">8</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-graduation-cap"></i><span> 博文</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 归档</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/resources/"><i class="fa-fw fa fa-book"></i><span> 资源</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa-solid fa-gamepad"></i><span> 游戏</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/game/mf"><i class="fa-fw fa-solid fa-cube"></i><span> 魔方</span></a></li><li><a class="site-page child" href="/game/sl"><i class="fa-fw fa-brands fa-galactic-republic"></i><span> 扫雷</span></a></li><li><a class="site-page child" href="/game/2048"><i class="fa-fw fa-brands fa-pix"></i><span> 二零四八</span></a></li><li><a class="site-page child" href="/game/wzq"><i class="fa-fw fa-solid fa-chess-board"></i><span> 五子棋</span></a></li><li><a class="site-page child" href="/game/txz"><i class="fa-fw fa-solid fa-box"></i><span> 推箱子</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/comment/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于笔者</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/default_top_img.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="华风夏韵"><span class="site-name">华风夏韵</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-graduation-cap"></i><span> 博文</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 归档</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/resources/"><i class="fa-fw fa fa-book"></i><span> 资源</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa-solid fa-gamepad"></i><span> 游戏</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/game/mf"><i class="fa-fw fa-solid fa-cube"></i><span> 魔方</span></a></li><li><a class="site-page child" href="/game/sl"><i class="fa-fw fa-brands fa-galactic-republic"></i><span> 扫雷</span></a></li><li><a class="site-page child" href="/game/2048"><i class="fa-fw fa-brands fa-pix"></i><span> 二零四八</span></a></li><li><a class="site-page child" href="/game/wzq"><i class="fa-fw fa-solid fa-chess-board"></i><span> 五子棋</span></a></li><li><a class="site-page child" href="/game/txz"><i class="fa-fw fa-solid fa-box"></i><span> 推箱子</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/comment/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于笔者</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">ADS04：堆--左偏堆&amp;斜堆</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-06-06T16:00:00.000Z" title="发表于 2024-06-07 00:00:00">2024-06-07</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-07-07T11:49:59.606Z" title="更新于 2024-07-07 19:49:59">2024-07-07</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/ADS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">ADS学习笔记</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.5k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>6分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="ADS04：堆--左偏堆&amp;斜堆"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><script type="text/javascript"
+src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<p><strong>合并方法：</strong></p>
+<ol type="1">
+<li>先将<span class="math inline">\(H_2\)</span>合并到<span
+class="math inline">\(H_1\)</span>的右子树中，记录每一步被当作<strong>根</strong>的节点</li>
+<li>从最后一个被当作<strong>根</strong>的节点开始，向上回溯
+<ol type="1">
+<li>如果是左偏堆，则根据NPL判断是否需要交换左右子树</li>
+<li>如果是斜堆，则始终交换左右子树</li>
+</ol></li>
+</ol>
+<h1 id="左偏堆-leftist-heap">左偏堆 Leftist Heap</h1>
+<h2 id="一基础概念">一、基础概念</h2>
+<p><strong>Full Binary Tree</strong>：每个节点都有0/2个儿子</p>
+<p><strong>Complete Binary Tree</strong>：除了最后一层，每一层都满了</p>
+<p>堆<strong>Heap</strong>：</p>
+<ul>
+<li>任意一条从根到叶节点的路径，是有序的</li>
+<li>结构性质、顺序性质</li>
+<li>在<strong>O(n)</strong>的时间内，可以将两个堆合并</li>
+</ul>
+<h2 id="二性质">二、性质</h2>
+<p>空路径长度<strong>null path
+length</strong>：<strong>Npl(X)</strong>：</p>
+<ul>
+<li>从节点<strong>x</strong>开始到叶节点的最短的路径长度</li>
+<li><strong>Npl(x) = min{Npl(c) c为x的子节点} + 1</strong></li>
+</ul>
+<p>左偏堆<strong>Leftist Heap</strong>：</p>
+<ul>
+<li>满足顺序性质，但是不满足结构性质(左子树<strong>size</strong>&gt;右子树<strong>size</strong>)</li>
+<li>对于左偏堆中的每个节点<strong>x</strong>，左子节点的空路径长度&gt;=右子节点</li>
+</ul>
+<blockquote>
+<p>节点上的数字，表示当前节点的<strong>Npl</strong>值</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20240416194844582.png" alt="image-20240416194844582" style="zoom:80%;" /></p>
+<p>定理：如果左偏堆的右路径有<strong>r</strong>个节点，那么其至少有<strong><span
+class="math inline">\(2^r\)</span> - 1</strong>个节点 <span
+class="math display">\[
+\begin{aligned}
+证明：&amp;1.当r=1时，显然成立 \\
+     &amp;2.当r&gt;1时，假设k=r-1时，假设成立\\
+     &amp;设当前节点为a，左子节点为b，右子节点为c\\
+     &amp;对于此时的根节点，因为右路径为r，因此其NPL(c)\geq r-1\\
+     &amp;由于左偏堆的性质，此时左子树满足NPL(b)\geq r-1\\
+     &amp;由假设得，左右子树的节点个数均\geq 2^{r-1}-1 \\
+     &amp;因此该子树的节点个数\geq 2^r-1
+\end{aligned}
+\]</span></p>
+<h2 id="三结构体">三、结构体</h2>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">LHeap</span>&#123;</span><br><span class="line">    <span class="type">int</span> element;</span><br><span class="line">    LHeap* Left;</span><br><span class="line">    LHeap* Right;</span><br><span class="line">    <span class="type">int</span> NPL;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="四合并">四、合并</h2>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function">LHeap* <span class="title">Merge</span><span class="params">(LHeap* H1, LHeap*H2)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(H1 == <span class="literal">NULL</span>) <span class="keyword">return</span> H2;</span><br><span class="line">    <span class="keyword">if</span>(H2 == <span class="literal">NULL</span>) <span class="keyword">return</span> H1;</span><br><span class="line">    <span class="keyword">if</span>(H1-&gt;element &lt; H2-&gt;element) <span class="keyword">return</span> <span class="built_in">Merge1</span>(H1,H2);</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">return</span> <span class="built_in">Merge1</span>(H2,H1);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function">LHeap* <span class="title">Merge1</span><span class="params">(LHeap* H1, LHeap* H2 )</span></span>&#123; </span><br><span class="line"><span class="comment">//H1的根节点的值 &lt; H2的根节点的值</span></span><br><span class="line">	<span class="keyword">if</span> (H1-&gt;Left == <span class="literal">NULL</span>)&#123;<span class="comment">//H1为单个节点</span></span><br><span class="line">		H1-&gt;Left = H2;<span class="comment">//将H2作为H1的左子树,因为要满足左边的NPL大</span></span><br><span class="line">    &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">		H1-&gt;Right = <span class="built_in">Merge</span>(H1-&gt;Right,H2);<span class="comment">//将H2与H1的右子树合并</span></span><br><span class="line">		<span class="keyword">if</span> (H1-&gt;Left-&gt;Npl &lt; H1-&gt;Right-&gt;Npl)</span><br><span class="line">			<span class="built_in">SwapChildren</span>(H1);<span class="comment">//如果左子树的NPL小,则转换左右子树</span></span><br><span class="line">		H1-&gt;Npl = H1-&gt;Right-&gt;Npl + <span class="number">1</span>;<span class="comment">//更新根节点的NPL值</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> H1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20240416194950545.png" alt="image-20240416194950545" style="zoom:80%;" /></p>
+<h1 id="斜堆-skew-heap">斜堆 Skew Heap</h1>
+<h2 id="一合并">一、合并</h2>
+<h3 id="原理">1.1 原理</h3>
+<p>总是交换左右子树，除非右面路径上的最大节点的子树没有被交换</p>
+<p>任意<strong>M</strong>次连续操作，时间最多为<strong>O(M log
+N)</strong>，<strong>N=N1+N2</strong></p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20240416195348001.png" alt="image-20240416195348001" style="zoom:80%;" /></p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20240416195402464.png" alt="image-20240416195402464" style="zoom:80%;" /></p>
+<h3 id="代码">1.2 代码</h3>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">Node</span> &#123;</span><br><span class="line">    <span class="type">int</span> data;</span><br><span class="line">    Node* lch, * rch;</span><br><span class="line">    <span class="built_in">Node</span>() &#123;&#125;;</span><br><span class="line">    <span class="built_in">Node</span>(<span class="type">int</span> x) &#123;</span><br><span class="line">        data = x;</span><br><span class="line">        lch = rch = <span class="literal">NULL</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">Node* root;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">SwapChildren</span><span class="params">(Node* H)</span> </span>&#123;</span><br><span class="line">    Node* temp = H-&gt;lch;</span><br><span class="line">    H-&gt;lch = H-&gt;rch;</span><br><span class="line">    H-&gt;rch = temp;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function">Node* <span class="title">Merge</span><span class="params">(Node* H1, Node* H2)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (H1 == <span class="literal">NULL</span>)<span class="keyword">return</span> H2;</span><br><span class="line">    <span class="keyword">if</span> (H2 == <span class="literal">NULL</span>)<span class="keyword">return</span> H1;</span><br><span class="line">    <span class="keyword">if</span> (H1-&gt;data &gt; H2-&gt;data) &#123;</span><br><span class="line">        Node* temp = H1;</span><br><span class="line">        H1 = H2;</span><br><span class="line">        H2 = temp;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (H1-&gt;lch == <span class="literal">NULL</span>)<span class="comment">//H1是单个节点</span></span><br><span class="line">        H1-&gt;lch = H2;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        H1-&gt;rch = <span class="built_in">Merge</span>(H1-&gt;rch, H2);</span><br><span class="line">        <span class="built_in">SwapChildren</span>(H1);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="二时间复杂度证明">二、时间复杂度证明</h2>
+<p><span class="math display">\[
+\begin{aligned}
+定义：&amp;如果节点p的右子树的后代至少为p的后代数的一半，则p为重节点\\
+     &amp;注意，p节点的后代数包括p本身\\\\     
+引理1:&amp;在H_1、H_2右路径中的重节点，在H_3中变为了轻节点\\
+     &amp;假设a为重节点,a要和b合并\\
+     &amp;(1)a&gt;b,则a的右子树与b合并,并且作为a的左子树,\\
+     &amp;合并后左子树比右子树大,a变为轻节点\\
+     &amp;(2)a&lt;b,则a与b的右子树合并,设b的右节点为c\\
+     &amp;如果a&gt;c,则变为(1)\\
+     &amp;如果a&lt;c,则变为(2),继续向下处理\\
+\\
+引理2:&amp;一棵树,如果其右路径有k个轻节点,则至少有2^k-1个节点\\
+     &amp;数学归纳法:当前树的节点数\geq 2(2^k-1)+1 \geq 2^{k+1}-1\\
+\\
+证明：&amp;设合并前为H_1,H_2，合并后为H_3\\
+     &amp;\Phi(H_i)=H_i树中，重节点的个数\\
+     &amp;设一共进行了m次递归,则\\
+     &amp;\sum_{i=1}^{m} \hat c_i = \sum_{i=1}^{m} c_i
++\Phi(H_3)-\Phi(H_1)-\Phi(H_2) \\
+     &amp;设H_i的右路径中，轻节点有l_i个，重节点有h_i个，则\\
+     &amp;\sum_{i=1}^{m} c_i \leq l_1 + h_1 + l_2 + h_2 \\
+     &amp; 令\Delta \Phi=\Phi(H_3)-\Phi(H_1)-\Phi(H_2),由引理1得 \\
+     &amp;\Delta \Phi \leq l_1 + l_2 - (h_1 + h_2) \\
+     &amp;\therefore \sum_{i=1}^{m} \hat c_i \leq l_1 + h_1 + l_2 + h_2
++ \Delta \Phi \\
+     &amp;\leq l_1 + h_1 + l_2 + h_2 +  l_1 + l_2 - (h_1 + h_2)\\
+     &amp;=2(l_1 + l_2),由引理2\\
+     &amp;=O(log\ n_1)+O(log\ n_2)
+\end{aligned}
+\]</span></p>
+<h1 id="例题">例题</h1>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20240416195550896.png" alt="image-20240416195550896" style="zoom:80%;" /></p>
+<h2 id="右路径上重点轻点的个数为olog-n">右路径上重点、轻点的个数为O(log
+N)</h2>
+<h1 id="斜堆的代码实现">斜堆的代码实现</h1>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">pragma</span> <span class="keyword">warning</span>(disable:4996)</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;ctime&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">SkewHeap</span> &#123;</span><br><span class="line">	<span class="keyword">struct</span> <span class="title class_">Node</span> &#123;</span><br><span class="line">		<span class="type">int</span> data;</span><br><span class="line">		<span class="type">int</span> size;</span><br><span class="line">		Node* lch, *rch;</span><br><span class="line">		<span class="built_in">Node</span>() &#123;</span><br><span class="line">			data = <span class="number">0</span>;</span><br><span class="line">			size = <span class="number">0</span>;</span><br><span class="line">			lch = rch = <span class="literal">NULL</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">Node</span>(<span class="type">int</span> x) &#123;</span><br><span class="line">			data = x;</span><br><span class="line">			size = <span class="number">1</span>;</span><br><span class="line">			lch = rch = <span class="literal">NULL</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="function"><span class="type">void</span> <span class="title">Update</span><span class="params">()</span> </span>&#123;</span><br><span class="line">			size = <span class="number">1</span>;</span><br><span class="line">			<span class="keyword">if</span> (lch != <span class="literal">NULL</span>) size += lch-&gt;size;</span><br><span class="line">			<span class="keyword">if</span> (rch != <span class="literal">NULL</span>) size += rch-&gt;size;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	<span class="type">static</span> <span class="type">const</span> <span class="type">int</span> maxSize = <span class="number">100000</span> + <span class="number">10</span>;</span><br><span class="line">	Node* root;</span><br><span class="line">	<span class="function"><span class="type">void</span> <span class="title">SwapChildren</span><span class="params">(Node* H)</span> </span>&#123;</span><br><span class="line">		Node* temp = H-&gt;lch;</span><br><span class="line">		H-&gt;lch = H-&gt;rch;</span><br><span class="line">		H-&gt;rch = temp;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="type">int</span> <span class="title">GetData</span><span class="params">(Node* u)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (u == <span class="literal">NULL</span>)<span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">		<span class="keyword">return</span> u-&gt;data;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function">Node* <span class="title">Merge</span><span class="params">(Node* H1, Node* H2)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (H1 == <span class="literal">NULL</span>)<span class="keyword">return</span> H2;</span><br><span class="line">		<span class="keyword">if</span> (H2 == <span class="literal">NULL</span>)<span class="keyword">return</span> H1;</span><br><span class="line">		<span class="keyword">if</span> (H1-&gt;data &gt; H2-&gt;data) &#123;</span><br><span class="line">			Node* temp = H1;</span><br><span class="line">			H1 = H2;</span><br><span class="line">			H2 = temp;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> (H1-&gt;lch == <span class="literal">NULL</span>)<span class="comment">//H1是单个节点</span></span><br><span class="line">			H1-&gt;lch = H2;</span><br><span class="line">		<span class="keyword">else</span> &#123;</span><br><span class="line">			H1-&gt;rch = <span class="built_in">Merge</span>(H1-&gt;rch, H2);</span><br><span class="line">			<span class="built_in">SwapChildren</span>(H1);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="built_in">SkewHeap</span>() &#123;</span><br><span class="line">		root = <span class="keyword">new</span> <span class="built_in">Node</span>();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="type">void</span> <span class="title">reset</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		root = <span class="keyword">new</span> <span class="built_in">Node</span>();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="type">int</span> <span class="title">size</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> root-&gt;size;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="type">void</span> <span class="title">Insert</span><span class="params">(<span class="type">int</span> x)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (root-&gt;size == <span class="number">0</span>) &#123;</span><br><span class="line">			root-&gt;data = x;</span><br><span class="line">			root-&gt;size = <span class="number">1</span>;</span><br><span class="line">			<span class="keyword">return</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		Node* now = <span class="keyword">new</span> <span class="built_in">Node</span>(x);</span><br><span class="line">		root = <span class="built_in">Merge</span>(root, now);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="type">int</span> <span class="title">top</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> root-&gt;data;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="type">void</span> <span class="title">pop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		root = <span class="built_in">Merge</span>(root-&gt;lch, root-&gt;rch);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="unicorn2022.github.io">华丰夏</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://hzoi-unicorn.top/2024/06/07/%E9%AB%98%E7%BA%A7%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90/4.%E5%A0%86--%E5%B7%A6%E5%81%8F%E5%A0%86&amp;%E6%96%9C%E5%A0%86/">https://hzoi-unicorn.top/2024/06/07/高级数据结构与算法分析/4.堆--左偏堆&amp;斜堆/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://hzoi-unicorn.top" target="_blank">华风夏韵</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/ADS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">ADS学习笔记</a></div><div class="post_share"><div class="social-share" data-image="/img/avatar.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2024/06/08/%E9%AB%98%E7%BA%A7%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90/5.%E5%A0%86--%E4%BA%8C%E9%A1%B9%E5%A0%86Binomial%20Queue/" title="ADS05：堆--二项堆"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">ADS05：堆--二项堆</div></div></a></div><div class="next-post pull-right"><a href="/2024/06/06/%E9%AB%98%E7%BA%A7%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90/3.%E5%80%92%E6%8E%92%E6%96%87%E4%BB%B6%E7%B4%A2%E5%BC%95/" title="ADS03：倒排文件索引"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">ADS03：倒排文件索引</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2024/06/18/%E9%AB%98%E7%BA%A7%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90/15.%E5%A4%96%E6%8E%92/" title="ADS15：外排"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-06-18</div><div class="title">ADS15：外排</div></div></a></div><div><a href="/2024/06/17/%E9%AB%98%E7%BA%A7%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90/14.%E5%B9%B6%E8%A1%8C%E7%AE%97%E6%B3%95/" title="ADS14：并行算法"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-06-17</div><div class="title">ADS14：并行算法</div></div></a></div><div><a href="/2024/06/16/%E9%AB%98%E7%BA%A7%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90/13.%E9%9A%8F%E6%9C%BA%E7%AE%97%E6%B3%95/" title="ADS13：随机算法"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-06-16</div><div class="title">ADS13：随机算法</div></div></a></div><div><a href="/2024/06/15/%E9%AB%98%E7%BA%A7%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90/12.%E5%B1%80%E9%83%A8%E6%90%9C%E7%B4%A2/" title="ADS12：局部搜索"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-06-15</div><div class="title">ADS12：局部搜索</div></div></a></div><div><a href="/2024/06/14/%E9%AB%98%E7%BA%A7%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90/11.%E8%BF%91%E4%BC%BC%E7%AE%97%E6%B3%95/" title="ADS11：近似算法"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-06-14</div><div class="title">ADS11：近似算法</div></div></a></div><div><a href="/2024/06/13/%E9%AB%98%E7%BA%A7%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90/10.NP%E5%AE%8C%E5%85%A8%E6%80%A7/" title="ADS10：NP完全性"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-06-13</div><div class="title">ADS10：NP完全性</div></div></a></div></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="gitalk-container"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">华丰夏</div><div class="author-info__description">一切都是上天最好的安排</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">83</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">8</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/unicorn2022"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/unicorn2022" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:496300118@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">愿你前行的道路有群星闪耀。愿你留下的足迹有百花绽放。你即是上帝的馈赠，世界因你而瑰丽。</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B7%A6%E5%81%8F%E5%A0%86-leftist-heap"><span class="toc-text">左偏堆 Leftist Heap</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5"><span class="toc-text">一、基础概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E6%80%A7%E8%B4%A8"><span class="toc-text">二、性质</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E7%BB%93%E6%9E%84%E4%BD%93"><span class="toc-text">三、结构体</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E5%90%88%E5%B9%B6"><span class="toc-text">四、合并</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%96%9C%E5%A0%86-skew-heap"><span class="toc-text">斜堆 Skew Heap</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E5%90%88%E5%B9%B6"><span class="toc-text">一、合并</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8E%9F%E7%90%86"><span class="toc-text">1.1 原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81"><span class="toc-text">1.2 代码</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6%E8%AF%81%E6%98%8E"><span class="toc-text">二、时间复杂度证明</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BE%8B%E9%A2%98"><span class="toc-text">例题</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%B3%E8%B7%AF%E5%BE%84%E4%B8%8A%E9%87%8D%E7%82%B9%E8%BD%BB%E7%82%B9%E7%9A%84%E4%B8%AA%E6%95%B0%E4%B8%BAolog-n"><span class="toc-text">右路径上重点、轻点的个数为O(log
+N)</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%96%9C%E5%A0%86%E7%9A%84%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="toc-text">斜堆的代码实现</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/07/01/%E4%BD%B3%E6%98%95%E5%A4%A7%E5%AE%9A%E7%90%86%EF%BC%88doge%EF%BC%89/" title="佳昕大定理（doge）">佳昕大定理（doge）</a><time datetime="2024-06-30T16:00:00.000Z" title="发表于 2024-07-01 00:00:00">2024-07-01</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/18/%E9%AB%98%E7%BA%A7%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90/15.%E5%A4%96%E6%8E%92/" title="ADS15：外排">ADS15：外排</a><time datetime="2024-06-17T16:00:00.000Z" title="发表于 2024-06-18 00:00:00">2024-06-18</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/17/%E9%AB%98%E7%BA%A7%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90/14.%E5%B9%B6%E8%A1%8C%E7%AE%97%E6%B3%95/" title="ADS14：并行算法">ADS14：并行算法</a><time datetime="2024-06-16T16:00:00.000Z" title="发表于 2024-06-17 00:00:00">2024-06-17</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/16/%E9%AB%98%E7%BA%A7%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90/13.%E9%9A%8F%E6%9C%BA%E7%AE%97%E6%B3%95/" title="ADS13：随机算法">ADS13：随机算法</a><time datetime="2024-06-15T16:00:00.000Z" title="发表于 2024-06-16 00:00:00">2024-06-16</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/15/%E9%AB%98%E7%BA%A7%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90/12.%E5%B1%80%E9%83%A8%E6%90%9C%E7%B4%A2/" title="ADS12：局部搜索">ADS12：局部搜索</a><time datetime="2024-06-14T16:00:00.000Z" title="发表于 2024-06-15 00:00:00">2024-06-15</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By 华丰夏</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, '']
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typesetPromise()
+}</script><script>function loadGitalk () {
+  function initGitalk () {
+    var gitalk = new Gitalk(Object.assign({
+      clientID: 'Ov23lis3fEb7fKVKQtT5',
+      clientSecret: '70b1c6819afd5c9bfb6846f0779e4ff85c238c67',
+      repo: 'unicorn2022.github.io',
+      owner: 'unicorn2022',
+      admin: ['unicorn2022'],
+      id: '74241af3ffd3a396b4f3f1b4c7bf8215',
+      updateCountCallback: commentCount
+    },null))
+
+    gitalk.render('gitalk-container')
+  }
+
+  if (typeof Gitalk === 'function') initGitalk()
+  else {
+    getCSS('https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css')
+    getScript('https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.js').then(initGitalk)
+  }
+}
+
+function commentCount(n){
+  let isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+  if (isCommentCount) {
+    isCommentCount.textContent= n
+  }
+}
+
+if ('Gitalk' === 'Gitalk' || !false) {
+  if (false) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+  else loadGitalk()
+} else {
+  function loadOtherComment () {
+    loadGitalk()
+  }
+}</script></div><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-nest.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = true;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-heart.min.js" async="async" mobile="true"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div class="no-result" id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>

@@ -1,0 +1,527 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>ADS10：NP完全性 | 华风夏韵</title><meta name="author" content="华丰夏"><meta name="copyright" content="华丰夏"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="第10章：NP完全性">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ADS10：NP完全性">
+<meta property="og:url" content="https://hzoi-unicorn.top/2024/06/13/%E9%AB%98%E7%BA%A7%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90/10.NP%E5%AE%8C%E5%85%A8%E6%80%A7/index.html">
+<meta property="og:site_name" content="华风夏韵">
+<meta property="og:description" content="第10章：NP完全性">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://hzoi-unicorn.top/img/avatar.png">
+<meta property="article:published_time" content="2024-06-12T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-07-07T11:49:59.591Z">
+<meta property="article:author" content="华丰夏">
+<meta property="article:tag" content="ADS学习笔记">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://hzoi-unicorn.top/img/avatar.png"><link rel="shortcut icon" href="https://raw.githubusercontent.com/unicorn2022/Pictures/main/img/favicon.png"><link rel="canonical" href="https://hzoi-unicorn.top/2024/06/13/%E9%AB%98%E7%BA%A7%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90/10.NP%E5%AE%8C%E5%85%A8%E6%80%A7/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta name="baidu-site-verification" content="codeva-PpLfvQYdq5"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: 华丰夏","link":"链接: ","source":"来源: 华风夏韵","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'ADS10：NP完全性',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: true,
+  isToc: true,
+  postUpdate: '2024-07-07 19:49:59'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/background.css"><!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">83</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">8</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-graduation-cap"></i><span> 博文</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 归档</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/resources/"><i class="fa-fw fa fa-book"></i><span> 资源</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa-solid fa-gamepad"></i><span> 游戏</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/game/mf"><i class="fa-fw fa-solid fa-cube"></i><span> 魔方</span></a></li><li><a class="site-page child" href="/game/sl"><i class="fa-fw fa-brands fa-galactic-republic"></i><span> 扫雷</span></a></li><li><a class="site-page child" href="/game/2048"><i class="fa-fw fa-brands fa-pix"></i><span> 二零四八</span></a></li><li><a class="site-page child" href="/game/wzq"><i class="fa-fw fa-solid fa-chess-board"></i><span> 五子棋</span></a></li><li><a class="site-page child" href="/game/txz"><i class="fa-fw fa-solid fa-box"></i><span> 推箱子</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/comment/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于笔者</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/default_top_img.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="华风夏韵"><span class="site-name">华风夏韵</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-graduation-cap"></i><span> 博文</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 归档</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/resources/"><i class="fa-fw fa fa-book"></i><span> 资源</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa-solid fa-gamepad"></i><span> 游戏</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/game/mf"><i class="fa-fw fa-solid fa-cube"></i><span> 魔方</span></a></li><li><a class="site-page child" href="/game/sl"><i class="fa-fw fa-brands fa-galactic-republic"></i><span> 扫雷</span></a></li><li><a class="site-page child" href="/game/2048"><i class="fa-fw fa-brands fa-pix"></i><span> 二零四八</span></a></li><li><a class="site-page child" href="/game/wzq"><i class="fa-fw fa-solid fa-chess-board"></i><span> 五子棋</span></a></li><li><a class="site-page child" href="/game/txz"><i class="fa-fw fa-solid fa-box"></i><span> 推箱子</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/comment/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于笔者</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">ADS10：NP完全性</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-06-12T16:00:00.000Z" title="发表于 2024-06-13 00:00:00">2024-06-13</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-07-07T11:49:59.591Z" title="更新于 2024-07-07 19:49:59">2024-07-07</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/ADS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">ADS学习笔记</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">2k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>7分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="ADS10：NP完全性"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><script type="text/javascript"
+src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<h1 id="np完全性-np-completeness">NP完全性 NP-Completeness</h1>
+<h2 id="一基础概念">一、基础概念</h2>
+<h3 id="可计算的问题">1.1 可计算的问题</h3>
+<ol type="1">
+<li><strong>computational
+problem</strong>：可以通过计算机，一步一步的在有限时间内解出答案。分为以下4类
+<ol type="1">
+<li>Decision problem：判断是否存在一个可行解</li>
+<li>Search problem：找到一个可行解</li>
+<li>Optimization problem：找到一个最优的可行解</li>
+<li>Counting problem：计算有多少种可行解</li>
+</ol></li>
+<li>事实：
+<ol type="1">
+<li>Decision problem比Optimization problem简单
+<ol type="1">
+<li>如果优化问题有解，则判定问题必然有解</li>
+<li>如果判定问题很难，则优化问题必然很难</li>
+</ol></li>
+<li>对于每一个优化问题<span
+class="math inline">\(X\)</span>，通过加一些边界，可以将其转化为一个判定问题<span
+class="math inline">\(X&#39;\)</span></li>
+</ol></li>
+<li>当我们定义<span class="math inline">\(P\)</span>和<span
+class="math inline">\(NP\)</span>问题的时候，我们只考虑判定问题</li>
+</ol>
+<h3 id="简单or难问题">1.2 简单or难问题</h3>
+<ol type="1">
+<li>easy problem：多项式时间内，可以解决</li>
+<li>hard problem：指数时间甚至更长</li>
+</ol>
+<h3 id="问题的编码">1.3 问题的编码</h3>
+<ol type="1">
+<li>通过二进制字符串，将问题的输入重新编码<strong>encode</strong></li>
+<li><strong>Input
+Size</strong>：将输入编码为二进制串后，输入的大小即为二进制串的长度</li>
+<li><strong>polynomial-time algorithm</strong>：最坏的运行时间为<span
+class="math inline">\(O(n^k)\)</span></li>
+<li><strong>Polynomial-Time Solvable
+Problems</strong>：存在一个多项式时间的算法，可以正确的解决所有的输入</li>
+</ol>
+<h2 id="二machine计算的模型">二、Machine：计算的模型</h2>
+<h3 id="turing-machine">2.1 Turing machine</h3>
+<ol type="1">
+<li><strong>Turing
+machine</strong>：有若干条纸带和若干个针头，下一步取决于之前的状态，有限个状态的控制</li>
+</ol>
+<h3 id="random-access-machineram">2.2 Random Access Machine(RAM)</h3>
+<ol type="1">
+<li><p><strong>Random Access Machine(RAM)</strong>：</p>
+<ol type="1">
+<li>有一个控制器，多个寄存器，一个内存</li>
+<li>每个寄存器和内存存储一个整数</li>
+<li>对寄存器进行算术/比较运算，通过一个特殊的寄存器，从内存中读取/存入值，这些都视为一步</li>
+<li>循环和子程序不考虑简单操作，他们是一系列单步运算</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20240611152934642.png" alt="image-20240611152934642" style="zoom:80%;" /></p></li>
+<li><p>广义邱奇-图灵论题：</p>
+<ol type="1">
+<li>任何可以在物理上由一个计算机<strong>M</strong>在<strong>T(n)</strong>的时间内解决的<strong>language</strong>，都可以通过图灵机在<strong><span
+class="math inline">\(O(T(n)^k)\)</span></strong>的时间内解决</li>
+<li>其中，<strong>k</strong>只与<strong>M</strong>有关</li>
+</ol></li>
+</ol>
+<h3 id="language等价决策问题">2.3 Language：等价决策问题</h3>
+<ol type="1">
+<li><strong>A language L over <span
+class="math inline">\(\sum\)</span></strong>：由Σ中的字符定义的任意一个字符串</li>
+<li><strong>A language</strong>：语言是问题的形式化表达</li>
+<li>图灵机<strong>M</strong>判定语言<strong>L</strong>：
+<ol type="1">
+<li>当任意一个输入<strong><span class="math inline">\(x \in
+L\)</span></strong>时，<strong>M</strong>停止在<strong>accepting</strong>的状态</li>
+<li>当任意一个输入<strong><span class="math inline">\(x \notin
+L\)</span></strong>
+时，<strong>M</strong>停止在<strong>rejecting</strong>的状态</li>
+</ol></li>
+<li>算法<strong>A</strong>接受<strong>x</strong>：<strong>A(x) =
+1</strong>；算法<strong>A</strong>拒绝<strong>x</strong>：<strong>A(x) =
+0</strong></li>
+<li>算法<strong>A</strong>判定语言<strong>L</strong>：
+<ol type="1">
+<li>所有在<strong>L</strong>中的二进制串都被<strong>A</strong>接受</li>
+<li>所有不在<strong>L</strong>中的二进制串都被<strong>A</strong>拒绝</li>
+</ol></li>
+<li><strong>Decision problem or language X</strong>
+<ol type="1">
+<li>问题<strong>X</strong>是一个字符串的集合</li>
+<li>实例<strong>s</strong>是一个字符串</li>
+<li>算法<strong>A</strong>决定问题<strong>X</strong>：<span
+class="math inline">\(A(s)=yes \harr s\in X\)</span></li>
+</ol></li>
+</ol>
+<h3 id="nondeterministic-turing-machine非确定性图灵机">2.4
+Nondeterministic Turing Machine：非确定性图灵机</h3>
+<p>​
+从历史上看，<strong>NDTM</strong>和标准<strong>TM</strong>之间的唯一区别是<strong>NDTM</strong>有两个转换函数<strong>δ0</strong>和<strong>δ1</strong>，
+<strong>NDTM</strong>可以在它们之间进行选择。</p>
+<p>​
+我们赋予它一种神奇的能力，可以分裂成两个副本，每个副本都有不同的部分告诉它接下来要做什么。这些副本可以进一步分裂成指数级的副本或分支。</p>
+<p>​
+如果任何一个分支接受了，那么我们就说机器作为一个整体接受了；如果没有，机器就会报废。</p>
+<p>​
+一个非确定性图灵机可以自由地从一个有限集合中选择它的下一步。如果这些步骤中有一个找到了解决方案，它总是会选择正确的那一个。</p>
+<ol type="1">
+<li><strong>witness</strong>：提供了一系列选择，引导机器走向<strong>accepting</strong>的分支</li>
+<li>语言<strong>L</strong> 被 非确定性图灵机 判定：
+<ol type="1">
+<li>对于任意<strong><span class="math inline">\(x \in
+L\)</span></strong>，存在一个<strong>witness
+w</strong>使得<strong>M(x,w)</strong>接受</li>
+<li>对任意<strong><span class="math inline">\(x \notin
+L\)</span></strong>，不存在一个<strong>witness
+w</strong>使得<strong>M(x,w)</strong>接受</li>
+</ol></li>
+<li><strong>A verification algorithm A(x,
+y)：</strong>验证算法<strong>A(x,y)</strong>
+<ol type="1">
+<li><strong>x</strong>：正常的输入</li>
+<li><strong>y</strong>：证书</li>
+<li>算法判断对于<strong>x</strong>，是否存在一个<strong>y</strong>，使得<strong>A(x,y)=1</strong></li>
+</ol></li>
+</ol>
+<h2 id="三-complexity-class">三、 Complexity class</h2>
+<ol type="1">
+<li><strong>P</strong>：可以在多项式时间内，解决的判定、解决问题
+<ol type="1">
+<li>存在一个多项式时间的确定性算法<strong>A</strong>，能够判定<strong>L</strong></li>
+</ol></li>
+<li><strong>NP</strong>：可以在多项式时间内，判定是否为Yes；不能在多项式时间内，计算出来结果
+<ol type="1">
+<li>存在一个非确定性多项式时间算法<strong>A</strong>，能够判定<strong>L</strong>
+<ol type="1">
+<li>对于任意<strong><span class="math inline">\(x \in
+L\)</span></strong>，<strong>A</strong>有一些不确定的走法选择，使<strong>A</strong>接受<strong>x</strong><br />
+</li>
+<li>对任意<strong><span class="math inline">\(x \notin
+L\)</span></strong>，没有走法选择，使<strong>A</strong>接受<strong>x</strong></li>
+</ol></li>
+<li>语言<strong>L</strong>有一个有效的证明者<strong>A(x,
+y)</strong>，算法<strong>A</strong>在多项式时间内验证语言<strong>L</strong>
+<ol type="1">
+<li>对于任意<strong><span class="math inline">\(x \in
+L\)</span></strong>，存在一个长度为<strong>|x|</strong>的多项式复杂度内的<strong>certificate</strong>
+<strong>y</strong>，使得<strong>A(x,y) = 1</strong></li>
+<li>对任意<strong><span class="math inline">\(x \notin
+L\)</span></strong>，不存在<strong>y</strong>，使得<strong>A(x,y) =
+1</strong></li>
+</ol></li>
+</ol></li>
+<li><strong>co-NP</strong>：可以在多项式时间内，判定是否为No，是<strong>NP</strong>问题的反面</li>
+<li>定理：判断问题<strong><span class="math inline">\(X \in P \harr
+\overline X \notin P\)</span> </strong></li>
+<li>问题是否容易处理
+<ol type="1">
+<li><strong>tractable</strong>易处理的：多项式时间内可以解决</li>
+<li><strong>intractable</strong>不易处理的：需要指数的时间来解决</li>
+</ol></li>
+</ol>
+<h2
+id="四reductions-and-np-complete-problems归约和np完全问题">四、Reductions
+and NP-complete problems：归约和NP完全问题</h2>
+<ol type="1">
+<li>(<strong>Turing归约</strong>)问题<strong>A</strong> 可以归约到
+问题<strong>B</strong>：<span class="math inline">\(A \le_T B\)</span>
+<ol type="1">
+<li>解决<strong>B</strong>的算法 可以用来 解决<strong>A</strong></li>
+<li><strong>A</strong> 比 <strong>B</strong> 容易</li>
+<li>问题<strong>A</strong>可以转化为问题<strong>B</strong>的一个子问题</li>
+</ol></li>
+<li>(<strong>Cook归约</strong>)问题<strong>A</strong> 可以多项式归约到
+问题<strong>B</strong>：<span class="math inline">\(A \le_P B\)</span>
+<ol type="1">
+<li>问题<strong>A</strong> 可以 归约到 <strong>B</strong></li>
+<li>可以通过多项式次调用<strong>B</strong>的子进程，然后进行多项式次运算
+得到问题A的答案</li>
+<li><strong>A</strong> 比 <strong>B</strong> 容易</li>
+</ol></li>
+<li>(<strong>Karp归约</strong>)：
+<ol type="1">
+<li>如果存在一个多项式时间可以计算的函数<strong>f</strong>，使得对任意<strong><span
+class="math inline">\(x∈L1 \harr
+f(x)∈L2\)</span></strong>，则<strong>L1</strong>可以多项式归约到<strong>L2</strong></li>
+</ol></li>
+<li>证明<strong>A</strong>可以多项式归约到<strong>B</strong>：
+<ol type="1">
+<li>找到一个可以在多项式时间内计算的函数<span
+class="math inline">\(f\)</span></li>
+<li>证明：若<span class="math inline">\(x∈A\)</span>，则<span
+class="math inline">\(f(x)∈B\)</span></li>
+<li>证明：若<span class="math inline">\(f(x)∈B\)</span>，则<span
+class="math inline">\(x∈A\)</span>；或者证明：若<span
+class="math inline">\(x\notin A\)</span>，则<span
+class="math inline">\(f(x)\notin B\)</span></li>
+</ol></li>
+<li><strong>NP-Hard</strong>问题
+<ol type="1">
+<li><span class="math inline">\(\forall L&#39;\in NP,L&#39;\le_P
+L\)</span></li>
+</ol></li>
+<li><strong>NP-Complete</strong>问题：
+<ol type="1">
+<li><span class="math inline">\(\forall L&#39;\in NP,L&#39;\le_P
+L\)</span></li>
+<li><span class="math inline">\(L \in NP\)</span></li>
+</ol></li>
+<li>证明一个问题是<strong>NP-Complete</strong>问题
+<ol type="1">
+<li>证明：<span class="math inline">\(L∈NP\)</span></li>
+<li>选择一个<strong>NPC</strong>问题<strong>L‘</strong>，证明<strong>L’</strong>可以
+多项式归约到 <strong>L</strong></li>
+</ol></li>
+</ol>
+<h2 id="五npc问题">五、NPC问题</h2>
+<h3 id="sat问题">5.1 SAT问题</h3>
+<ol type="1">
+<li>给定一个<strong>CNF</strong>的关系式<strong>Φ</strong>，判断是否存在一组变量的取值，使得Φ为真</li>
+<li><strong>k-SAT</strong>：<strong>Φ</strong>有<strong>k</strong>个变量</li>
+</ol>
+<h3 id="clique问题">5.2 clique问题</h3>
+<ol type="1">
+<li><p>给定一个<strong>k</strong>，判断在图中是否有<strong>size</strong>为<strong>k</strong>的团</p></li>
+<li><p>团：从图中选择一些点，这些点两两之间均有边相连</p></li>
+<li><p>证明团问题是NPC问题：</p>
+<ol type="1">
+<li><p>证明：<strong>clique <span class="math inline">\(\in\)</span>
+NP</strong></p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20240611152948403.png" alt="image-20240611152948403" style="zoom:80%;" /></p></li>
+<li><p>证明：<strong>3-SAT <span class="math inline">\(\le_P\)</span>
+clique</strong>，即证明，<strong>3-SAT</strong>问题 可以转化成
+<strong>clique</strong>的一个子问题</p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20240611152953066.png" alt="image-20240611152953066" style="zoom:80%;" /></p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20240611152957959.png" alt="image-20240611152957959" style="zoom:80%;" /></p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20240611153003599.png" alt="image-20240611153003599" style="zoom:80%;" /></p></li>
+</ol></li>
+</ol>
+<h3 id="顶点覆盖问题">5.3 顶点覆盖问题</h3>
+<ol type="1">
+<li><p>给定一个无向图G和一个整数K，判断G是否存在一个不超过K个节点的节点集合V‘，使得G中所有的边至少有一个顶点在V’中</p></li>
+<li><p>证明vertex cover是NPC问题</p>
+<ol type="1">
+<li><p>证明：<strong>vertex cover</strong> <span
+class="math inline">\(\in\)</span> <strong>NP</strong></p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20240611153009325.png" alt="image-20240611153009325" style="zoom:80%;" /></p></li>
+<li><p>证明：<strong>clique</strong> <span
+class="math inline">\(\le_p\)</span> <strong>vertex cover</strong></p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20240611153013922.png" alt="image-20240611153013922" style="zoom:80%;" /></p></li>
+</ol></li>
+</ol>
+<h2 id="六self-reduction">六、Self-reduction</h2>
+<ol type="1">
+<li><strong>Self-reduction</strong>：一个问题是自归约的，当且仅当这个问题的搜索问题
+可以多项式规约到 判定问题</li>
+<li><strong>SAT</strong>问题是<strong>self-reduction</strong>的
+<ol type="1">
+<li>对于<strong>k-SAT</strong>问题：通过任取一个变量<strong>xi</strong>，将其分别赋值为0和1，得到两个<strong>(k-1)-SAT</strong>问题，这一步骤是多项式时间的（最多有<strong>2n</strong>种情况）</li>
+<li>而<strong>k-SAT</strong>问题 和 <strong>(k-1)-SAT</strong>问题
+都是<strong>SAT</strong>问题，因此 <strong>SAT</strong>问题
+可以多项式归约到 <strong>SAT</strong>问题</li>
+</ol></li>
+<li>所有的<strong>NPC</strong>问题都是<strong>self-reducible</strong></li>
+</ol>
+<h2 id="七例题">七、例题</h2>
+<ol type="1">
+<li>如果<span class="math inline">\(L_1 \le_p L_2\)</span>并且<span
+class="math inline">\(L_2 \in NP\)</span>，则<span
+class="math inline">\(L_1\in NP\)</span>
+<ul>
+<li>答案：正确</li>
+<li>解析：<span class="math inline">\(P \sube
+NP\)</span>是一定成立的</li>
+</ul></li>
+<li>所有NP问题，可以在一个非确定图灵机中，在多项式时间内解决<strong>solved</strong>
+<ul>
+<li>答案：正确</li>
+<li>解析：所有NP问题均为判定问题，解决 ==&gt; 判定</li>
+</ul></li>
+</ol>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="unicorn2022.github.io">华丰夏</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://hzoi-unicorn.top/2024/06/13/%E9%AB%98%E7%BA%A7%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90/10.NP%E5%AE%8C%E5%85%A8%E6%80%A7/">https://hzoi-unicorn.top/2024/06/13/高级数据结构与算法分析/10.NP完全性/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://hzoi-unicorn.top" target="_blank">华风夏韵</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/ADS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">ADS学习笔记</a></div><div class="post_share"><div class="social-share" data-image="/img/avatar.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2024/06/14/%E9%AB%98%E7%BA%A7%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90/11.%E8%BF%91%E4%BC%BC%E7%AE%97%E6%B3%95/" title="ADS11：近似算法"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">ADS11：近似算法</div></div></a></div><div class="next-post pull-right"><a href="/2024/06/12/%E9%AB%98%E7%BA%A7%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90/9.%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95/" title="ADS09：贪心算法"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">ADS09：贪心算法</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2024/06/18/%E9%AB%98%E7%BA%A7%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90/15.%E5%A4%96%E6%8E%92/" title="ADS15：外排"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-06-18</div><div class="title">ADS15：外排</div></div></a></div><div><a href="/2024/06/17/%E9%AB%98%E7%BA%A7%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90/14.%E5%B9%B6%E8%A1%8C%E7%AE%97%E6%B3%95/" title="ADS14：并行算法"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-06-17</div><div class="title">ADS14：并行算法</div></div></a></div><div><a href="/2024/06/16/%E9%AB%98%E7%BA%A7%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90/13.%E9%9A%8F%E6%9C%BA%E7%AE%97%E6%B3%95/" title="ADS13：随机算法"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-06-16</div><div class="title">ADS13：随机算法</div></div></a></div><div><a href="/2024/06/15/%E9%AB%98%E7%BA%A7%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90/12.%E5%B1%80%E9%83%A8%E6%90%9C%E7%B4%A2/" title="ADS12：局部搜索"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-06-15</div><div class="title">ADS12：局部搜索</div></div></a></div><div><a href="/2024/06/14/%E9%AB%98%E7%BA%A7%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90/11.%E8%BF%91%E4%BC%BC%E7%AE%97%E6%B3%95/" title="ADS11：近似算法"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-06-14</div><div class="title">ADS11：近似算法</div></div></a></div><div><a href="/2024/06/12/%E9%AB%98%E7%BA%A7%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90/9.%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95/" title="ADS09：贪心算法"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-06-12</div><div class="title">ADS09：贪心算法</div></div></a></div></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="gitalk-container"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">华丰夏</div><div class="author-info__description">一切都是上天最好的安排</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">83</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">8</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/unicorn2022"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/unicorn2022" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:496300118@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">愿你前行的道路有群星闪耀。愿你留下的足迹有百花绽放。你即是上帝的馈赠，世界因你而瑰丽。</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#np%E5%AE%8C%E5%85%A8%E6%80%A7-np-completeness"><span class="toc-text">NP完全性 NP-Completeness</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5"><span class="toc-text">一、基础概念</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%AF%E8%AE%A1%E7%AE%97%E7%9A%84%E9%97%AE%E9%A2%98"><span class="toc-text">1.1 可计算的问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%80%E5%8D%95or%E9%9A%BE%E9%97%AE%E9%A2%98"><span class="toc-text">1.2 简单or难问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%97%AE%E9%A2%98%E7%9A%84%E7%BC%96%E7%A0%81"><span class="toc-text">1.3 问题的编码</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8Cmachine%E8%AE%A1%E7%AE%97%E7%9A%84%E6%A8%A1%E5%9E%8B"><span class="toc-text">二、Machine：计算的模型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#turing-machine"><span class="toc-text">2.1 Turing machine</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#random-access-machineram"><span class="toc-text">2.2 Random Access Machine(RAM)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#language%E7%AD%89%E4%BB%B7%E5%86%B3%E7%AD%96%E9%97%AE%E9%A2%98"><span class="toc-text">2.3 Language：等价决策问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#nondeterministic-turing-machine%E9%9D%9E%E7%A1%AE%E5%AE%9A%E6%80%A7%E5%9B%BE%E7%81%B5%E6%9C%BA"><span class="toc-text">2.4
+Nondeterministic Turing Machine：非确定性图灵机</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89-complexity-class"><span class="toc-text">三、 Complexity class</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9Breductions-and-np-complete-problems%E5%BD%92%E7%BA%A6%E5%92%8Cnp%E5%AE%8C%E5%85%A8%E9%97%AE%E9%A2%98"><span class="toc-text">四、Reductions
+and NP-complete problems：归约和NP完全问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94npc%E9%97%AE%E9%A2%98"><span class="toc-text">五、NPC问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#sat%E9%97%AE%E9%A2%98"><span class="toc-text">5.1 SAT问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#clique%E9%97%AE%E9%A2%98"><span class="toc-text">5.2 clique问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A1%B6%E7%82%B9%E8%A6%86%E7%9B%96%E9%97%AE%E9%A2%98"><span class="toc-text">5.3 顶点覆盖问题</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%ADself-reduction"><span class="toc-text">六、Self-reduction</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%83%E4%BE%8B%E9%A2%98"><span class="toc-text">七、例题</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/07/01/%E4%BD%B3%E6%98%95%E5%A4%A7%E5%AE%9A%E7%90%86%EF%BC%88doge%EF%BC%89/" title="佳昕大定理（doge）">佳昕大定理（doge）</a><time datetime="2024-06-30T16:00:00.000Z" title="发表于 2024-07-01 00:00:00">2024-07-01</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/18/%E9%AB%98%E7%BA%A7%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90/15.%E5%A4%96%E6%8E%92/" title="ADS15：外排">ADS15：外排</a><time datetime="2024-06-17T16:00:00.000Z" title="发表于 2024-06-18 00:00:00">2024-06-18</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/17/%E9%AB%98%E7%BA%A7%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90/14.%E5%B9%B6%E8%A1%8C%E7%AE%97%E6%B3%95/" title="ADS14：并行算法">ADS14：并行算法</a><time datetime="2024-06-16T16:00:00.000Z" title="发表于 2024-06-17 00:00:00">2024-06-17</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/16/%E9%AB%98%E7%BA%A7%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90/13.%E9%9A%8F%E6%9C%BA%E7%AE%97%E6%B3%95/" title="ADS13：随机算法">ADS13：随机算法</a><time datetime="2024-06-15T16:00:00.000Z" title="发表于 2024-06-16 00:00:00">2024-06-16</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/15/%E9%AB%98%E7%BA%A7%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90/12.%E5%B1%80%E9%83%A8%E6%90%9C%E7%B4%A2/" title="ADS12：局部搜索">ADS12：局部搜索</a><time datetime="2024-06-14T16:00:00.000Z" title="发表于 2024-06-15 00:00:00">2024-06-15</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By 华丰夏</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, '']
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typesetPromise()
+}</script><script>function loadGitalk () {
+  function initGitalk () {
+    var gitalk = new Gitalk(Object.assign({
+      clientID: 'Ov23lis3fEb7fKVKQtT5',
+      clientSecret: '70b1c6819afd5c9bfb6846f0779e4ff85c238c67',
+      repo: 'unicorn2022.github.io',
+      owner: 'unicorn2022',
+      admin: ['unicorn2022'],
+      id: '8d34baa9aaff033eb48a7e32622745a4',
+      updateCountCallback: commentCount
+    },null))
+
+    gitalk.render('gitalk-container')
+  }
+
+  if (typeof Gitalk === 'function') initGitalk()
+  else {
+    getCSS('https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css')
+    getScript('https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.js').then(initGitalk)
+  }
+}
+
+function commentCount(n){
+  let isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+  if (isCommentCount) {
+    isCommentCount.textContent= n
+  }
+}
+
+if ('Gitalk' === 'Gitalk' || !false) {
+  if (false) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+  else loadGitalk()
+} else {
+  function loadOtherComment () {
+    loadGitalk()
+  }
+}</script></div><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-nest.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = true;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-heart.min.js" async="async" mobile="true"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div class="no-result" id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>

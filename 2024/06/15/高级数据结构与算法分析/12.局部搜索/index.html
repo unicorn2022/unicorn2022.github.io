@@ -1,0 +1,410 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>ADS12：局部搜索 | 华风夏韵</title><meta name="author" content="华丰夏"><meta name="copyright" content="华丰夏"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="第12章：局部搜索">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ADS12：局部搜索">
+<meta property="og:url" content="https://hzoi-unicorn.top/2024/06/15/%E9%AB%98%E7%BA%A7%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90/12.%E5%B1%80%E9%83%A8%E6%90%9C%E7%B4%A2/index.html">
+<meta property="og:site_name" content="华风夏韵">
+<meta property="og:description" content="第12章：局部搜索">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://hzoi-unicorn.top/img/avatar.png">
+<meta property="article:published_time" content="2024-06-14T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-07-07T11:49:59.591Z">
+<meta property="article:author" content="华丰夏">
+<meta property="article:tag" content="ADS学习笔记">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://hzoi-unicorn.top/img/avatar.png"><link rel="shortcut icon" href="https://raw.githubusercontent.com/unicorn2022/Pictures/main/img/favicon.png"><link rel="canonical" href="https://hzoi-unicorn.top/2024/06/15/%E9%AB%98%E7%BA%A7%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90/12.%E5%B1%80%E9%83%A8%E6%90%9C%E7%B4%A2/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta name="baidu-site-verification" content="codeva-PpLfvQYdq5"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: 华丰夏","link":"链接: ","source":"来源: 华风夏韵","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'ADS12：局部搜索',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: true,
+  isToc: true,
+  postUpdate: '2024-07-07 19:49:59'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/background.css"><!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">83</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">8</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-graduation-cap"></i><span> 博文</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 归档</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/resources/"><i class="fa-fw fa fa-book"></i><span> 资源</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa-solid fa-gamepad"></i><span> 游戏</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/game/mf"><i class="fa-fw fa-solid fa-cube"></i><span> 魔方</span></a></li><li><a class="site-page child" href="/game/sl"><i class="fa-fw fa-brands fa-galactic-republic"></i><span> 扫雷</span></a></li><li><a class="site-page child" href="/game/2048"><i class="fa-fw fa-brands fa-pix"></i><span> 二零四八</span></a></li><li><a class="site-page child" href="/game/wzq"><i class="fa-fw fa-solid fa-chess-board"></i><span> 五子棋</span></a></li><li><a class="site-page child" href="/game/txz"><i class="fa-fw fa-solid fa-box"></i><span> 推箱子</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/comment/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于笔者</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/default_top_img.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="华风夏韵"><span class="site-name">华风夏韵</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-graduation-cap"></i><span> 博文</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 归档</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/resources/"><i class="fa-fw fa fa-book"></i><span> 资源</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa-solid fa-gamepad"></i><span> 游戏</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/game/mf"><i class="fa-fw fa-solid fa-cube"></i><span> 魔方</span></a></li><li><a class="site-page child" href="/game/sl"><i class="fa-fw fa-brands fa-galactic-republic"></i><span> 扫雷</span></a></li><li><a class="site-page child" href="/game/2048"><i class="fa-fw fa-brands fa-pix"></i><span> 二零四八</span></a></li><li><a class="site-page child" href="/game/wzq"><i class="fa-fw fa-solid fa-chess-board"></i><span> 五子棋</span></a></li><li><a class="site-page child" href="/game/txz"><i class="fa-fw fa-solid fa-box"></i><span> 推箱子</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/comment/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于笔者</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">ADS12：局部搜索</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-06-14T16:00:00.000Z" title="发表于 2024-06-15 00:00:00">2024-06-15</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-07-07T11:49:59.591Z" title="更新于 2024-07-07 19:49:59">2024-07-07</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/ADS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">ADS学习笔记</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.2k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>4分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="ADS12：局部搜索"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><script type="text/javascript"
+src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<h1 id="第12章-local-search">第12章 Local Search</h1>
+<h2 id="一定义">一、定义</h2>
+<p><strong>Local</strong></p>
+<ol type="1">
+<li>定义可行解的<strong>neighborhoods</strong></li>
+<li>局部最优解<strong>local
+optimum</strong>：在一个<strong>neighborhoods</strong>中的最优解</li>
+</ol>
+<p><strong>Search</strong></p>
+<ol type="1">
+<li>从一个可行的解决方案开始，在附近寻找一个更好的</li>
+<li>如果没有改进的可能，则达到局部最优</li>
+</ol>
+<p><strong>Local Search 对NP-hard问题很难找到最优解</strong></p>
+<h2 id="二顶点覆盖问题">二、顶点覆盖问题</h2>
+<h3 id="算法1优先选择度最大的顶点">2.1 算法1：优先选择度最大的顶点</h3>
+<h3 id="算法2任意选一条边将两个顶点加入集合">2.2
+算法2：任意选一条边，将两个顶点加入集合</h3>
+<p>近似比为2</p>
+<ol type="1">
+<li>算法选出的边，都不相交</li>
+<li>由于都不相交，最优解至少要用一半的顶点完成覆盖</li>
+<li>因此这个算法的近似比<span class="math inline">\(\le 2\)</span></li>
+</ol>
+<h3 id="metropolis算法">2.3 Metropolis算法</h3>
+<p>模拟退火</p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20240612220233843.png" alt="image-20240612220233843" style="zoom:80%;" /></p>
+<h2 id="三hopfield-neural-networks">三、Hopfield Neural Networks</h2>
+<h3 id="问题描述">3.1 问题描述</h3>
+<p>设<span class="math inline">\(G=(V,E)\)</span></p>
+<ol type="1">
+<li><span class="math inline">\(E\)</span>中的每一条边<span
+class="math inline">\(e\)</span>有一个权值<span
+class="math inline">\(w\)</span>，<span
+class="math inline">\(w\)</span>可以为正也可以为负。</li>
+<li><span class="math inline">\(V\)</span>中的每一个顶点<span
+class="math inline">\(v\)</span>可以是正，也可以是负</li>
+</ol>
+<p>对于每一个顶点，如果<span class="math inline">\(\sum_{v:e=(u,v)\in
+E}w_e s_u s_v \le 0\)</span>，则称这个点为<span
+class="math inline">\(satisfied\)</span></p>
+<p>对于每一条边<span class="math inline">\(e=(u,v)\)</span>，如果<span
+class="math inline">\(w_e s_u s_v &lt; 0\)</span>，则称这条边为<span
+class="math inline">\(good\)</span></p>
+<h3 id="state-flipping-algorithm">3.2 State-flipping Algorithm</h3>
+<ol type="1">
+<li>从任意一个状态<span class="math inline">\(S\)</span>出发</li>
+<li>如果<span class="math inline">\(S\)</span>不满足条件，则找到<span
+class="math inline">\(S\)</span>中任意一个不<span
+class="math inline">\(satisified\)</span>的节点u，将节点u的状态取反，并更新<span
+class="math inline">\(S\)</span></li>
+<li>直到<span class="math inline">\(S\)</span>满足条件</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20240612220256379.png" alt="image-20240612220256379" style="zoom:80%;" /></p>
+<h3 id="定理">3.3 定理</h3>
+<ol type="1">
+<li>上述算法一定能够停止在一个稳定的状态</li>
+<li>最多需要<span class="math inline">\(W=\sum_e|w_e|\)</span>次迭代
+<ol type="1">
+<li>设<span
+class="math inline">\(\Phi(S)=\sum_{e是good}|w_e|\)</span></li>
+<li>每次迭代，u的临边中，原来是good的边变成了bad，原来是bad的边变成了good</li>
+<li>因此，<span
+class="math inline">\(\Phi(S&#39;)=\Phi(S)-\sum_{e为u的临边且为bad}|w_e|+\sum_{e为u的临边且为good}|w_e|\)</span></li>
+<li>由于每次找的点u是<span
+class="math inline">\(unsatisfied\)</span>的，即后面的和$$1</li>
+<li>因此，<span class="math inline">\(\Phi(S&#39;) \ge
+\Phi(S)+1\)</span>，最多需要<span
+class="math inline">\(W=\sum_e|w_e|\)</span>次迭代</li>
+</ol></li>
+</ol>
+<h3 id="local-search算法">3.4 Local Search算法</h3>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20240612220332044.png" alt="image-20240612220332044" style="zoom:80%;" /></p>
+<h2 id="四the-maximum-cut-problem-最大割问题">四、The Maximum Cut
+Problem 最大割问题</h2>
+<h3 id="问题描述-1">4.1 问题描述</h3>
+<p>给定一个无向图<span
+class="math inline">\(G=(V,E)\)</span>，每条边的边权为正数</p>
+<p>将所有点分为两部分<span
+class="math inline">\((A,B)\)</span>，让所有连接<span
+class="math inline">\(A,B\)</span>之间的边的边权和最大</p>
+<p><span class="math inline">\(w(A,B)=\sum_{u \in A, v \in
+B}w_{uv}\)</span></p>
+<h3 id="local-search-算法">4.2 Local Search 算法</h3>
+<ol type="1">
+<li>从<span class="math inline">\(A\)</span>中选择一个点<span
+class="math inline">\(u\)</span>，满足 割边的边权和 &gt;
+内边的边权和，则将<span class="math inline">\(u\)</span>放入<span
+class="math inline">\(B\)</span>中</li>
+<li>这样，当状态转换的时候，与<span
+class="math inline">\(u\)</span>相连的边的状态会取反(割边变为内边，内边变为割边)</li>
+</ol>
+<h3 id="定理-1">4.3 定理</h3>
+<p>局部最优解 至少为 全局最优解 的<span
+class="math inline">\(\frac{1}{2}\)</span>，即：<span
+class="math inline">\(w(A,B)  \ge \frac{1}{2} w(A^*,B^*)\)</span></p>
+<ol type="1">
+<li>由于(A,B)是局部最优解，则对于A中的任意一个点<span
+class="math inline">\(u\)</span>，与A内的节点相连的边权和<span
+class="math inline">\(\le\)</span>与B内的节点相连的边权和<span
+class="math inline">\(\sum_{v\in A}w_{uv} \le \sum_{v\in
+B}w_{uv}\)</span></li>
+<li>将上式对所有<span class="math inline">\(u \in
+A\)</span>求和得：<span
+class="math inline">\(2\sum_{A中的所有边(u,v)}w_{uv} \le \sum_{u\in
+A}\sum_{v\in B}w_{uv}=w(A,B)\)</span></li>
+<li>可得：<span class="math inline">\(2\sum_{A中的所有边(u,v)}w_{uv} \le
+w(A,B)\)</span>，<span
+class="math inline">\(2\sum_{B中的所有边(u,v)}w_{uv} \le
+w(A,B)\)</span></li>
+<li>所以：<span class="math inline">\(w(A^*,B^*)\le
+\sum_{A中的所有边(u,v)}w_{uv} + \sum_{B中的所有边(u,v)}w_{uv}\le
+2w(A,B)\)</span></li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20240612220505453.png" alt="image-20240612220505453" style="zoom:80%;" /></p>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20240612220441986.png" alt="image-20240612220441986" style="zoom:80%;" /></p>
+<h3 id="big-improvement-flip">4.4 Big-improvement-flip</h3>
+<ol type="1">
+<li>只有当选出的这个点换到<span
+class="math inline">\(B\)</span>中，导致新的答案至少是<span
+class="math inline">\(\frac{2\epsilon}{|V|}w(A,B)\)</span>时，才将这个点换过去</li>
+<li>局部最优解 至少是 全局最优解 的<span
+class="math inline">\(\frac{1}{2+\epsilon}\)</span>，即：<span
+class="math inline">\(w(A,B)  \ge \frac{1}{2+\epsilon}
+w(A^*,B^*)\)</span></li>
+<li>最多进行<span class="math inline">\(O(\frac{n}{\epsilon} \log
+W)\)</span>次迭代</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20240612220412128.png" alt="image-20240612220412128" style="zoom:80%;" /></p>
+<h3 id="k-l-heuristic">4.5 K-L heuristic</h3>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/image-20240612220421237.png" alt="image-20240612220421237" style="zoom:80%;" /></p>
+<p>LKH算法：TSP</p>
+<h2 id="课后题">课后题：</h2>
+<p>对于下图中给出的图，如果我们从删除黑色顶点开始，那么局部搜索总是可以找到最小顶点覆盖</p>
+<figure>
+<img
+src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/150"
+alt="150" />
+<figcaption aria-hidden="true">150</figcaption>
+</figure>
+<p>答案：<strong>T</strong></p>
+<p>在平面上有<span class="math inline">\(n\)</span>个点<span
+class="math inline">\(S=\{s_1,...s_n\}\)</span>，我们想要构造一个有<span
+class="math inline">\(k\)</span>个中心点的点集<span
+class="math inline">\(C=\{c_1,...c_k\}\)</span>，使得从所有点到最近的中心点的距离最小。这里<span
+class="math inline">\(c_i\)</span>可以是平面中的任意点</p>
+<p>一个<strong>local search</strong>算法会首先任意选择<span
+class="math inline">\(k\)</span>个点作为中心点，然后</p>
+<ul>
+<li>将<span class="math inline">\(S\)</span>分为<span
+class="math inline">\(k\)</span>个集合，<span
+class="math inline">\(S_i\)</span>是<strong>以<span
+class="math inline">\(c_i\)</span>为最近中心点的所有顶点</strong>的集合</li>
+<li>对于每一个<span
+class="math inline">\(S_i\)</span>，计算出其中心点作为<span
+class="math inline">\(S_i\)</span>的新的中心点</li>
+</ul>
+<p>如果上述两个步骤导致了覆盖半径严格减少，则进行下一次迭代，否则终止计算</p>
+<p>问：当上述局部搜索算法终止时，其解的覆盖半径是否为最优覆盖半径的2倍</p>
+<p>答案：<strong>F</strong></p>
+<p>解析：构造一个反例</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="unicorn2022.github.io">华丰夏</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://hzoi-unicorn.top/2024/06/15/%E9%AB%98%E7%BA%A7%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90/12.%E5%B1%80%E9%83%A8%E6%90%9C%E7%B4%A2/">https://hzoi-unicorn.top/2024/06/15/高级数据结构与算法分析/12.局部搜索/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://hzoi-unicorn.top" target="_blank">华风夏韵</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/ADS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">ADS学习笔记</a></div><div class="post_share"><div class="social-share" data-image="/img/avatar.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2024/06/16/%E9%AB%98%E7%BA%A7%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90/13.%E9%9A%8F%E6%9C%BA%E7%AE%97%E6%B3%95/" title="ADS13：随机算法"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">ADS13：随机算法</div></div></a></div><div class="next-post pull-right"><a href="/2024/06/14/%E9%AB%98%E7%BA%A7%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90/11.%E8%BF%91%E4%BC%BC%E7%AE%97%E6%B3%95/" title="ADS11：近似算法"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">ADS11：近似算法</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2024/06/18/%E9%AB%98%E7%BA%A7%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90/15.%E5%A4%96%E6%8E%92/" title="ADS15：外排"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-06-18</div><div class="title">ADS15：外排</div></div></a></div><div><a href="/2024/06/17/%E9%AB%98%E7%BA%A7%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90/14.%E5%B9%B6%E8%A1%8C%E7%AE%97%E6%B3%95/" title="ADS14：并行算法"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-06-17</div><div class="title">ADS14：并行算法</div></div></a></div><div><a href="/2024/06/16/%E9%AB%98%E7%BA%A7%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90/13.%E9%9A%8F%E6%9C%BA%E7%AE%97%E6%B3%95/" title="ADS13：随机算法"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-06-16</div><div class="title">ADS13：随机算法</div></div></a></div><div><a href="/2024/06/14/%E9%AB%98%E7%BA%A7%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90/11.%E8%BF%91%E4%BC%BC%E7%AE%97%E6%B3%95/" title="ADS11：近似算法"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-06-14</div><div class="title">ADS11：近似算法</div></div></a></div><div><a href="/2024/06/13/%E9%AB%98%E7%BA%A7%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90/10.NP%E5%AE%8C%E5%85%A8%E6%80%A7/" title="ADS10：NP完全性"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-06-13</div><div class="title">ADS10：NP完全性</div></div></a></div><div><a href="/2024/06/12/%E9%AB%98%E7%BA%A7%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90/9.%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95/" title="ADS09：贪心算法"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-06-12</div><div class="title">ADS09：贪心算法</div></div></a></div></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="gitalk-container"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">华丰夏</div><div class="author-info__description">一切都是上天最好的安排</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">83</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">8</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/unicorn2022"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/unicorn2022" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:496300118@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">愿你前行的道路有群星闪耀。愿你留下的足迹有百花绽放。你即是上帝的馈赠，世界因你而瑰丽。</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AC%AC12%E7%AB%A0-local-search"><span class="toc-text">第12章 Local Search</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E5%AE%9A%E4%B9%89"><span class="toc-text">一、定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E9%A1%B6%E7%82%B9%E8%A6%86%E7%9B%96%E9%97%AE%E9%A2%98"><span class="toc-text">二、顶点覆盖问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%97%E6%B3%951%E4%BC%98%E5%85%88%E9%80%89%E6%8B%A9%E5%BA%A6%E6%9C%80%E5%A4%A7%E7%9A%84%E9%A1%B6%E7%82%B9"><span class="toc-text">2.1 算法1：优先选择度最大的顶点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%97%E6%B3%952%E4%BB%BB%E6%84%8F%E9%80%89%E4%B8%80%E6%9D%A1%E8%BE%B9%E5%B0%86%E4%B8%A4%E4%B8%AA%E9%A1%B6%E7%82%B9%E5%8A%A0%E5%85%A5%E9%9B%86%E5%90%88"><span class="toc-text">2.2
+算法2：任意选一条边，将两个顶点加入集合</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#metropolis%E7%AE%97%E6%B3%95"><span class="toc-text">2.3 Metropolis算法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89hopfield-neural-networks"><span class="toc-text">三、Hopfield Neural Networks</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%97%AE%E9%A2%98%E6%8F%8F%E8%BF%B0"><span class="toc-text">3.1 问题描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#state-flipping-algorithm"><span class="toc-text">3.2 State-flipping Algorithm</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E7%90%86"><span class="toc-text">3.3 定理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#local-search%E7%AE%97%E6%B3%95"><span class="toc-text">3.4 Local Search算法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9Bthe-maximum-cut-problem-%E6%9C%80%E5%A4%A7%E5%89%B2%E9%97%AE%E9%A2%98"><span class="toc-text">四、The Maximum Cut
+Problem 最大割问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%97%AE%E9%A2%98%E6%8F%8F%E8%BF%B0-1"><span class="toc-text">4.1 问题描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#local-search-%E7%AE%97%E6%B3%95"><span class="toc-text">4.2 Local Search 算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E7%90%86-1"><span class="toc-text">4.3 定理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#big-improvement-flip"><span class="toc-text">4.4 Big-improvement-flip</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#k-l-heuristic"><span class="toc-text">4.5 K-L heuristic</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%BE%E5%90%8E%E9%A2%98"><span class="toc-text">课后题：</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/07/01/%E4%BD%B3%E6%98%95%E5%A4%A7%E5%AE%9A%E7%90%86%EF%BC%88doge%EF%BC%89/" title="佳昕大定理（doge）">佳昕大定理（doge）</a><time datetime="2024-06-30T16:00:00.000Z" title="发表于 2024-07-01 00:00:00">2024-07-01</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/18/%E9%AB%98%E7%BA%A7%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90/15.%E5%A4%96%E6%8E%92/" title="ADS15：外排">ADS15：外排</a><time datetime="2024-06-17T16:00:00.000Z" title="发表于 2024-06-18 00:00:00">2024-06-18</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/17/%E9%AB%98%E7%BA%A7%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90/14.%E5%B9%B6%E8%A1%8C%E7%AE%97%E6%B3%95/" title="ADS14：并行算法">ADS14：并行算法</a><time datetime="2024-06-16T16:00:00.000Z" title="发表于 2024-06-17 00:00:00">2024-06-17</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/16/%E9%AB%98%E7%BA%A7%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90/13.%E9%9A%8F%E6%9C%BA%E7%AE%97%E6%B3%95/" title="ADS13：随机算法">ADS13：随机算法</a><time datetime="2024-06-15T16:00:00.000Z" title="发表于 2024-06-16 00:00:00">2024-06-16</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/15/%E9%AB%98%E7%BA%A7%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90/12.%E5%B1%80%E9%83%A8%E6%90%9C%E7%B4%A2/" title="ADS12：局部搜索">ADS12：局部搜索</a><time datetime="2024-06-14T16:00:00.000Z" title="发表于 2024-06-15 00:00:00">2024-06-15</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By 华丰夏</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, '']
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typesetPromise()
+}</script><script>function loadGitalk () {
+  function initGitalk () {
+    var gitalk = new Gitalk(Object.assign({
+      clientID: 'Ov23lis3fEb7fKVKQtT5',
+      clientSecret: '70b1c6819afd5c9bfb6846f0779e4ff85c238c67',
+      repo: 'unicorn2022.github.io',
+      owner: 'unicorn2022',
+      admin: ['unicorn2022'],
+      id: 'ddb0e3d638a4524fa607a419900fc0f2',
+      updateCountCallback: commentCount
+    },null))
+
+    gitalk.render('gitalk-container')
+  }
+
+  if (typeof Gitalk === 'function') initGitalk()
+  else {
+    getCSS('https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css')
+    getScript('https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.js').then(initGitalk)
+  }
+}
+
+function commentCount(n){
+  let isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+  if (isCommentCount) {
+    isCommentCount.textContent= n
+  }
+}
+
+if ('Gitalk' === 'Gitalk' || !false) {
+  if (false) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+  else loadGitalk()
+} else {
+  function loadOtherComment () {
+    loadGitalk()
+  }
+}</script></div><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-nest.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = true;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-heart.min.js" async="async" mobile="true"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div class="no-result" id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>

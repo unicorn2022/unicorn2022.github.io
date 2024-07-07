@@ -1,0 +1,616 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Raytracing The Rest of Your Life | 华风夏韵</title><meta name="author" content="华丰夏"><meta name="copyright" content="华丰夏"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Raytracing 三部曲（三）：蒙特卡洛采样">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Raytracing The Rest of Your Life">
+<meta property="og:url" content="https://hzoi-unicorn.top/2023/11/03/RayTracing/RayTracingTheRestOfYourLife/index.html">
+<meta property="og:site_name" content="华风夏韵">
+<meta property="og:description" content="Raytracing 三部曲（三）：蒙特卡洛采样">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://hzoi-unicorn.top/img/avatar.png">
+<meta property="article:published_time" content="2023-11-02T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-07-07T11:49:59.560Z">
+<meta property="article:author" content="华丰夏">
+<meta property="article:tag" content="Raytracing 学习笔记">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://hzoi-unicorn.top/img/avatar.png"><link rel="shortcut icon" href="https://raw.githubusercontent.com/unicorn2022/Pictures/main/img/favicon.png"><link rel="canonical" href="https://hzoi-unicorn.top/2023/11/03/RayTracing/RayTracingTheRestOfYourLife/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta name="baidu-site-verification" content="codeva-PpLfvQYdq5"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: 华丰夏","link":"链接: ","source":"来源: 华风夏韵","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Raytracing The Rest of Your Life',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: true,
+  isToc: true,
+  postUpdate: '2024-07-07 19:49:59'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/background.css"><!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">83</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">8</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-graduation-cap"></i><span> 博文</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 归档</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/resources/"><i class="fa-fw fa fa-book"></i><span> 资源</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa-solid fa-gamepad"></i><span> 游戏</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/game/mf"><i class="fa-fw fa-solid fa-cube"></i><span> 魔方</span></a></li><li><a class="site-page child" href="/game/sl"><i class="fa-fw fa-brands fa-galactic-republic"></i><span> 扫雷</span></a></li><li><a class="site-page child" href="/game/2048"><i class="fa-fw fa-brands fa-pix"></i><span> 二零四八</span></a></li><li><a class="site-page child" href="/game/wzq"><i class="fa-fw fa-solid fa-chess-board"></i><span> 五子棋</span></a></li><li><a class="site-page child" href="/game/txz"><i class="fa-fw fa-solid fa-box"></i><span> 推箱子</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/comment/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于笔者</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/default_top_img.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="华风夏韵"><span class="site-name">华风夏韵</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-graduation-cap"></i><span> 博文</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 归档</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/resources/"><i class="fa-fw fa fa-book"></i><span> 资源</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa-solid fa-gamepad"></i><span> 游戏</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/game/mf"><i class="fa-fw fa-solid fa-cube"></i><span> 魔方</span></a></li><li><a class="site-page child" href="/game/sl"><i class="fa-fw fa-brands fa-galactic-republic"></i><span> 扫雷</span></a></li><li><a class="site-page child" href="/game/2048"><i class="fa-fw fa-brands fa-pix"></i><span> 二零四八</span></a></li><li><a class="site-page child" href="/game/wzq"><i class="fa-fw fa-solid fa-chess-board"></i><span> 五子棋</span></a></li><li><a class="site-page child" href="/game/txz"><i class="fa-fw fa-solid fa-box"></i><span> 推箱子</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/comment/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于笔者</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Raytracing The Rest of Your Life</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-11-02T16:00:00.000Z" title="发表于 2023-11-03 00:00:00">2023-11-03</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-07-07T11:49:59.560Z" title="更新于 2024-07-07 19:49:59">2024-07-07</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Raytracing/">Raytracing</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">4.2k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>20分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Raytracing The Rest of Your Life"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><script type="text/javascript"
+src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<p><a target="_blank" rel="noopener" href="https://0xc0de.fr/webppm/">在线查看器</a></p>
+<p><a
+target="_blank" rel="noopener" href="https://www.cnblogs.com/lv-anchoret/p/10327692.html">参考教程</a></p>
+<p><a
+target="_blank" rel="noopener" href="https://github.com/unicorn2022/RayTracingLearning">项目代码</a></p>
+<h1 id="chapter-1a-simple-monte-carlo-program">Chapter 1：A Simple Monte
+Carlo Program</h1>
+<p>蒙特卡罗方法（MC）是一种统计模拟方法，是一类很重要的数值计算方法，它是一种使用随机数解决好很多实际问题的方法</p>
+<h2 id="估计pi">1.1 估计<span class="math inline">\(\pi\)</span></h2>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/1316111-20190127182524609-1040762097.png" alt="img" style="zoom:80%;" /></p>
+<ul>
+<li><p>假设你扔了很多随机的点到方框中，那么有一部分在圆内，其中圆内点和方框点的比例应该就是圆的面积和方框面积的比例，由此：
+<span class="math display">\[
+比例 = \frac{π * R * R}{(2R)*(2R)} = \frac{π}{4}
+\]</span></p></li>
+<li><p>由于上式和R无关，我们任意取R = 1，圆心位于原点，则</p></li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;Math/Random.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">void</span> estimate_π(<span class="type">const</span> <span class="type">size_t</span> points) &#123;</span><br><span class="line">    <span class="type">int</span> inside = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; points; ++i) &#123;</span><br><span class="line">        <span class="type">double</span> x = <span class="number">2</span> * Random::<span class="built_in">rand01</span>() - <span class="number">1</span>;</span><br><span class="line">        <span class="type">double</span> y = <span class="number">2</span> * Random::<span class="built_in">rand01</span>() - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span> (x*x + y*y &lt; <span class="number">1</span>) inside++;</span><br><span class="line">    &#125;</span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;Estimate of π by&quot;</span> &lt;&lt; points &lt;&lt; <span class="string">&quot;test points is &quot;</span> &lt;&lt; <span class="number">4</span> * <span class="built_in">double</span>(inside) / points &lt;&lt; std::endl;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;	　　</span><br><span class="line">    estimate_π(<span class="number">1000</span>);	　　</span><br><span class="line">    estimate_π(<span class="number">10000</span>);	　　</span><br><span class="line">    estimate_π(<span class="number">100000</span>);	　　</span><br><span class="line">    estimate_π(<span class="number">1000000</span>);	　　</span><br><span class="line">    estimate_π(<span class="number">10000000</span>);	　　</span><br><span class="line">    estimate_π(<span class="number">10000000</span>/<span class="number">2</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="分层方法">1.2 分层方法</h2>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/1316111-20190127185809675-1323946342.png" alt="img" style="zoom:80%;" /></p>
+<ul>
+<li>一开始非常快速的逼近<span
+class="math inline">\(π\)</span>，之后变化就比较缓慢了，这是一个收益递减法(Law
+of Diminishing Returns)的例子</li>
+<li>即每一个样本对结果的收益少于后面一个，这个是MC的一个缺点，我们可以通过对样本进行分层来减轻这种递减收益，此法通常称为抖动</li>
+<li>我们进行网格划分，并在每个网格中选取一个样本：</li>
+</ul>
+<blockquote>
+<p>我们采用边长为1e4的方框进行测试</p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">stratify</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="type">size_t</span> inside&#123; <span class="number">0</span> &#125;;</span><br><span class="line">    <span class="type">size_t</span> circle_stratified&#123; <span class="number">0</span> &#125;;</span><br><span class="line">    <span class="type">size_t</span> sqrtAll = <span class="number">1e4</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; sqrtAll; ++i)</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; sqrtAll; ++j) &#123;</span><br><span class="line">            <span class="type">double</span> x = <span class="number">2</span> * Random::<span class="built_in">rand01</span>() - <span class="number">1</span>;</span><br><span class="line">            <span class="type">double</span> y = <span class="number">2</span> * Random::<span class="built_in">rand01</span>() - <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">if</span> (x*x + y*y &lt; <span class="number">1</span>) inside++;</span><br><span class="line">            </span><br><span class="line">            x = <span class="number">2</span> * ((i + Random::<span class="built_in">rand01</span>()) / sqrtAll) - <span class="number">1</span>;</span><br><span class="line">            y = <span class="number">2</span> * ((j + Random::<span class="built_in">rand01</span>()) / sqrtAll) - <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">if</span> (x*x + y*y &lt; <span class="number">1</span>) circle_stratified++;</span><br><span class="line">        &#125;</span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;Regular Estimate of π by 1e8 test points is &quot;</span> &lt;&lt; <span class="number">4</span> * <span class="built_in">double</span>(inside) / <span class="number">1e8</span> &lt;&lt; stds endl;</span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;Stratified Estimate of π by 1e8 test points is &quot;</span> &lt;&lt; <span class="number">4</span> * <span class="built_in">double</span>(circle_stratified) / <span class="number">1e8</span> &lt;&lt; stds endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>分层方法能更好地收敛于渐近率。不足之处是，这个优势随着问题的维度而降低（例如，对于3D球体积版本，差距会更小）。
+这被称为维度诅咒（=.=）</li>
+<li>我们的工程将是非常高的维度（每个反射增加两个维度），所以我不会在本书中进行分层。</li>
+<li>但是，如果你做的是单反射或阴影或某些严格的2D问题，分层是个很好的选择</li>
+</ul>
+<h1 id="chapter-2one-dimensional-mc-integration">Chapter 2：One
+Dimensional MC Integration</h1>
+<h2 id="相关概念">2.1 相关概念</h2>
+<ul>
+<li>PDF：<span
+class="math inline">\(p(x)\)</span>，表示随机变量取值为<span
+class="math inline">\(x\)</span>的概率，值域为<span
+class="math inline">\((0,∞)\)</span></li>
+<li>CPDF：<span class="math inline">\(P(x)=\int_{-∞}^x
+p(x)\)</span>，表示从负无穷到x的累积概率，值域为<span
+class="math inline">\((0,1)\)</span></li>
+</ul>
+<p>当我们使用<code>rand01()</code>获得满足<span
+class="math inline">\((0,1)\)</span>之间平均分布的变量<span
+class="math inline">\(Y\)</span>时，其对应的是<span
+class="math inline">\(P(x)\)</span></p>
+<ul>
+<li>因此我们需要使用CPDF的反函数<span
+class="math inline">\(P^{-1}(Y)\)</span>，获得满足我们需要的随机变量<span
+class="math inline">\(x\)</span></li>
+<li><span class="math inline">\(x\)</span>满足<span
+class="math inline">\(p(x)\)</span>定义的分布</li>
+</ul>
+<blockquote>
+<ul>
+<li>假设我们希望随机变量<span class="math inline">\(x\)</span>满足<span
+class="math inline">\(p(x)=\frac{x}{2}\)</span></li>
+<li>首先求出CPDF：<span
+class="math inline">\(P(x)=\frac{x^2}{4}\)</span></li>
+<li>然后求反函数：<span
+class="math inline">\(P^{-1}(Y)=\sqrt{4Y}\)</span></li>
+<li>从而得到生成随机变量<span
+class="math inline">\(x\)</span>的代码为：<code>x = sqrt(4 * rand01())</code></li>
+</ul>
+</blockquote>
+<h2 id="重要性采样-蒙特卡洛积分">2.2 重要性采样 &amp; 蒙特卡洛积分</h2>
+<p><span class="math display">\[
+S = \frac{1}{n} * \sum\frac{F(x_i)}{p(x_i)}
+\]</span></p>
+<ul>
+<li>PDF的最优函数：被积函数本身</li>
+</ul>
+<h2 id="示例int-cos2-θ-dθ">2.3 示例：<span class="math inline">\(\int
+\cos^2 θ\ dθ\)</span></h2>
+<ul>
+<li>PDF：均匀采样</li>
+<li><span class="math inline">\(S = \frac{1}{n} * \sum\frac{\cos^2
+θ}{p(direction)} = \frac{1}{n} * \sum\frac{\cos^2
+θ}{1/4\pi}\)</span></li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">sphereMC</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">auto</span> pdf = []() &#123; <span class="keyword">return</span> <span class="number">1</span> / (<span class="number">4</span> * π); &#125;;</span><br><span class="line">    <span class="type">size_t</span> n = <span class="number">10000000</span>;</span><br><span class="line">    <span class="type">double</span> sum = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">        dvec3 d = Random::<span class="built_in">random_unit_sphere</span>();</span><br><span class="line">        <span class="type">double</span> cosine = d.<span class="built_in">z</span>()*d.<span class="built_in">z</span>();</span><br><span class="line">        sum += cosine / <span class="built_in">pdf</span>();</span><br><span class="line">    &#125;</span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;I = &quot;</span> &lt;&lt; sum / n &lt;&lt; stds endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="chapter-3light-scaterring">Chapter 3：Light Scaterring</h1>
+<ul>
+<li><span class="math inline">\(albedo\)</span>：光线被反射的概率</li>
+</ul>
+<h2 id="光的散射">3.1 光的散射</h2>
+<p>对于光的散射而言，可以基于立体角，设计一个PDF来描述光线散射的方向分布</p>
+<ul>
+<li>记为：<span class="math inline">\(s(direction)\)</span></li>
+<li>这个散射PDF会随着入射方向的变化而变化</li>
+</ul>
+<p>对于表面色彩而言，有如下积分形式： <span class="math display">\[
+color=\int albedo * s(direciont) * color(direction)\ dθ
+\]</span></p>
+<ul>
+<li>其中，<span class="math inline">\(albedo\)</span>、<span
+class="math inline">\(s(direction)\)</span>都是依赖于观察方向的，因此<span
+class="math inline">\(color\)</span>也会随着观察方向的变化而变化</li>
+<li><span class="math inline">\(albedo\)</span>、<span
+class="math inline">\(s(direction)\)</span>也可能随着表面或物体的位置而变化</li>
+</ul>
+<p>使用蒙特卡洛方法计算该积分： <span class="math display">\[
+color=\frac{1}{n} * \sum \frac{albedo * s(direciont) *
+color(direction)}{pdf(direction)}
+\]</span></p>
+<h2 id="lambertian材质的表面散射pdf">3.2
+Lambertian材质的表面散射PDF</h2>
+<ul>
+<li>Lambertian材质的表面密度，呈余弦规律</li>
+<li>因此，Lambertian表面的光散射PDF是正比于<span
+class="math inline">\(\cos θ\)</span>
+<ul>
+<li><span
+class="math inline">\(θ\)</span>：光线方向和表面法线的夹角</li>
+</ul></li>
+<li>此外，我们定义：<strong><span class="math inline">\(\cos θ &lt;
+0\)</span>时，<span
+class="math inline">\(s(direction)=0\)</span></strong>
+<ul>
+<li>因此有效区间为半球面</li>
+</ul></li>
+</ul>
+<p>半球面积的计算如下： <span class="math display">\[
+\begin{aligned}
+S   &amp;= \iint_{A} \cosθ dA \\
+    &amp;= \int_{0}^{2\pi} \int_0^{\frac{\pi}{2}} \cosθ \sinθ \  dθdΦ\\
+    &amp;= \int_{0}^{2\pi} dΦ \int_0^{\frac{\pi}{2}} \cosθ \sinθ \  dθ\\
+    &amp;= \int_{0}^{2\pi} dΦ \int_0^{\frac{\pi}{2}} \frac{1}{2} \sin2θ
+dθ\\
+    &amp;= \pi
+\end{aligned}
+\]</span> 因此，Lambertian材质的表面散射PDF为： <span
+class="math display">\[
+s(direction) = \frac{\cosθ}{\pi}
+\]</span></p>
+<ul>
+<li>为了保证采样的最优性，我们也使用同样的PDF函数：<span
+class="math inline">\(p(direction) = \frac{\cosθ}{\pi}\)</span></li>
+<li>此时<span class="math inline">\(s\)</span>和<span
+class="math inline">\(p\)</span>可以约去，得到<span
+class="math inline">\(color=albedo *
+color(direction)\)</span>，这也是我们原始的color函数中的设定</li>
+</ul>
+<p>使用BRDF描述表面散射为： <span class="math display">\[
+BRDF=\frac{albedo*s(direction)}{\cosθ}
+\]</span></p>
+<ul>
+<li>对于Lambertian材质，<span
+class="math inline">\(BRDF=\frac{albedo}{\pi}\)</span></li>
+</ul>
+<h1 id="chapter-4important-sampling-materials">Chapter 4：Important
+Sampling Materials</h1>
+<h2 id="相关概念-1">4.1 相关概念</h2>
+<ul>
+<li><p>目标：向光源发送额外的光线，降低图片的噪声</p></li>
+<li><p>设：</p>
+<ul>
+<li><span
+class="math inline">\(pLight(direction)\)</span>：发射的一束朝向光源的光线的PDF</li>
+<li><span
+class="math inline">\(pSurface(diection)\)</span>：与s有关的PDF</li>
+</ul></li>
+<li><p>将两者线性组合，得到一个综合的PDF： <span class="math display">\[
+p(direction)=0.5*pLight(direction) + 0.5*pSurface(direction)
+\]</span></p>
+<ul>
+<li>注意：要求权重是正的，并且和为1</li>
+</ul></li>
+<li><p>设计PDF最重要的一点是，让其尽可能接近于<span
+class="math inline">\(s(direction)*color(direction)\)</span>的分布</p>
+<ul>
+<li>对于漫反射表面，我们猜测它更偏重<span
+class="math inline">\(color(direction)\)</span>因子</li>
+<li>对于镜面材质表面，<span
+class="math inline">\(s(direction)\)</span>只在一个方向附近很大，因此它更重要</li>
+</ul></li>
+</ul>
+<h2 id="对material基类的修改">4.2 对material基类的修改</h2>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Material</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="comment">/*</span></span><br><span class="line"><span class="comment">	* @brief 生成散射光线</span></span><br><span class="line"><span class="comment">	* @param r_in 入射光线</span></span><br><span class="line"><span class="comment">	* @param info 碰撞信息</span></span><br><span class="line"><span class="comment">	* @param attenuation 当发生散射时, 光强如何衰减, 分为rgb三个分量</span></span><br><span class="line"><span class="comment">	* @param r_out 散射光线</span></span><br><span class="line"><span class="comment">	* @return 是否得到了散射光线</span></span><br><span class="line"><span class="comment">	*/</span></span><br><span class="line">	<span class="function"><span class="keyword">virtual</span> <span class="type">bool</span> <span class="title">scatter</span><span class="params">(<span class="type">const</span> Ray&amp; r_in, <span class="type">const</span> HitInfo&amp; info, Color&amp; attenuation, Ray&amp; r_out)</span> <span class="type">const</span> </span>= <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/*</span></span><br><span class="line"><span class="comment">	* @brief 生成散射光线</span></span><br><span class="line"><span class="comment">	* @param r_in 入射光线</span></span><br><span class="line"><span class="comment">	* @param info 碰撞信息</span></span><br><span class="line"><span class="comment">	* @param attenuation 当发生散射时, 光强如何衰减, 分为rgb三个分量</span></span><br><span class="line"><span class="comment">	* @param r_out 散射光线</span></span><br><span class="line"><span class="comment">	* @param pdf 重要性采样的pdf取值</span></span><br><span class="line"><span class="comment">	* @return 是否得到了散射光线</span></span><br><span class="line"><span class="comment">	*/</span></span><br><span class="line">	<span class="function"><span class="keyword">virtual</span> <span class="type">bool</span> <span class="title">scatter</span><span class="params">(<span class="type">const</span> Ray&amp; r_in, <span class="type">const</span> HitInfo&amp; info, Color&amp; attenuation, Ray&amp; r_out, <span class="type">double</span>&amp; pdf)</span> <span class="type">const</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="built_in">scatter</span>(r_in, info, attenuation, r_out);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	<span class="comment">/*</span></span><br><span class="line"><span class="comment">	* @brief 计算散射pdf的取值</span></span><br><span class="line"><span class="comment">	* @param r_in 入射光线</span></span><br><span class="line"><span class="comment">	* @param info 碰撞信息</span></span><br><span class="line"><span class="comment">	* @param r_out 散射光线</span></span><br><span class="line"><span class="comment">	* @return pdf取值</span></span><br><span class="line"><span class="comment">	*/</span></span><br><span class="line">	<span class="function"><span class="keyword">virtual</span> <span class="type">double</span> <span class="title">scatter_pdf</span><span class="params">(<span class="type">const</span> Ray&amp; r_in, <span class="type">const</span> HitInfo&amp; info, <span class="type">const</span> Ray&amp; r_out)</span> <span class="type">const</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/*</span></span><br><span class="line"><span class="comment">	* @brief 自发光</span></span><br><span class="line"><span class="comment">	* @param u uv坐标</span></span><br><span class="line"><span class="comment">	* @param v uv坐标</span></span><br><span class="line"><span class="comment">	* @param p 碰撞点</span></span><br><span class="line"><span class="comment">	*/</span></span><br><span class="line">	<span class="function"><span class="keyword">virtual</span> Color <span class="title">emitted</span><span class="params">(<span class="type">double</span> u, <span class="type">double</span> v, <span class="type">const</span> Point3&amp; p)</span> <span class="type">const</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="built_in">Color</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="对lambertian的修改">4.3 对Lambertian的修改</h2>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">bool</span> <span class="title">Lambertian::scatter</span><span class="params">(<span class="type">const</span> Ray&amp; r_in, <span class="type">const</span> HitInfo&amp; info, Color&amp; attenuation, Ray&amp; r_out)</span> <span class="type">const</span> </span>&#123;</span><br><span class="line">	<span class="comment">// 漫反射: 在单位圆内随机取一点, 作为反射方向</span></span><br><span class="line">	Vec3 target = info.position + info.normal + Random::<span class="built_in">rand_unit_sphere</span>();</span><br><span class="line">	r_out = <span class="built_in">Ray</span>(info.position, target - info.position, r_in.<span class="built_in">Time</span>());</span><br><span class="line">	attenuation = albedo-&gt;<span class="built_in">Value</span>(info.u, info.v, info.position);</span><br><span class="line">	<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">Lambertian::scatter</span><span class="params">(<span class="type">const</span> Ray&amp; r_in, <span class="type">const</span> HitInfo&amp; info, Color&amp; attenuation, Ray&amp; r_out, <span class="type">double</span>&amp; pdf)</span> <span class="type">const</span> </span>&#123;</span><br><span class="line">	<span class="comment">// 漫反射: 在单位圆内随机取一点, 作为反射方向</span></span><br><span class="line">	Vec3 target = info.position + info.normal + Random::<span class="built_in">rand_unit_sphere</span>();</span><br><span class="line">	r_out = <span class="built_in">Ray</span>(info.position, target - info.position, r_in.<span class="built_in">Time</span>());</span><br><span class="line">	attenuation = albedo-&gt;<span class="built_in">Value</span>(info.u, info.v, info.position);</span><br><span class="line">	pdf = info.normal.<span class="built_in">dot</span>(r_out.<span class="built_in">Direction</span>()) / PI;</span><br><span class="line">	<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">double</span> <span class="title">Lambertian::scatter_pdf</span><span class="params">(<span class="type">const</span> Ray&amp; r_in, <span class="type">const</span> HitInfo&amp; info, <span class="type">const</span> Ray&amp; r_out)</span> <span class="type">const</span> </span>&#123;</span><br><span class="line">	<span class="type">double</span> cosine = info.normal.<span class="built_in">dot</span>(r_out.<span class="built_in">Direction</span>());</span><br><span class="line">	<span class="keyword">if</span> (cosine &lt; <span class="number">0</span>) cosine = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">return</span> cosine / PI;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="chapter-5generating-random-direction">Chapter 5：Generating
+Random Direction</h1>
+<h2 id="三维随机方向向量的生成">5.1 三维随机方向向量的生成</h2>
+<p>假定：</p>
+<ul>
+<li><code>Z轴</code>：表面法线</li>
+<li><code>θ</code>：与法线的夹角</li>
+<li>仅处理<strong>关于z轴旋转对称</strong>的分布，其他相关的量，均设为均匀分布</li>
+</ul>
+<h2 id="pdfdirectionfθ">5.2 <span
+class="math inline">\(pdf(direction)=f(θ)\)</span></h2>
+<p><span class="math display">\[
+\begin{aligned}
+g(Φ)&amp;=\frac{1}{2\pi}\\
+h(θ)&amp;=2\pi f(θ) \sin θ
+\end{aligned}
+\]</span></p>
+<p>对于满足<span
+class="math inline">\([0,1]\)</span>之间均匀分布的随机变量<span
+class="math inline">\(r_1,r_2\)</span>而言： <span
+class="math display">\[
+\begin{aligned}
+r_1 &amp;= \int_{0}^{Φ} \frac{1}{2\pi} dθ = \frac{Φ}{2\pi} \\
+r_2 &amp;= \int_{0}^{θ} 2\pi f(t) \sin t \ dt
+\end{aligned}
+\]</span></p>
+<h3 id="pdfdirectionfθfrac14pi">5.2.1 <span
+class="math inline">\(pdf(direction)=f(θ)=\frac{1}{4\pi}\)</span></h3>
+<p><span class="math display">\[
+\begin{aligned}
+r_1 &amp;= \int_{0}^{Φ} \frac{1}{2\pi} dθ = \frac{Φ}{2\pi} \\
+r_2 &amp;= \int_{0}^{θ} 2\pi \frac{1}{4\pi} \sin t \ dt\\
+    &amp;= \int_{0}^{θ} \frac{1}{2} \sin t \ dt\\
+    &amp;= \frac{1-\cos θ}{2}
+\end{aligned}
+\]</span></p>
+从而： <span class="math display">\[
+\begin{aligned}
+Φ &amp;= 2\pi r_1 \\
+\cos θ &amp;= 1 - 2r_2
+\end{aligned}
+\]</span> 带入球坐标得： $$
+<span class="math display">\[\begin{aligned}
+x &amp;= \cosΦ\sinθ = 2\cos(2\pi r_1) * \sqrt{r_2(1-r_2)} \\
+y &amp;= \sinΦ\sinθ = 2\sin(2\pi r_1) * \sqrt{r_2(1-r_2)}&amp; \\
+z &amp;= \cosθ = 1-2r_2
+
+\end{aligned}\]</span>
+<p>$$</p>
+<h3 id="pdfdirectionfθfrac12pi">5.2.2 <span
+class="math inline">\(pdf(direction)=f(θ)=\frac{1}{2\pi}\)</span></h3>
+<p><span class="math display">\[
+\begin{aligned}
+r_1 &amp;= \int_{0}^{Φ} \frac{1}{2\pi} dθ = \frac{Φ}{2\pi} \\
+r_2 &amp;= \int_{0}^{θ} 2\pi \frac{1}{2\pi} \sin t \ dt\\
+    &amp;= \int_{0}^{θ}  \sin t \ dt\\
+    &amp;= 1-\cos θ
+\end{aligned}
+\]</span></p>
+从而： <span class="math display">\[
+\begin{aligned}
+Φ &amp;= 2\pi r_1 \\
+\cos θ &amp;= 1 - r_2
+\end{aligned}
+\]</span> 带入球坐标得： $$
+<span class="math display">\[\begin{aligned}
+x &amp;= \cosΦ\sinθ = \cos(2\pi r_1) * \sqrt{r_2(2-r_2)} \\
+y &amp;= \sinΦ\sinθ = \sin(2\pi r_1) * \sqrt{r_2(2-r_2)}&amp; \\
+z &amp;= \cosθ = 1-r_2
+
+\end{aligned}\]</span>
+<p>$$</p>
+<h3 id="pdfdirectionfθfraccos-θ4pi">5.2.3 <span
+class="math inline">\(pdf(direction)=f(θ)=\frac{\cos
+θ}{4\pi}\)</span></h3>
+<p><span class="math display">\[
+\begin{aligned}
+r_1 &amp;= \int_{0}^{Φ} \frac{1}{2\pi} dθ = \frac{Φ}{2\pi} \\
+r_2 &amp;= \int_{0}^{θ} 2\pi \frac{\cos t}{4\pi} \sin t \ dt\\
+    &amp;= \int_{0}^{θ} \frac{1}{2} \sin t \cos t \ dt\\
+    &amp;= 1-\cos^2 θ
+\end{aligned}
+\]</span></p>
+从而： <span class="math display">\[
+\begin{aligned}
+Φ &amp;= 2\pi r_1 \\
+\cos θ &amp;= \sqrt{1 - r_2}
+\end{aligned}
+\]</span> 带入球坐标得： $$
+<span class="math display">\[\begin{aligned}
+x &amp;= \cosΦ\sinθ = 2\cos(2\pi r_1) * \sqrt{r_2} \\
+y &amp;= \sinΦ\sinθ = 2\sin(2\pi r_1) * \sqrt{r_2}&amp; \\
+z &amp;= \cosθ = \sqrt{1 - r_2}
+
+\end{aligned}\]</span>
+<p>$$</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">static</span> Vec3 <span class="title">rand_cosine_direction</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="type">double</span> r1 = <span class="built_in">rand01</span>();</span><br><span class="line">	<span class="type">double</span> r2 = <span class="built_in">rand01</span>();</span><br><span class="line"></span><br><span class="line">	<span class="type">double</span> x = <span class="built_in">cos</span>(<span class="number">2</span> * PI * r1) * <span class="built_in">sqrt</span>(r2);</span><br><span class="line">	<span class="type">double</span> y = <span class="built_in">sin</span>(<span class="number">2</span> * PI * r1) * <span class="built_in">sqrt</span>(r2);</span><br><span class="line">	<span class="type">double</span> z = <span class="built_in">sqrt</span>(<span class="number">1</span> - r2);</span><br><span class="line">	<span class="keyword">return</span> <span class="built_in">Vec3</span>(x, y, z);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="chapter-6ortho-normal-bases">Chapter 6：Ortho-normal Bases</h1>
+<p>目标：将<code>Chapter 5</code>中基于z轴的随机方向，转化为基于表面法线的随机方向</p>
+<h2 id="建立基于表面法线的坐标系">6.1 建立基于表面法线的坐标系</h2>
+<ul>
+<li><span class="math inline">\(\bold{n}\)</span>：表面法线</li>
+<li><span class="math inline">\(\bold{t}\)</span>：<span
+class="math inline">\(\bold{t}=cross(\bold{vup},\bold{n})\)</span></li>
+<li><span class="math inline">\(\bold{s}\)</span>：<span
+class="math inline">\(\bold{s}=cross(\bold{t},\bold{n})\)</span></li>
+<li>坐标系中的任意一点<span
+class="math inline">\((x,y,z)\)</span>表示如下：
+<ul>
+<li>随机向量 = <span
+class="math inline">\(x\bold{s}+y\bold{t}+z\bold{n}\)</span></li>
+</ul></li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">ONB</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="comment">/*</span></span><br><span class="line"><span class="comment">	* @brief 根据法线构建局部坐标系</span></span><br><span class="line"><span class="comment">	* @param normal 法线</span></span><br><span class="line"><span class="comment">	*/</span></span><br><span class="line">	<span class="built_in">ONB</span>(Vec3 normal);</span><br><span class="line"></span><br><span class="line">	<span class="comment">/*</span></span><br><span class="line"><span class="comment">	* @brief 获取局部坐标对应的世界坐标</span></span><br><span class="line"><span class="comment">	*/</span></span><br><span class="line">	<span class="function">Vec3 <span class="title">local</span><span class="params">(<span class="type">double</span> x, <span class="type">double</span> y, <span class="type">double</span> z)</span> <span class="type">const</span></span>;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/*</span></span><br><span class="line"><span class="comment">	* @brief 获取局部坐标对应的世界坐标</span></span><br><span class="line"><span class="comment">	*/</span></span><br><span class="line">	<span class="function">Vec3 <span class="title">local</span><span class="params">(<span class="type">const</span> Vec3&amp; v)</span> <span class="type">const</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	<span class="comment">/*</span></span><br><span class="line"><span class="comment">	* @brief 根据法线构建局部坐标系</span></span><br><span class="line"><span class="comment">	* @param normal 法线</span></span><br><span class="line"><span class="comment">	*/</span></span><br><span class="line">	<span class="function"><span class="type">void</span> <span class="title">build_from_w</span><span class="params">(<span class="type">const</span> Vec3&amp; normal)</span></span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="type">const</span> Vec3&amp; <span class="keyword">operator</span>[](<span class="type">int</span> index) <span class="type">const</span> &#123; <span class="keyword">return</span> axis[index]; &#125;</span><br><span class="line">	<span class="function"><span class="type">const</span> Vec3&amp; <span class="title">u</span><span class="params">()</span> <span class="type">const</span> </span>&#123; <span class="keyword">return</span> axis[<span class="number">0</span>]; &#125;</span><br><span class="line">	<span class="function"><span class="type">const</span> Vec3&amp; <span class="title">v</span><span class="params">()</span> <span class="type">const</span> </span>&#123; <span class="keyword">return</span> axis[<span class="number">1</span>]; &#125;</span><br><span class="line">	<span class="function"><span class="type">const</span> Vec3&amp; <span class="title">w</span><span class="params">()</span> <span class="type">const</span> </span>&#123; <span class="keyword">return</span> axis[<span class="number">2</span>]; &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	Vec3 axis[<span class="number">3</span>];</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">ONB::<span class="built_in">ONB</span>(Vec3 normal) &#123;</span><br><span class="line">    <span class="built_in">build_from_w</span>(normal);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">Vec3 <span class="title">ONB::local</span><span class="params">(<span class="type">double</span> x, <span class="type">double</span> y, <span class="type">double</span> z)</span> <span class="type">const</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> x * <span class="built_in">u</span>() + y * <span class="built_in">v</span>() + z * <span class="built_in">w</span>();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">Vec3 <span class="title">ONB::local</span><span class="params">(<span class="type">const</span> Vec3&amp; v)</span> <span class="type">const</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">local</span>(v[<span class="number">0</span>], v[<span class="number">1</span>], v[<span class="number">2</span>]);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">ONB::build_from_w</span><span class="params">(<span class="type">const</span> Vec3&amp; normal)</span> </span>&#123;</span><br><span class="line">    Vec3 n = normal.<span class="built_in">normalize</span>();</span><br><span class="line"></span><br><span class="line">    <span class="function">Vec3 <span class="title">vup</span><span class="params">(<span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>)</span></span>;</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">fabs</span>(n.<span class="built_in">x</span>()) &gt; <span class="number">0.9</span>) vup = <span class="built_in">Vec3</span>(<span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">    axis[<span class="number">2</span>] = n;</span><br><span class="line">    axis[<span class="number">1</span>] = n.<span class="built_in">cross</span>(vup).<span class="built_in">normalize</span>();</span><br><span class="line">    axis[<span class="number">0</span>] = n.<span class="built_in">cross</span>(axis[<span class="number">1</span>]).<span class="built_in">normalize</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="修改-lambertian-材质的scatter函数">6.2 修改 Lambertian
+材质的scatter函数</h2>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">bool</span> <span class="title">Lambertian::scatter</span><span class="params">(<span class="type">const</span> Ray&amp; r_in, <span class="type">const</span> HitInfo&amp; info, Color&amp; attenuation, Ray&amp; r_out, <span class="type">double</span>&amp; pdf)</span> <span class="type">const</span> </span>&#123;</span><br><span class="line">	<span class="function">ONB <span class="title">uvw</span><span class="params">(info.normal)</span></span>;</span><br><span class="line">	<span class="keyword">do</span> &#123;</span><br><span class="line">		<span class="comment">// 在单位球上随机采样方向, 作为出射方向, 然后将其转化为全局坐标</span></span><br><span class="line">		Vec3 direction = uvw.<span class="built_in">local</span>(Random::<span class="built_in">rand_cosine_direction</span>());</span><br><span class="line">		</span><br><span class="line">		<span class="comment">// 构建出射光线</span></span><br><span class="line">		r_out = <span class="built_in">Ray</span>(info.position, direction.<span class="built_in">normalize</span>(), r_in.<span class="built_in">Time</span>());</span><br><span class="line">		</span><br><span class="line">		<span class="comment">// 重要性采样 pdf = cosθ / π</span></span><br><span class="line">		pdf = uvw.<span class="built_in">w</span>().<span class="built_in">dot</span>(r_out.<span class="built_in">Direction</span>()) / PI;</span><br><span class="line">	&#125; <span class="keyword">while</span> (pdf == <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">	attenuation = albedo-&gt;<span class="built_in">Value</span>(info.u, info.v, info.position);</span><br><span class="line">	<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="chapter-7sample-lights-directly">Chapter 7：Sample Lights
+Directly</h1>
+<p><img src="https://raw.githubusercontent.com/unicorn2022/Pictures/main/AssetMarkdown/1316111-20190314194434992-798000737.png" alt="img" style="zoom:80%;" /></p>
+<ul>
+<li>即直接朝光源方向发射光线</li>
+<li>重点在于计算<span class="math inline">\(pdf(direction)\)</span></li>
+</ul>
+<h2 id="直接光源采样">7.1 直接光源采样</h2>
+<ul>
+<li><p>对于一个光源区域A，如果均匀采样该区域，则<span
+class="math inline">\(p\_q(q)=\frac{dA}{A}\)</span></p></li>
+<li><p>但是由于积分区域是物体表面的单位球，因此我们需要将<span
+class="math inline">\(pdf\)</span>进行转换，即将光源处的微分<span
+class="math inline">\(dA\)</span>转化为方位角微分<span
+class="math inline">\(dΩ\)</span> <span class="math display">\[
+dΩ=\frac{\cos α}{distance^2}dA
+\]</span></p></li>
+<li><p>由于<span class="math inline">\(dA\)</span>和<span
+class="math inline">\(dΩ\)</span>对应的区域的概率是相同的，因此有如下等式：
+<span class="math display">\[
+p(direction) * dΩ = p\_q(q) * dA \\
+\]</span></p></li>
+<li><p>因此有 <span class="math display">\[
+p(direction) = \frac{distance^2}{\cos α *A}
+\]</span></p></li>
+</ul>
+<h2 id="修改getcolor的采样">7.2 修改<code>GetColor</code>的采样</h2>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function">Color <span class="title">ObjectWorld::GetColor</span><span class="params">(<span class="type">const</span> Ray&amp; r, <span class="type">int</span>&amp; depth)</span> </span>&#123;</span><br><span class="line">	HitInfo info;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 如果碰撞到了, 则根据材质计算反射光线</span></span><br><span class="line">	<span class="comment">// 注意 t_min 需要设置一个很小的值, 否则会出现光线重复与同一个物体相交的情况</span></span><br><span class="line">	<span class="keyword">if</span> (<span class="keyword">this</span>-&gt;<span class="built_in">hit</span>(r, <span class="number">0.01</span>, INFINITY, info)) &#123;</span><br><span class="line">		Ray r_out;</span><br><span class="line">		Color emit = info.material-&gt;<span class="built_in">emitted</span>(r, info, info.u, info.v, info.position);</span><br><span class="line">		Color attenuation;</span><br><span class="line">		<span class="type">double</span> pdf;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">if</span> (depth &lt; max_depth &amp;&amp; info.material-&gt;<span class="built_in">scatter</span>(r, info, attenuation, r_out, pdf)) &#123;</span><br><span class="line">			<span class="comment">// 直接光源采样: 在光源上随机采样一个点</span></span><br><span class="line">			Point3 on_light = <span class="built_in">Vec3</span>(<span class="number">213</span> + Random::<span class="built_in">rand01</span>() * (<span class="number">343</span> - <span class="number">213</span>), <span class="number">554</span>, <span class="number">227</span> + Random::<span class="built_in">rand01</span>() * (<span class="number">332</span> - <span class="number">227</span>));</span><br><span class="line">			<span class="comment">// 计算方向及距离</span></span><br><span class="line">			Vec3 direction = on_light - info.position;</span><br><span class="line">			<span class="type">double</span> distance_squared = direction.<span class="built_in">length_squared</span>();</span><br><span class="line">			direction = direction.<span class="built_in">normalize</span>();</span><br><span class="line">			<span class="keyword">if</span>(direction.<span class="built_in">dot</span>(info.normal) &lt; <span class="number">0</span>) <span class="keyword">return</span> emit;</span><br><span class="line"></span><br><span class="line">			<span class="comment">// 计算 pdf</span></span><br><span class="line">			<span class="type">double</span> A = (<span class="number">343</span> - <span class="number">213</span>) * (<span class="number">332</span> - <span class="number">227</span>);</span><br><span class="line">			<span class="type">double</span> cos_alpha = <span class="built_in">fabs</span>(direction.<span class="built_in">y</span>());</span><br><span class="line">			<span class="keyword">if</span> (cos_alpha &lt; <span class="number">1e-6</span>) <span class="keyword">return</span> emit;</span><br><span class="line"></span><br><span class="line">			<span class="comment">// pdf = distance^2 / (cos_alpha * A)</span></span><br><span class="line">			pdf = distance_squared / (cos_alpha * A);</span><br><span class="line"></span><br><span class="line">			<span class="comment">// 向光源方向发射光线</span></span><br><span class="line">			r_out = <span class="built_in">Ray</span>(info.position, direction, r.<span class="built_in">Time</span>());</span><br><span class="line"></span><br><span class="line">			<span class="keyword">return</span> emit + attenuation * info.material-&gt;<span class="built_in">scatter_pdf</span>(r, info, r_out) * <span class="built_in">GetColor</span>(r_out, ++depth) / pdf;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">			<span class="keyword">return</span> emit;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 如果不相交, 则返回黑色</span></span><br><span class="line">	<span class="keyword">else</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="built_in">Color</span>(<span class="number">0</span>);</span><br><span class="line">	&#125;	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="chapter-8混合概率密度">Chapter 8：混合概率密度</h1>
+<p>设计pdf的一个很重要的原则：使得累积概率密度达到且只达到1</p>
+<h2 id="pdf基类">8.1 pdf基类</h2>
+<p>主要的任务</p>
+<ul>
+<li>获取<span class="math inline">\(pdf(direction)\)</span></li>
+<li>按照当前模型，生成<span
+class="math inline">\(direction\)</span></li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">PDF</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="comment">/*</span></span><br><span class="line"><span class="comment">	* @brief 获取 direction 对应的概率密度</span></span><br><span class="line"><span class="comment">	* @param direction 随机方向</span></span><br><span class="line"><span class="comment">	* @return 概率密度</span></span><br><span class="line"><span class="comment">	*/</span></span><br><span class="line">	<span class="function"><span class="keyword">virtual</span> <span class="type">double</span> <span class="title">value</span><span class="params">(<span class="type">const</span> Vec3&amp; direction)</span> <span class="type">const</span> </span>= <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/*</span></span><br><span class="line"><span class="comment">	* @brief 生成随机方向</span></span><br><span class="line"><span class="comment">	*/</span></span><br><span class="line">	<span class="function"><span class="keyword">virtual</span> Vec3 <span class="title">generate</span><span class="params">()</span> <span class="type">const</span> </span>= <span class="number">0</span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="pdfdirectionfθfraccos-θ4pi-1">8.1.1 <span
+class="math inline">\(pdf(direction)=f(θ)=\frac{\cos
+θ}{4\pi}\)</span></h3>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">PDF_cos</span> : <span class="keyword">public</span> PDF &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="comment">/*</span></span><br><span class="line"><span class="comment">	* @brief 随机方向满足 cos 分布</span></span><br><span class="line"><span class="comment">	* @param normal 法线</span></span><br><span class="line"><span class="comment">	*/</span></span><br><span class="line">	<span class="built_in">PDF_cos</span>(<span class="type">const</span> Vec3&amp; normal) : <span class="built_in">uvw</span>(normal) &#123;&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/*</span></span><br><span class="line"><span class="comment">	* @brief 获取 direction 对应的概率密度</span></span><br><span class="line"><span class="comment">	* @param direction 随机方向</span></span><br><span class="line"><span class="comment">	* @return 概率密度</span></span><br><span class="line"><span class="comment">	*/</span></span><br><span class="line">	<span class="function"><span class="keyword">virtual</span> <span class="type">double</span> <span class="title">value</span><span class="params">(<span class="type">const</span> Vec3&amp; direction)</span> <span class="type">const</span> <span class="keyword">override</span></span>;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/*</span></span><br><span class="line"><span class="comment">	* @brief 生成随机方向</span></span><br><span class="line"><span class="comment">	*/</span></span><br><span class="line">	<span class="function"><span class="keyword">virtual</span> Vec3 <span class="title">generate</span><span class="params">()</span> <span class="type">const</span> <span class="keyword">override</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	ONB uvw;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">double</span> <span class="title">PDF_cos::value</span><span class="params">(<span class="type">const</span> Vec3&amp; direction)</span> <span class="type">const</span> </span>&#123;</span><br><span class="line">	<span class="type">double</span> cosine = direction.<span class="built_in">normalize</span>().<span class="built_in">dot</span>(uvw.<span class="built_in">w</span>());</span><br><span class="line">	<span class="keyword">if</span>(cosine &gt; <span class="number">0</span>) <span class="keyword">return</span> cosine / PI;</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">Vec3 <span class="title">PDF_cos::generate</span><span class="params">()</span> <span class="type">const</span> </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> uvw.<span class="built_in">local</span>(Random::<span class="built_in">rand_cosine_direction</span>());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="直接光源采样-1">8.1.2 直接光源采样</h3>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">PDF_hit</span> : <span class="keyword">public</span> PDF &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="comment">/*</span></span><br><span class="line"><span class="comment">	* @brief 直接光源采样</span></span><br><span class="line"><span class="comment">	* @param light 光源</span></span><br><span class="line"><span class="comment">	* @param origin 观察点</span></span><br><span class="line"><span class="comment">	*/</span></span><br><span class="line">	<span class="built_in">PDF_hit</span>(Ref&lt;Object&gt; light, Point3 origin) : <span class="built_in">light</span>(light), <span class="built_in">origin</span>(origin) &#123;&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/*</span></span><br><span class="line"><span class="comment">	* @brief 获取 direction 对应的概率密度</span></span><br><span class="line"><span class="comment">	* @param direction 随机方向</span></span><br><span class="line"><span class="comment">	* @return 概率密度</span></span><br><span class="line"><span class="comment">	*/</span></span><br><span class="line">	<span class="function"><span class="keyword">virtual</span> <span class="type">double</span> <span class="title">value</span><span class="params">(<span class="type">const</span> Vec3&amp; direction)</span> <span class="type">const</span> <span class="keyword">override</span></span>;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/*</span></span><br><span class="line"><span class="comment">	* @brief 生成随机方向</span></span><br><span class="line"><span class="comment">	*/</span></span><br><span class="line">	<span class="function"><span class="keyword">virtual</span> Vec3 <span class="title">generate</span><span class="params">()</span> <span class="type">const</span> <span class="keyword">override</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	Point3 origin;</span><br><span class="line">	Ref&lt;Object&gt; light;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">double</span> <span class="title">PDF_hit::value</span><span class="params">(<span class="type">const</span> Vec3&amp; direction)</span> <span class="type">const</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> light-&gt;<span class="built_in">pdf_value</span>(origin, direction);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">Vec3 <span class="title">PDF_hit::generate</span><span class="params">()</span> <span class="type">const</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> light-&gt;<span class="built_in">random</span>(origin);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>对光源的修改：<code>RectXZ</code></p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">double</span> <span class="title">RectXZ::pdf_value</span><span class="params">(<span class="type">const</span> Point3&amp; origin, <span class="type">const</span> Vec3 direction)</span> <span class="type">const</span> </span>&#123;</span><br><span class="line">    HitInfo info;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>-&gt;<span class="built_in">hit</span>(<span class="built_in">Ray</span>(origin, direction), <span class="number">1e-3</span>, INFINITY, info)) &#123;</span><br><span class="line">        <span class="type">double</span> area = (x2 - x1) * (z2 - z1);</span><br><span class="line">        <span class="type">double</span> distance_squared = info.t * info.t * direction.<span class="built_in">length_squared</span>();</span><br><span class="line">        <span class="type">double</span> cosine = <span class="built_in">fabs</span>(direction.<span class="built_in">dot</span>(info.normal) / direction.<span class="built_in">length</span>());</span><br><span class="line">        <span class="comment">// pdf = distance^2 / (cos_alpha * A)</span></span><br><span class="line">        <span class="keyword">return</span> distance_squared / (cosine * area);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">Vec3 <span class="title">RectXZ::random</span><span class="params">(<span class="type">const</span> Point3&amp; origin)</span> <span class="type">const</span> </span>&#123;</span><br><span class="line">    Point3 on_light = <span class="built_in">Vec3</span>(Random::<span class="built_in">rand_between</span>(x1, x2), k, Random::<span class="built_in">rand_between</span>(z1, z2));</span><br><span class="line">    <span class="keyword">return</span> on_light - origin;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="混合概率密度">8.2 混合概率密度</h2>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">PDF_mixture</span> : <span class="keyword">public</span> PDF &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="comment">/*</span></span><br><span class="line"><span class="comment">	* @brief 等比例混合两个PDF</span></span><br><span class="line"><span class="comment">	* @param pdf1 第一个PDF</span></span><br><span class="line"><span class="comment">	* @param pdf2 第二个PDF</span></span><br><span class="line"><span class="comment">	* @param weight0 pdf1的权重</span></span><br><span class="line"><span class="comment">	*/</span></span><br><span class="line">	<span class="built_in">PDF_mixture</span>(Ref&lt;PDF&gt; pdf1, Ref&lt;PDF&gt; pdf2, <span class="type">double</span> weight1);</span><br><span class="line"></span><br><span class="line">	<span class="comment">/*</span></span><br><span class="line"><span class="comment">	* @brief 获取 direction 对应的概率密度</span></span><br><span class="line"><span class="comment">	* @param direction 随机方向</span></span><br><span class="line"><span class="comment">	* @return 概率密度</span></span><br><span class="line"><span class="comment">	*/</span></span><br><span class="line">	<span class="function"><span class="keyword">virtual</span> <span class="type">double</span> <span class="title">value</span><span class="params">(<span class="type">const</span> Vec3&amp; direction)</span> <span class="type">const</span> <span class="keyword">override</span></span>;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/*</span></span><br><span class="line"><span class="comment">	* @brief 生成随机方向</span></span><br><span class="line"><span class="comment">	*/</span></span><br><span class="line">	<span class="function"><span class="keyword">virtual</span> Vec3 <span class="title">generate</span><span class="params">()</span> <span class="type">const</span> <span class="keyword">override</span></span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	Ref&lt;PDF&gt; pdf[<span class="number">2</span>];</span><br><span class="line">	<span class="type">double</span> weight1;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">PDF_mixture::<span class="built_in">PDF_mixture</span>(Ref&lt;PDF&gt; pdf1, Ref&lt;PDF&gt; pdf2, <span class="type">double</span> weight1) &#123;</span><br><span class="line">	pdf[<span class="number">0</span>] = pdf1;</span><br><span class="line">	pdf[<span class="number">1</span>] = pdf2;</span><br><span class="line">	<span class="keyword">this</span>-&gt;weight1 = weight1;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">double</span> <span class="title">PDF_mixture::value</span><span class="params">(<span class="type">const</span> Vec3&amp; direction)</span> <span class="type">const</span> </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> weight1 * pdf[<span class="number">0</span>]-&gt;<span class="built_in">value</span>(direction) + (<span class="number">1</span> - weight1) * pdf[<span class="number">1</span>]-&gt;<span class="built_in">value</span>(direction);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">Vec3 <span class="title">PDF_mixture::generate</span><span class="params">()</span> <span class="type">const</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(Random::<span class="built_in">rand01</span>() &lt; weight1) <span class="keyword">return</span> pdf[<span class="number">0</span>]-&gt;<span class="built_in">generate</span>();</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">return</span> pdf[<span class="number">1</span>]-&gt;<span class="built_in">generate</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="对getcolor的修改">8.3 对GetColor的修改</h2>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function">Color <span class="title">ObjectWorld::GetColor</span><span class="params">(<span class="type">const</span> Ray&amp; r, <span class="type">int</span>&amp; depth)</span> </span>&#123;</span><br><span class="line">	HitInfo info;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 如果碰撞到了, 则根据材质计算反射光线</span></span><br><span class="line">	<span class="comment">// 注意 t_min 需要设置一个很小的值, 否则会出现光线重复与同一个物体相交的情况</span></span><br><span class="line">	<span class="keyword">if</span> (<span class="keyword">this</span>-&gt;<span class="built_in">hit</span>(r, <span class="number">1e-3</span>, INFINITY, info)) &#123;</span><br><span class="line">		Ray r_out;</span><br><span class="line">		Color emit = info.material-&gt;<span class="built_in">emitted</span>(r, info, info.u, info.v, info.position);</span><br><span class="line">		Color attenuation;</span><br><span class="line">		<span class="type">double</span> pdf;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">if</span> (depth &lt; max_depth &amp;&amp; info.material-&gt;<span class="built_in">scatter</span>(r, info, attenuation, r_out, pdf)) &#123;</span><br><span class="line">			Ref&lt;RectXZ&gt; light = <span class="built_in">New</span>&lt;RectXZ&gt;(<span class="number">213</span>, <span class="number">343</span>, <span class="number">227</span>, <span class="number">332</span>, <span class="number">554</span>, <span class="literal">nullptr</span>);</span><br><span class="line">			Ref&lt;PDF_hit&gt; pdf_hit = <span class="built_in">New</span>&lt;PDF_hit&gt;(light, info.position);</span><br><span class="line">			Ref&lt;PDF_cos&gt; pdf_cos = <span class="built_in">New</span>&lt;PDF_cos&gt;(info.normal);</span><br><span class="line">			<span class="function">PDF_mixture <span class="title">pdf_mixture</span><span class="params">(pdf_hit, pdf_cos, <span class="number">0.8</span>)</span></span>;</span><br><span class="line"></span><br><span class="line">			r_out = <span class="built_in">Ray</span>(info.position, pdf_mixture.<span class="built_in">generate</span>(), r.<span class="built_in">Time</span>());</span><br><span class="line">			pdf = pdf_mixture.<span class="built_in">value</span>(r_out.<span class="built_in">Direction</span>());</span><br><span class="line">			<span class="keyword">return</span> emit + attenuation * info.material-&gt;<span class="built_in">scatter_pdf</span>(r, info, r_out) * <span class="built_in">GetColor</span>(r_out, ++depth) / pdf;		</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">			<span class="keyword">return</span> emit;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 如果不相交, 则返回黑色</span></span><br><span class="line">	<span class="keyword">else</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="built_in">Color</span>(<span class="number">0</span>);</span><br><span class="line">	&#125;	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="unicorn2022.github.io">华丰夏</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://hzoi-unicorn.top/2023/11/03/RayTracing/RayTracingTheRestOfYourLife/">https://hzoi-unicorn.top/2023/11/03/RayTracing/RayTracingTheRestOfYourLife/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://hzoi-unicorn.top" target="_blank">华风夏韵</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Raytracing-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Raytracing 学习笔记</a></div><div class="post_share"><div class="social-share" data-image="/img/avatar.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2024/06/01/%E9%AB%98%E7%BA%A7%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90/0.Amortized%20Analysis/" title="ADS：摊还分析"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">ADS：摊还分析</div></div></a></div><div class="next-post pull-right"><a href="/2023/11/02/RayTracing/RayTracingTheNextWeek/" title="Raytracing The Next Week"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Raytracing The Next Week</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2023/11/02/RayTracing/RayTracingTheNextWeek/" title="Raytracing The Next Week"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-11-02</div><div class="title">Raytracing The Next Week</div></div></a></div><div><a href="/2023/11/01/RayTracing/RayTracingInOneWeekend/" title="Raytracing In One Weekend"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-11-01</div><div class="title">Raytracing In One Weekend</div></div></a></div></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="gitalk-container"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">华丰夏</div><div class="author-info__description">一切都是上天最好的安排</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">83</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">8</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/unicorn2022"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/unicorn2022" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:496300118@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">愿你前行的道路有群星闪耀。愿你留下的足迹有百花绽放。你即是上帝的馈赠，世界因你而瑰丽。</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#chapter-1a-simple-monte-carlo-program"><span class="toc-text">Chapter 1：A Simple Monte
+Carlo Program</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BC%B0%E8%AE%A1pi"><span class="toc-text">1.1 估计\(\pi\)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E5%B1%82%E6%96%B9%E6%B3%95"><span class="toc-text">1.2 分层方法</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#chapter-2one-dimensional-mc-integration"><span class="toc-text">Chapter 2：One
+Dimensional MC Integration</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E6%A6%82%E5%BF%B5"><span class="toc-text">2.1 相关概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%87%8D%E8%A6%81%E6%80%A7%E9%87%87%E6%A0%B7-%E8%92%99%E7%89%B9%E5%8D%A1%E6%B4%9B%E7%A7%AF%E5%88%86"><span class="toc-text">2.2 重要性采样 &amp; 蒙特卡洛积分</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A4%BA%E4%BE%8Bint-cos2-%CE%B8-d%CE%B8"><span class="toc-text">2.3 示例：\(\int
+\cos^2 θ\ dθ\)</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#chapter-3light-scaterring"><span class="toc-text">Chapter 3：Light Scaterring</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%89%E7%9A%84%E6%95%A3%E5%B0%84"><span class="toc-text">3.1 光的散射</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#lambertian%E6%9D%90%E8%B4%A8%E7%9A%84%E8%A1%A8%E9%9D%A2%E6%95%A3%E5%B0%84pdf"><span class="toc-text">3.2
+Lambertian材质的表面散射PDF</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#chapter-4important-sampling-materials"><span class="toc-text">Chapter 4：Important
+Sampling Materials</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E6%A6%82%E5%BF%B5-1"><span class="toc-text">4.1 相关概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%B9material%E5%9F%BA%E7%B1%BB%E7%9A%84%E4%BF%AE%E6%94%B9"><span class="toc-text">4.2 对material基类的修改</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%B9lambertian%E7%9A%84%E4%BF%AE%E6%94%B9"><span class="toc-text">4.3 对Lambertian的修改</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#chapter-5generating-random-direction"><span class="toc-text">Chapter 5：Generating
+Random Direction</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E7%BB%B4%E9%9A%8F%E6%9C%BA%E6%96%B9%E5%90%91%E5%90%91%E9%87%8F%E7%9A%84%E7%94%9F%E6%88%90"><span class="toc-text">5.1 三维随机方向向量的生成</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#pdfdirectionf%CE%B8"><span class="toc-text">5.2 \(pdf(direction)&#x3D;f(θ)\)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#pdfdirectionf%CE%B8frac14pi"><span class="toc-text">5.2.1 \(pdf(direction)&#x3D;f(θ)&#x3D;\frac{1}{4\pi}\)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#pdfdirectionf%CE%B8frac12pi"><span class="toc-text">5.2.2 \(pdf(direction)&#x3D;f(θ)&#x3D;\frac{1}{2\pi}\)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#pdfdirectionf%CE%B8fraccos-%CE%B84pi"><span class="toc-text">5.2.3 \(pdf(direction)&#x3D;f(θ)&#x3D;\frac{\cos
+θ}{4\pi}\)</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#chapter-6ortho-normal-bases"><span class="toc-text">Chapter 6：Ortho-normal Bases</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BB%BA%E7%AB%8B%E5%9F%BA%E4%BA%8E%E8%A1%A8%E9%9D%A2%E6%B3%95%E7%BA%BF%E7%9A%84%E5%9D%90%E6%A0%87%E7%B3%BB"><span class="toc-text">6.1 建立基于表面法线的坐标系</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9-lambertian-%E6%9D%90%E8%B4%A8%E7%9A%84scatter%E5%87%BD%E6%95%B0"><span class="toc-text">6.2 修改 Lambertian
+材质的scatter函数</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#chapter-7sample-lights-directly"><span class="toc-text">Chapter 7：Sample Lights
+Directly</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%B4%E6%8E%A5%E5%85%89%E6%BA%90%E9%87%87%E6%A0%B7"><span class="toc-text">7.1 直接光源采样</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9getcolor%E7%9A%84%E9%87%87%E6%A0%B7"><span class="toc-text">7.2 修改GetColor的采样</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#chapter-8%E6%B7%B7%E5%90%88%E6%A6%82%E7%8E%87%E5%AF%86%E5%BA%A6"><span class="toc-text">Chapter 8：混合概率密度</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#pdf%E5%9F%BA%E7%B1%BB"><span class="toc-text">8.1 pdf基类</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#pdfdirectionf%CE%B8fraccos-%CE%B84pi-1"><span class="toc-text">8.1.1 \(pdf(direction)&#x3D;f(θ)&#x3D;\frac{\cos
+θ}{4\pi}\)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9B%B4%E6%8E%A5%E5%85%89%E6%BA%90%E9%87%87%E6%A0%B7-1"><span class="toc-text">8.1.2 直接光源采样</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B7%B7%E5%90%88%E6%A6%82%E7%8E%87%E5%AF%86%E5%BA%A6"><span class="toc-text">8.2 混合概率密度</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%B9getcolor%E7%9A%84%E4%BF%AE%E6%94%B9"><span class="toc-text">8.3 对GetColor的修改</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/07/01/%E4%BD%B3%E6%98%95%E5%A4%A7%E5%AE%9A%E7%90%86%EF%BC%88doge%EF%BC%89/" title="佳昕大定理（doge）">佳昕大定理（doge）</a><time datetime="2024-06-30T16:00:00.000Z" title="发表于 2024-07-01 00:00:00">2024-07-01</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/18/%E9%AB%98%E7%BA%A7%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90/15.%E5%A4%96%E6%8E%92/" title="ADS15：外排">ADS15：外排</a><time datetime="2024-06-17T16:00:00.000Z" title="发表于 2024-06-18 00:00:00">2024-06-18</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/17/%E9%AB%98%E7%BA%A7%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90/14.%E5%B9%B6%E8%A1%8C%E7%AE%97%E6%B3%95/" title="ADS14：并行算法">ADS14：并行算法</a><time datetime="2024-06-16T16:00:00.000Z" title="发表于 2024-06-17 00:00:00">2024-06-17</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/16/%E9%AB%98%E7%BA%A7%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90/13.%E9%9A%8F%E6%9C%BA%E7%AE%97%E6%B3%95/" title="ADS13：随机算法">ADS13：随机算法</a><time datetime="2024-06-15T16:00:00.000Z" title="发表于 2024-06-16 00:00:00">2024-06-16</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/15/%E9%AB%98%E7%BA%A7%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90/12.%E5%B1%80%E9%83%A8%E6%90%9C%E7%B4%A2/" title="ADS12：局部搜索">ADS12：局部搜索</a><time datetime="2024-06-14T16:00:00.000Z" title="发表于 2024-06-15 00:00:00">2024-06-15</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By 华丰夏</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, '']
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typesetPromise()
+}</script><script>function loadGitalk () {
+  function initGitalk () {
+    var gitalk = new Gitalk(Object.assign({
+      clientID: 'Ov23lis3fEb7fKVKQtT5',
+      clientSecret: '70b1c6819afd5c9bfb6846f0779e4ff85c238c67',
+      repo: 'unicorn2022.github.io',
+      owner: 'unicorn2022',
+      admin: ['unicorn2022'],
+      id: '52c89a9eabc10cb15ffa69a4d3d8e15d',
+      updateCountCallback: commentCount
+    },null))
+
+    gitalk.render('gitalk-container')
+  }
+
+  if (typeof Gitalk === 'function') initGitalk()
+  else {
+    getCSS('https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css')
+    getScript('https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.js').then(initGitalk)
+  }
+}
+
+function commentCount(n){
+  let isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+  if (isCommentCount) {
+    isCommentCount.textContent= n
+  }
+}
+
+if ('Gitalk' === 'Gitalk' || !false) {
+  if (false) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+  else loadGitalk()
+} else {
+  function loadOtherComment () {
+    loadGitalk()
+  }
+}</script></div><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-nest.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = true;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-heart.min.js" async="async" mobile="true"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div class="no-result" id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>
