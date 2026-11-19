@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>税后收入计算器 · 华风夏韵</title>
+  <link rel="stylesheet" href="./style.css">
+  <script src="./calculator.js" defer></script>
+  <script src="./page.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <a href="/">华风夏韵</a>
+  </header>
+  <main>
+    <div class="intro">
+      <div>
+        <h1>税后收入计算器</h1>
+        <p>测算北京、上海、广州、深圳和杭州的到手工资、年终奖与年度存款。</p>
+      </div>
+      <a href="#policy" id="policy-link">缴费比例与政策 ↓</a>
+    </div>
+
+    <div class="workspace">
+      <form class="card inputs" id="salary-form">
+        <h2>收入与支出</h2>
+        <div class="fields">
+          <label class="field">城市
+            <select id="city" name="city">
+              <option value="beijing">北京</option>
+              <option value="shanghai">上海</option>
+              <option value="guangzhou">广州</option>
+              <option value="shenzhen">深圳</option>
+              <option value="hangzhou">杭州</option>
+            </select>
+          </label>
+          <label class="field">税前月收入（元）
+            <input name="salary" type="number" inputmode="decimal" min="0" max="100000000" step="0.01" placeholder="例如 20,000" required>
+          </label>
+          <label class="field" id="medical-tier-field" hidden>深圳职工医保档次
+            <select name="medicalTier">
+              <option value="first">一档</option>
+              <option value="second">二档</option>
+            </select>
+          </label>
+          <label class="field" id="fund-variant-field" hidden><span id="fund-variant-label"></span>
+            <select name="fundVariant" id="fund-variant"></select>
+          </label>
+          <label class="field">年终奖输入方式
+            <select name="bonusMode">
+              <option value="months">按税前月工资倍数</option>
+              <option value="amount">按税前总金额</option>
+            </select>
+          </label>
+          <label class="field"><span id="bonus-label">年终奖折合月数</span>
+            <input name="bonus" type="number" inputmode="decimal" min="0" max="1000" step="0.01" placeholder="0">
+          </label>
+          <label class="field wide">年终奖计税方式
+            <select name="bonusTaxMode">
+              <option value="auto">自动选择全年税额较低的方式</option>
+              <option value="separate">全年一次性奖金单独计税</option>
+              <option value="combined">并入全年综合所得</option>
+            </select>
+          </label>
+          <label class="field">实际月租金（元）
+            <input name="rent" type="number" inputmode="decimal" min="0" max="100000000" step="0.01" placeholder="0">
+          </label>
+          <label class="field">月均生活成本（不含租金，元）
+            <input name="living" type="number" inputmode="decimal" min="0" max="100000000" step="0.01" placeholder="0">
+          </label>
+          <label class="checkbox wide">
+            <input name="rentEligible" type="checkbox" checked>
+            符合住房租金专项附加扣除条件
+          </label>
+          <p class="hint wide">在主要工作城市无自有住房（含配偶），由签约承租人申报；夫妻同城只能由一方申报，同一年度不可同时享受住房贷款利息扣除。</p>
+          <label class="field">党费缴纳比例
+            <select name="partyDuesRate">
+              <option value="off">不计入党费</option>
+              <option value="auto">自动按规定分档</option>
+              <option value="0.5">0.5%</option>
+              <option value="1">1%</option>
+              <option value="1.5">1.5%</option>
+              <option value="2">2%</option>
+            </select>
+          </label>
+          <label class="field" id="party-dues-base-field" hidden>党组织核定的月基数（元）
+            <input name="partyDuesBase" type="number" inputmode="decimal" min="0" max="100000000" step="0.01" placeholder="留空时按月均税后工资估算" disabled>
+          </label>
+        </div>
+
+        <details>
+          <summary>填写单位申报的缴费工资</summary>
+          <p class="hint">留空时用税前月收入估算。已有申报数据时，可以分别输入用于社保和公积金核定的工资，系统仍会按各险种上下限处理。</p>
+          <div class="fields">
+            <label class="field">社保申报工资（元）
+              <input name="socialWage" type="number" inputmode="decimal" min="0" max="100000000" step="0.01">
+            </label>
+            <label class="field">公积金申报工资（元）
+              <input name="fundWage" type="number" inputmode="decimal" min="0" max="100000000" step="0.01">
+            </label>
+          </div>
+        </details>
+        <button class="calculate" type="submit">计算税后收入</button>
+        <p class="hint" id="form-note" role="status"></p>
+      </form>
+
+      <section class="card results" id="results" aria-labelledby="results-title">
+        <h2 id="results-title">测算结果</h2>
+        <div class="featured">
+          <span>月均实际到手工资</span>
+          <strong data-result="monthlyCash">—</strong>
+          <small id="monthly-note">按全年工资个税平均，逐月到账见下方明细。</small>
+        </div>
+        <dl class="result-list">
+          <div><dt>每月公积金入账</dt><dd data-result="monthlyFund">—</dd></div>
+          <div><dt>年终奖实际到手</dt><dd data-result="bonusCash">—</dd></div>
+          <div><dt>全年到手收入（不含公积金）</dt><dd data-result="annualCash">—</dd></div>
+          <div><dt>全年收入（含公积金）</dt><dd data-result="annualWithFund">—</dd></div>
+          <div><dt>全年现金存款（扣除支出）</dt><dd data-result="annualSavings">—</dd></div>
+          <div><dt>全年存款（扣除支出，含公积金）</dt><dd data-result="annualSavingsWithFund">—</dd></div>
+        </dl>
+        <p class="hint" id="fund-note">公积金入账包含个人缴存与单位缴存。</p>
+        <p class="hint" id="expense-note">全年支出包含实际租金和生活成本。</p>
+        <p class="hint" id="party-dues-note" hidden></p>
+        <p class="hint" id="bonus-note">年终奖单独计税政策执行至 2027 年 12 月 31 日。</p>
+      </section>
+    </div>
+
+    <details class="card" id="policy" open>
+      <summary class="policy-title">五险一金与政策依据</summary>
+      <p class="hint">按 2026 年 11 月 19 日适用的缴费标准模拟居民职工连续 12 个月的固定工资，假设全年无其他综合所得或额外扣除。切换城市会载入当地费率。单位社保费率用于说明，公积金按双方同比例入账。</p>
+      <p id="city-note"></p>
+      <label class="field tax-month">查看工资个税月份
+        <select id="tax-month"></select>
+      </label>
+      <div class="table-wrap" tabindex="0" role="region" aria-label="五险一金与工资个税明细">
+        <table>
+          <thead>
+            <tr><th scope="col">项目</th><th scope="col">月基数范围（元）</th><th scope="col">个人比例</th><th scope="col">单位比例</th><th scope="col">本次基数</th><th scope="col">个人月缴</th></tr>
+          </thead>
+          <tbody id="contribution-rows"></tbody>
+          <tfoot>
+            <tr>
+              <th scope="row">工资个税</th><td>按税前扣除计算</td><td>累计预扣税率</td><td>—</td>
+              <td><span id="tax-month-base">—</span><small id="tax-cumulative-base"></small></td>
+              <td id="tax-month-paid">—</td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+      <p class="hint" id="contribution-note"></p>
+      <details>
+        <summary>查看计算公式与政策来源</summary>
+        <ul class="formulas">
+          <li>缴费基数按各项目的上下限截取。公积金按缴费基数乘以比例，个人、单位各自取整后相加。</li>
+          <li>工资计税基数为税前工资减去每月 5,000 元、合规的个人三险一金和可申报的租金扣除。自定义个人社保费率高于当地政策的部分仍从工资中扣除，但按当地费率口径计算税前扣除。</li>
+          <li>五城符合条件的住房租金按每月 1,500 元定额从应纳税所得额扣除。实际租金用于计算年度支出。</li>
+          <li>奖金单独计税以奖金除以 12 确定税档；并入综合所得时，以全年含奖金与不含奖金的个税差额归为奖金税。</li>
+          <li>在职党员党费按经常性税后工资全额分档。月基数不超过 3,000 元按 0.5%，超过 3,000 元至 5,000 元按 1%，超过 5,000 元至 10,000 元按 1.5%，超过 10,000 元按 2%。月缴一般以 1,000 元为上限。</li>
+          <li>党费基数留空时，用扣除个人五险一金和工资个税后的月均工资估算，不计年终奖。党费作为税后扣款按固定月额计入，实际月基数可填写党组织的核定金额。</li>
+          <li>含公积金的年收入和年存款加回全年个人、单位公积金入账。现金存款为全年现金收入减去全年租金与生活开销。</li>
+        </ul>
+        <ul id="policy-sources" class="sources"></ul>
+        <ul class="sources">
+          <li><a href="https://12366.chinatax.gov.cn/bzds/074/074-4-5.html" target="_blank" rel="noopener">国家税务总局 · 住房租金扣除</a></li>
+          <li><a href="https://12366.chinatax.gov.cn/bzds/070/070-5-4.html" target="_blank" rel="noopener">国家税务总局 · 工资累计预扣</a></li>
+          <li><a href="https://fgk.chinatax.gov.cn/zcfgk/c102416/c5211524/content.html" target="_blank" rel="noopener">财政部、税务总局 · 全年一次性奖金</a></li>
+          <li><a href="https://shanghai.chinatax.gov.cn/tax/zcfw/zcfgk/grsds/200610/t288888.html" target="_blank" rel="noopener">税务总局 · 三险一金税前扣除</a></li>
+          <li><a href="https://www.mct.gov.cn/whzx/djgz/ywtj_djgz/201904/t20190410_842643.htm" target="_blank" rel="noopener">中央组织部 · 党费收缴规定</a></li>
+          <li><a href="https://gzw.beijing.gov.cn/xxfb/2024zcwj/dnfg/202406/t20240611_3709032.html" target="_blank" rel="noopener">中央组织部办公厅 · 党费基数与月缴标准</a></li>
+        </ul>
+      </details>
+    </details>
+
+    <section class="card" aria-labelledby="monthly-title">
+      <details id="monthly-details">
+        <summary id="monthly-title">查看 12 个月工资预扣明细</summary>
+        <p class="hint">每月计入 5,000 元基本减除费用，累计减除费用为 5,000 元 × 月份数。当月个税为累计应预扣税额减去前几个月已预扣的税额。到手工资已扣除表中党费，奖金税单列。</p>
+        <div class="table-wrap" tabindex="0" role="region" aria-label="逐月工资到手明细">
+          <table>
+            <thead>
+              <tr><th scope="col">月份</th><th scope="col">基本减除费用</th><th scope="col">个人五险一金</th><th scope="col">当月计税基数</th><th scope="col">当月预扣个税</th><th scope="col">当月党费</th><th scope="col">工资当月到手</th></tr>
+            </thead>
+            <tbody id="monthly-rows"><tr><td colspan="7">输入并计算后显示。</td></tr></tbody>
+          </table>
+        </div>
+      </details>
+    </section>
+  </main>
+</body>
+</html>
